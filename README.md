@@ -7,18 +7,18 @@ __Example type Navigaror__
 
 <div class="d-flex justify-content-end  text-muted align-items-center pager-custom-group">
   Visualizza
-    <select class="custom-select">
+    <select class="custom-select">  <!--(comboPages)-->
       <option>10</option>
       <option>25</option>
       <option>50</option>
     </select>
-  <button class="arrow-button previous">
+  <button class="arrow-button previous"> <!--(btnPrevious)-->
    <<
   </button>
   <p class="d-inline-block text-14 text-sm-11 px-10 text-top mb-0 lh-1">
-   <span class="current">1</span>/<span class="total">4</span>
+   <span class="current">1</span>/<span class="total">4</span>  <!--(labelPageCurrent)-->  /  <!--(labelPageTotal)-->
   </p>
-  <button class="arrow-button next">
+  <button class="arrow-button next">  <!--(btnNext)-->
    >>
   </button>
 </div>
@@ -28,9 +28,9 @@ __Example type Navigaror__
 __Example type body__
 
 ```
-  <div class="list-group list-group-flush"> <!--Main Element-->
+  <div class="list-group list-group-flush"> <!--Main Element-->   <!--(box)-->
             
-            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->
+            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->  <!--(row)-->
                 <div class="row">
                   <div class="col-lg-7 col-12 border-right b-md-0 mb-xs-10 mb-lg-0">
                     <div class="d-flex">
@@ -50,7 +50,7 @@ __Example type body__
                   </div>
                 </div>
               </a>
-            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->
+            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->  <!--(row)-->
                 <div class="row">
                   <div class="col-lg-7 col-12 border-right b-md-0 mb-xs-10 mb-lg-0">
                     <div class="d-flex">
@@ -70,7 +70,7 @@ __Example type body__
                   </div>
                 </div>
               </a>
-            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->
+            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element--> <!--(row)-->
                 <div class="row">
                   <div class="col-lg-7 col-12 border-right b-md-0 mb-xs-10 mb-lg-0">
                     <div class="d-flex">
@@ -90,7 +90,7 @@ __Example type body__
                   </div>
                 </div>
               </a>
-            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->
+            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element--> <!--(row)-->
                 <div class="row">
                   <div class="col-lg-7 col-12 border-right b-md-0 mb-xs-10 mb-lg-0">
                     <div class="d-flex">

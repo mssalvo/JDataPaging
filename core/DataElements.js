@@ -1,4 +1,4 @@
-/**!
+/*!
  * @author salvo mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/DataElement
  *
@@ -29,7 +29,7 @@
  *  @function dataIstance.refreshLimit(n)
  *  
  *  
- **/
+ */
 
 function DataElement(o) {
     if (o) {
@@ -74,9 +74,9 @@ DataElement.prototype.settyng = function (o) {
     if (o.labelPageTotal)
         this.labelPageTotal = document.querySelectorAll(o.labelPageTotal)
     this.limit = Number(this.pages[0]);
-    
+
     var th_ = this;
-    return th_.init().initComboPages().initButtons().next().writeLabels(); 
+    return th_.init().initComboPages().initButtons().next().writeLabels();
 }
 DataElement.prototype.getCurrentPage = function () {
     return this.pageCurrent;
@@ -105,11 +105,8 @@ DataElement.prototype.next = function () {
 
     ++this.pageCurrent;
     this.back = false;
-    for (var c = 0; c < this.selectorBox.children.length; c++) {
-        var el_ = this.selectorBox.children[c];
-        this.selectorBox.removeChild(el_);
-    }
-    this.selectorBox.innerHTML = "";
+
+    this.clear();
 
     var start = 0;
     if (this.pageCurrent > 1) {
@@ -139,11 +136,7 @@ DataElement.prototype.next = function () {
 }
 DataElement.prototype.previous = function () {
 
-    for (var c = 0; c < this.selectorBox.children.length; c++) {
-        var el_ = this.selectorBox.children[c];
-        this.selectorBox.removeChild(el_)
-    }
-    this.selectorBox.innerHTML = "";
+    this.clear();
     if (!this.back)
         --this.pageCurrent;
     this.back = false;
@@ -164,9 +157,18 @@ DataElement.prototype.previous = function () {
 
     }
     this.writeLabels();
-    
+
     return this;
 
+}
+
+DataElement.prototype.clear = function () {
+    var _this = this;
+    Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
+        el.parentNode.removeChild(el);
+    });
+
+    return this;
 }
 
 DataElement.prototype.init = function () {
@@ -186,11 +188,8 @@ DataElement.prototype.refreshLimit = function (n) {
         this.limit = Number(n);
     this.pageCurrent = 1;
 
-    for (var c = 0; c < this.selectorBox.children.length; c++) {
-        var el_ = this.selectorBox.children[c];
-        this.selectorBox.removeChild(el_)
-    }
-    this.selectorBox.innerHTML = "";
+
+    this.clear();
     var start = 0;
     var end = (this.limit * (this.pageCurrent));
     var arry = this.rows.slice(start, end);
@@ -209,19 +208,19 @@ DataElement.prototype.refreshLimit = function (n) {
             el.value = n;
         });
     this.writeLabels();
-    
+
     return this;
 }
 
 DataElement.prototype.writeLabels = function () {
     var _this = this;
     Array.prototype.forEach.call(_this.labelPageCurrent, function (el, i) {
-      el.innerHTML=_this.back?(_this.pageCurrent+1):_this.pageCurrent;
+        el.innerHTML = _this.back ? (_this.pageCurrent + 1) : _this.pageCurrent;
     });
     Array.prototype.forEach.call(_this.labelPageTotal, function (el, i) {
-      el.innerHTML=_this.pageMax;
+        el.innerHTML = _this.pageMax;
     });
-    
+
 
     return this;
 }
@@ -284,5 +283,6 @@ if (!('forEach' in Array.prototype)) {
             if (i in this)
                 action.call(that, this[i], i, this);
     };
-};
+}
+;
  

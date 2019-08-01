@@ -2,7 +2,7 @@
 DataElement is a simple plugin for paging complex HTML elements working on the client side, for the management of pages with light load
 
 
-__Example type Navigaror__
+__Example type mapping Navigaror__
 ```
 
 <div class="d-flex justify-content-end  text-muted align-items-center pager-custom-group">
@@ -25,7 +25,7 @@ __Example type Navigaror__
 
 ```
 
-__Example type body__
+__Example type mapping body__
 
 ```
   <div class="list-group list-group-flush"> <!--Main Element-->   <!--(box)-->

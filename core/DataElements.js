@@ -34,7 +34,7 @@
 function DataElement(o) {
     if (o) {
         var t_ = this;
-        t_.new().settyng(o)
+        t_.new_().settyng(o)
     }
 }
 DataElement.rows = []; /*lista di elementi (Rows)*/
@@ -84,7 +84,7 @@ DataElement.prototype.getCurrentPage = function () {
 DataElement.prototype.getTotalPage = function () {
     return this.pageMax;
 }
-DataElement.prototype.new = function () {
+DataElement.prototype.new_ = function () {
     this.rows = []; /*lista di elementi (Rows)*/
     this.selectorBox = undefined;
     this.selectorRowName = '';

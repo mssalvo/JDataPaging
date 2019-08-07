@@ -122,7 +122,7 @@ AioRequest.prototype = {
     },
     setting: function (b) {
         var this__ = this;
-        this__.opt.autoLoad=typeof (b)!=="undefined"?b:false;
+        this__.opt.autoLoad=typeof (b)!=="undefined"?b:this__.opt.autoLoad;
         this.requestXHR = this.request(this__.opt.url, {
             autoLoad: this__.opt.autoLoad,
             method: this__.opt.method,

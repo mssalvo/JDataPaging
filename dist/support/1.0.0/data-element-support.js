@@ -2,6 +2,8 @@
  * DataElementSupport v1.0.0
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/DataElement/tree/master/dist/support
+ *  GNU General Public License v3.0
+ *  https://github.com/mssalvo/DataElement/blob/master/LICENSE
  * */
 
 (function () {

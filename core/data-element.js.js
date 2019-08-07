@@ -2,8 +2,6 @@
  * DataElement v1.0.0
  * @author salvo mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/DataElement
- *
- *  Copyright and license :
  *  GNU General Public License v3.0
  *  https://github.com/mssalvo/DataElement/blob/master/LICENSE
  *  

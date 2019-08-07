@@ -3,7 +3,7 @@ DataElement is a simple plugin for paging complex HTML elements working on the c
 
 
 __Example type mapping Navigaror__
-```
+```html
 
 <div class="d-flex justify-content-end  text-muted align-items-center pager-custom-group">
   Visualizza
@@ -27,7 +27,7 @@ __Example type mapping Navigaror__
 
 __Example type mapping body__
 
-```
+```html
   <div class="list-group list-group-flush"> <!--Main Element-->   <!--(box)-->
             
             <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->  <!--(row)-->
@@ -119,7 +119,7 @@ __Example type mapping body__
 
 __Example Istance DataElement__
 
-```
+```js
    var dataIstance=new DataElement({
            box:'div.list-group',  
            row:'a.list-group-item',  

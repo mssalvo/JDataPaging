@@ -1,7 +1,7 @@
 /*! 
- * AioRequest v1.0.0
+ * 
  * @author salvatore mariniello - salvo.mariniello@gmail.com
- * https://github.com/mssalvo/DataElement
+ * https://github.com/mssalvo/DataElement/tree/master/dist/util-support
  * @example istance 
  * AioRequest.istance('incorso')
  *       .set("url", '/DataElements/incorso.json')

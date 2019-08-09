@@ -32,82 +32,34 @@ __Example type mapping body__
             
             <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->  <!--(row)-->
                 <div class="row">
-                  <div class="col-lg-7 col-12 border-right b-md-0 mb-xs-10 mb-lg-0">
-                    <div class="d-flex">
- 
-
-                      <div class="ml-md-10 my-auto">
-                        <p class="m-0 text-8">XXXXXXXXXX XXXX XXXXXXX</p>
-                        <p class="m-0 text-19 text-sm-13">XXXXXXXXXX XXXX XXXXXXX</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-5 col-12 d-flex align-items-center" style="max-width: 480px;">
-                    <div class="w-100">
-                      <p class="m-0 text-8">XXXXXXXXXX XXXX XXXXXXX</p>
-                      <p class="m-0 text-8 font-light text-uppercase">XXXXXXXXXX XXXX XXXXXXX <br> XXXXXXXXXX XXXX XXXXXXX</p>
-                    </div>
-                  </div>
+                <div class="col">XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX </div>
                 </div>
               </a>
             <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->  <!--(row)-->
                 <div class="row">
-                  <div class="col-lg-7 col-12 border-right b-md-0 mb-xs-10 mb-lg-0">
-                    <div class="d-flex">
- 
-
-                      <div class="ml-md-10 my-auto">
-                        <p class="m-0 text-8">XXXXXXXXXX XXXX XXXXXXX</p>
-                        <p class="m-0 text-19 text-sm-13">222222 XXXXXXXXXX XXXX XXXXXXX</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-5 col-12 d-flex align-items-center" style="max-width: 480px;">
-                    <div class="w-100">
-                      <p class="m-0 text-8">XXXXXXXXXX XXXX XXXXXXX</p>
-                      <p class="m-0 text-8 font-light text-uppercase">XXXXXXXXXX XXXX XXXXXXX <br> XXXXXXXXXX XXXX XXXXXXX</p>
-                    </div>
-                  </div>
+                <div class="col">XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX </div>
                 </div>
               </a>
             <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element--> <!--(row)-->
                 <div class="row">
-                  <div class="col-lg-7 col-12 border-right b-md-0 mb-xs-10 mb-lg-0">
-                    <div class="d-flex">
- 
-
-                      <div class="ml-md-10 my-auto">
-                        <p class="m-0 text-8">XXXXXXXXXX XXXX XXXXXXX</p>
-                        <p class="m-0 text-19 text-sm-13">333333XXXXXXXXXX XXXX XXXXXXX</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-5 col-12 d-flex align-items-center" style="max-width: 480px;">
-                    <div class="w-100">
-                      <p class="m-0 text-8">XXXXXXXXXX XXXX XXXXXXX</p>
-                      <p class="m-0 text-8 font-light text-uppercase">XXXXXXXXXX XXXX XXXXXXX <br> XXXXXXXXXX XXXX XXXXXXX</p>
-                    </div>
-                  </div>
+                <div class="col">XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX </div>
                 </div>
               </a>
             <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element--> <!--(row)-->
                 <div class="row">
-                  <div class="col-lg-7 col-12 border-right b-md-0 mb-xs-10 mb-lg-0">
-                    <div class="d-flex">
- 
-
-                      <div class="ml-md-10 my-auto">
-                        <p class="m-0 text-8">XXXXXXXXXXXX / XXXX</p>
-                        <p class="m-0 text-19 text-sm-13">444444 XXXXXXXXXXXXX / XXXXXXXXXXXX</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-5 col-12 d-flex align-items-center" style="max-width: 480px;">
-                    <div class="w-100">
-                      <p class="m-0 text-8">XXXXXXXX 8</p>
-                      <p class="m-0 text-8 font-light text-uppercase">XXX XXXXXXX XXXXXXX, X - XXXX <br> XXX XXX XXXX</p>
-                    </div>
-                  </div>
+                <div class="col">XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX</div>
+                <div class="col"> XXXXXXXXXX XXXX </div>
                 </div>
               </a>
 

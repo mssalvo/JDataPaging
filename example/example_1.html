@@ -13,20 +13,20 @@
     <body>
         <div class="container">
             <a class="btn btn-primary btn-block" href="../index.html" >&LT; Back </a> 
-        </div>  
+        </div>
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <h5>DataElement Paging</h5>      
+                    <h5>DataElement Paging</h5>
                     <h2 class="display-4" style="font-size:2rem;">HTML source - Dati provenienti da HTML </h2>    
                 </div>
                 </div>
         </div>
-
-        <div class="container"> 
+        <div class="container-fluid body">
+        <div class="container">
             <ul class="pagination pagination-lg">
-                <li class="page-item page-link">Show entries:</li>  
-                <li class="page-item"> <select style="height: 100%;" class="page-link custom-select"><option>01</option></select> </li>  
+                <li class="page-item page-link">Show entries:</li>
+                <li class="page-item"><select style="height: 100%;" class="page-link custom-select"><option>01</option></select></li>
                 <li class="page-item"><a class="page-link previous" href="#">Previous</a></li>
                 <li class="page-item page-link current"></li>
                 <li class="page-item page-link">di</li>
@@ -34,9 +34,7 @@
                 <li class="page-item"><a class="page-link next" href="#">Next</a></li>
             </ul>
         </div>
-
         <div class="container">
-
             <div class="list-group">
                 <a href="#" class="list-group-item list-group-item-action">Row 1</a>
                 <a href="#" class="list-group-item list-group-item-action">Row 2</a>
@@ -55,9 +53,7 @@
                 <a href="#" class="list-group-item list-group-item-action">Row 15</a>
             </div>
         </div>
-
-
-        <script>
+        <script id="DataElement">
             DataElement.paging('myname', {
                 box: 'div.list-group',
                 row: 'a.list-group-item',
@@ -68,7 +64,14 @@
                 btnNext: 'a.next',
                 btnPrevious: 'a.previous'
             })
-        </script>    
-
+        </script>
+        </div>
+        <code id="code" style="color: #929292">
+            
+        </code>
+             <script>
+            $("#code").html($("#DataElement").html().replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\ /ig, '&nbsp;').replace(/\n/g, '<br/>'));
+    </script> 
     </body>
+ 
 </html>

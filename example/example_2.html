@@ -44,7 +44,7 @@
     <template jms-template="myTemplateRow">
     <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
     </template>  
-    <script>
+    <script id="DataElement">
         var rows=["row 1","row 2","row 3","row 4","row 5","row 6","row 7","row 8","row 9","row 10"];
        
         DataElement.paging('myname',{
@@ -61,6 +61,13 @@
            plugin:DataElementSupport
         })
     </script>    
-    
+      <code id="code" style="color: #929292">
+            
+        </code>
+       
+   
+      <script>
+            $("#code").html($("#DataElement").html().replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\ /ig, '&nbsp;').replace(/\n/g, '<br/>'));
+    </script> 
 </body>
 </html>

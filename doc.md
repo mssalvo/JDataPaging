@@ -1,16 +1,13 @@
 # DataElement
 DataElement is a simple plugin for paging complex HTML elements working on the client side, for managing pages with average load
  
-
+ 
 __Example type mapping Navigaror__
 ```html
 
 <div class="d-flex justify-content-end  text-muted align-items-center pager-custom-group">
   Visualizza
     <select class="custom-select">  <!--(comboPages)-->
-      <option>10</option>
-      <option>25</option>
-      <option>50</option>
     </select>
   <button class="arrow-button previous"> <!--(btnPrevious)-->
    <<
@@ -24,8 +21,13 @@ __Example type mapping Navigaror__
 </div>
 
 ```
-
+# HTML source - Data from HTML
 __Example type mapping body__
+
+1 . Identify the parent element that encloses the rows
+```html
+  <div class="list-group list-group-flush"> <!--Main Element-->   <!--(box)-->
+```
 
 ```html
   <div class="list-group list-group-flush"> <!--Main Element-->   <!--(box)-->
@@ -66,25 +68,6 @@ __Example type mapping body__
       </div><!-- End Main Element-->
 
 ```
-
-
-
-__Example Istance DataElement v.1.0.0__
-
-```js
-   var dataIstance=new DataElement({
-           box:'div.list-group',  
-           row:'a.list-group-item',  
-           comboPages:'select.custom-select',   
-           pages:[2,3,5,7],  
-           labelPageCurrent:'span.current',  
-           labelPageTotal:'span.total',   
-           btnNext:'button.next',  
-           btnPrevious:'button.previous' 
-           });
- ```   
- 
- 
 __Example Istance DataElement v.1.1.0__
  
  ```js

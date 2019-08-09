@@ -73,8 +73,12 @@ __Example__
       </div><!-- End Main Element-->
 
 ```
-__Example Istance DataElement v.1.1.0__
  
+ 
+ 3 . Instance a DataElement object by setting the various attributes that map the relevant html
+ `box` `row` `comboPages` `pages` `labelPageCurrent` `labelPageTotal` `btnNext` `btnPrevious`
+ 
+ __Example Istance DataElement v.1.1.0__
  ```js
         DataElement.paging('myname',{
            box:'div.list-group',  

@@ -9,7 +9,7 @@ DataElement is a simple plugin for paging complex HTML elements working on the c
 ```
 2. Include DataElementSupport if you are using a javascript / json data object 
 ```html
-<script src="/path/dist/support/1.1.0/data-element-support.min.jss"></script>
+<script src="/path/dist/support/1.1.0/data-element-support.min.js"></script>
 ```
 
 __Example type mapping Navigaror__

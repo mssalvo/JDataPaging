@@ -28,7 +28,12 @@ __Example type mapping body__
 ```html
   <div class="list-group list-group-flush"> <!--Main Element-->   <!--(box)-->
 ```
+2 . Identify child element that represents a row
+```html
+   <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->  <!--(row)-->
+```
 
+__Example__
 ```html
   <div class="list-group list-group-flush"> <!--Main Element-->   <!--(box)-->
             

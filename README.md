@@ -154,3 +154,40 @@ __Recover the instance__
  DataElement.get.myname
  
  ```
+
+
+<a name="jms-event" />
+### jms-event
+[<<< Control Html](#controlHtml)
+
+
+It defines the type of event associated with the item and the type of control to associate with the event - types allowed> 
+
+### Control html
+
+__Example__
+
+* [jms-event](#jms-event)
+
+```html
+<input type="button" jms-event="click:fn@myFunctionName" value="go!">
+
+<input type="button" jms-event="click focus blur:fn@myFunctionName" value="go!">
+```  
+
+ use of jms-template to dynamically create rows
+ 
+__Example__   
+ 
+
+* [jms-foreach](#jms-foreach)
+
+* [for-property-*](#for-property)
+
+* [jms-template](#jms-template)
+
+```html
+   <template jms-template="myTemplateRow">
+            <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
+   </template> 
+``` 

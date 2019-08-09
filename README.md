@@ -12,6 +12,11 @@ DataElement is a simple plugin for paging complex HTML elements working on the c
 <script src="/path/dist/support/1.1.0/data-element-support.min.js"></script>
 ```
 
+
+
+[Documentation](https://github.com/mssalvo/DataElement/blob/master/doc.md).
+
+
 __Example type mapping Navigaror__
 ```html
 

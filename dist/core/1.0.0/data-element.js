@@ -213,9 +213,13 @@ DataElement.prototype.refreshLimit = function (n) {
 
 DataElement.prototype.writeLabels = function () {
     var _this = this;
+    
+    if(typeof(this.labelPageCurrent)!=="undefined")
     Array.prototype.forEach.call(_this.labelPageCurrent, function (el, i) {
         el.innerHTML = _this.back ? (_this.pageCurrent + 1) : _this.pageCurrent;
     });
+
+    if(typeof(this.labelPageTotal)!=="undefined")
     Array.prototype.forEach.call(_this.labelPageTotal, function (el, i) {
         el.innerHTML = _this.pageMax;
     });

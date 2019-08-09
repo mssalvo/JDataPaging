@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Example DataElement</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="../dist/core/1.1.0/data-element.js"></script>
+</head>
+<body>
+ 
+<div class="container">
+  <h2>HTML source - Dati provenienti da HTML </h2>
+  <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action">Row 1</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 2</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 3</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 4</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 5</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 6</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 7</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 8</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 9</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 10</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 11</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 12</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 13</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 14</a>
+    <a href="#" class="list-group-item list-group-item-action">Row 15</a>
+  </div>
+</div>
+<div class="container"> 
+ 
+<ul class="pagination pagination-lg">
+  <li class="page-item page-link">Record per Pag:</li>  
+  <li class="page-item"> <select style="height: 100%;" class="page-link custom-select"><option>01</option></select> </li>  
+  <li class="page-item"><a class="page-link previous" href="#">Previous</a></li>
+  <li class="page-item page-link current"></li>
+  <li class="page-item page-link">di</li>
+  <li class="page-item page-link total"></li>
+  <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+</ul>
+</div>
+    
+    <script>
+        DataElement.paging('myname',{
+           box:'div.list-group',  
+           row:'a.list-group-item',  
+           comboPages:'select.custom-select',   
+           pages:[2,3,5,7],  
+           labelPageCurrent:'li.current',  
+           labelPageTotal:'li.total',   
+           btnNext:'a.next',  
+           btnPrevious:'a.previous' 
+        })
+    </script>    
+    
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Example DataElement</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="../dist/core/1.1.0/data-element.js"></script>
+  <script src="../dist/support/1.1.0/data-element-support.js"></script>
+</head>
+<body>
+ 
+<!--NAVIGATORE-->    
+<div class="container"> 
+ 
+<ul class="pagination pagination-lg">
+  <li class="page-item page-link">Record per Pag:</li>  
+  <li class="page-item"> <select style="height: 100%;" class="page-link custom-select"><option>01</option></select> </li>  
+  <li class="page-item"><a class="page-link previous" href="#">Previous</a></li>
+  <li class="page-item page-link current"></li>
+  <li class="page-item page-link">di</li>
+  <li class="page-item page-link total"></li>
+  <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+</ul>
+</div>    
+<!--NAVIGATORE-->    
+
+
+<div class="container">
+  <h2>Dati provenienti da Ajax con elaborazione lato client</h2>
+  <!--BOX MAIN--> 
+  <div class="list-group">   
+
+  </div>
+  <!--BOX MAIN--> 
+</div>
+
+    
+    <template jms-template="myTemplateRow"> <!--TEMPLATE ROW jms--> 
+   <!--ROW --> 
+        <a href="#" class="list-group-item list-group-item-action" jms-foreach="companys" >
+            <img for-property-src="companys.picture">
+            <div for-property="companys.company"></div>
+            <div for-property="companys.name"></div>
+            <div for-property="companys.email"></div>
+            <div for-property="companys.phone"></div>
+            <div for-property="companys.address"></div>
+            <textarea class="col-12" for-property="companys.about"></textarea>
+            <div for-property="companys.registered"></div>
+            <div for-property="companys.phone"></div> 
+            <input class="col-8" for-property-value="companys.address"> 
+            <input type="checkbox" class="col-2" for-property-checked="companys.isActive"> 
+            <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" for-property-checked="companys.isActive" for-property-id="companys.index" id="switch">
+            <label class="custom-control-label" for-property-for="companys.index" for="switch">Toggle me</label>
+          </div>
+            
+            <select for-property-id="companys.index" id="combo_"></select>
+        </a>    
+   <!--ROW -->
+    </template>  
+
+    <script>
+         
+        DataElement.paging('company',{
+           url:'./generated.json',
+           box:'div.list-group',  //BOX MAIN
+           row:'a.list-group-item',  // ROW
+           comboPages:'select.custom-select',   
+           pages:[2,3,5,7],  
+           labelPageCurrent:'li.current',  
+           labelPageTotal:'li.total',   
+           btnNext:'a.next',  
+           btnPrevious:'a.previous',
+           jmsTemplate:'myTemplateRow',
+           onBeforeRow:function(el,obj,index){ for(o in obj.friends) $('select',el).append($('<option>', { 
+                    value: obj.friends[o].id,
+                    text : obj.friends[o].name 
+            })); console.log(el,obj,index); if(obj=="row 5")return false;  return true;},
+            onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
+            plugin:DataElementSupport,
+            autoStart:false
+        })
+    </script>    
+    
+</body>
+</html>

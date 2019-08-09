@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Example DataElement</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="../dist/core/1.1.0/data-element.js"></script>
+  <script src="../dist/support/1.0.0/data-element-support.js"></script>
+</head>
+<body>
+ 
+<div class="container">
+  <h2>Javascript (array / oggetti) Dati provenienti da Javascript</h2>
+  <div class="list-group">
+
+  </div>
+</div>
+<div class="container"> 
+ 
+<ul class="pagination pagination-lg">
+  <li class="page-item page-link">Record per Pag:</li>  
+  <li class="page-item"> <select style="height: 100%;" class="page-link custom-select"><option>01</option></select> </li>  
+  <li class="page-item"><a class="page-link previous" href="#">Previous</a></li>
+  <li class="page-item page-link current"></li>
+  <li class="page-item page-link">di</li>
+  <li class="page-item page-link total"></li>
+  <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+</ul>
+</div>
+    <template jms-template="myTemplateRow">
+    <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
+    </template>  
+    <script>
+        var rows=["row 1","row 2","row 3","row 4","row 5","row 6","row 7","row 8","row 9","row 10"];
+       
+        DataElement.paging('myname',{
+           data:{rows:rows},
+           box:'div.list-group',  
+           row:'a.list-group-item',  
+           comboPages:'select.custom-select',   
+           pages:[2,3,5,7],  
+           labelPageCurrent:'li.current',  
+           labelPageTotal:'li.total',   
+           btnNext:'a.next',  
+           btnPrevious:'a.previous',
+           jmsTemplate:'myTemplateRow',
+           plugin:DataElementSupport
+        })
+    </script>    
+    
+</body>
+</html>

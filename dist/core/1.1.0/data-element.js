@@ -7,10 +7,13 @@
  **/
 
 function DataElement(o) {
-    if (o) {
-        var t_ = this;
+    var t_ = this;
+    t_.log("INIT DataElement!")
+    if (o)
         t_._new().settyng(o)
-    }
+    else
+        t_.log("DataElement Info: >> No object declared : Example [ DataElement.paging('myname',{data:object,box:' '}) ] info: https://github.com/mssalvo/DataElement")
+
 }
 ;
 DataElement.rows = []; /*lista di elementi (Rows)*/
@@ -27,6 +30,11 @@ DataElement.btnPrevious = undefined;
 DataElement.comboPages = undefined;
 DataElement.pages = ['10', '20', '30', '40', '50'];
 DataElement.prototype.dataSupport = undefined;
+DataElement.get = {};
+if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined')
+    window.console = {log: function () {}};
+DataElement.prototype.log = window.console.log;
+
 DataElement.prototype.creaView = function () {
     var this_ = this;
     if (this_.plugin) {
@@ -34,7 +42,7 @@ DataElement.prototype.creaView = function () {
         this_.dataSupport.home = this_;
         this_.dataSupport.createView(this_.jmsTemplate, this_.data, this_.selectorBox);
     } else {
-        console.log("[DataElement] Info error:: dataSupport not istance > check include data-support.js")
+        this_.log("[DataElement] Info error:: dataSupport not istance > check include data-support.js")
     }
     return this_;
 };
@@ -42,7 +50,7 @@ DataElement.prototype.settyng = function (o) {
     this.pages = ['1', '2', '3', '4', '5'];
     this.btnNext = undefined;
     this.btnPrevious = undefined;
-    this.ajaxSetting={url:'',type:'get',dataType:'json'};
+    this.ajaxSetting = {url: '', type: 'get', dataType: 'json'};
     if (o.box)
         this.selectorBox = document.querySelector(o.box)
     if (o.row)
@@ -74,6 +82,10 @@ DataElement.prototype.settyng = function (o) {
         this.onPreviousAfter = o.onPreviousAfter;
     if (o.onChangeComboPages)
         this.onChangeComboPages = o.onChangeComboPages;
+    if (o.onBeforeRow)
+        this.onBeforeRow = o.onBeforeRow;
+    if (o.onAfterRow)
+        this.onAfterRow = o.onAfterRow;
     if (o.plugin)
         this.plugin = o.plugin;
     if (typeof (o.autoStart) !== "undefined")
@@ -82,7 +94,7 @@ DataElement.prototype.settyng = function (o) {
         this.jmsTemplate = o.jmsTemplate;
     if (o.data)
         this.data = o.data;
-    if (this.plugin) {
+    if (o.plugin) {
         this.dataSupport = this.plugin.istance();
         this.dataSupport.home = this;
     }
@@ -98,18 +110,28 @@ DataElement.prototype.settyng = function (o) {
         this.ajaxSetting.type = "get";
     if (typeof (this.ajaxSetting.dataType) === "undefined")
         this.ajaxSetting.dataType = "json";
- 
+    if (typeof (o.url) !== "undefined")
+        this.isAjax = true;
     if (this.autoStart && typeof (o.url) !== "undefined")
     {
         this.isAjax = true;
         this.dataSupport.ajaxCallServer('start');
-    } else if (this.autoStart && typeof (o.url) === "undefined")
+    }
+    if (this.autoStart && typeof (o.url) === "undefined")
         return this.start();
-    else
-        return this;
+    if (!this.autoStart && typeof (o.url) !== "undefined")
+        this.dataSupport.ajaxCallServer('dataSet');
+
+    return this;
 };
+DataElement.prototype.dataSet = function (data) {
+    var th_ = this;
+    if (data)
+        th_.data = data;
+}
 DataElement.prototype.start = function (data) {
     var th_ = this;
+    th_.log("START DataElement!")
     if (data)
         th_.data = data;
 
@@ -127,7 +149,7 @@ DataElement.prototype.getTotalPage = function () {
 DataElement.prototype._new = function () {
     this.isServer = false;
     this.isAjax = false;
-    this.ajaxSetting={url:'',type:'get',dataType:'json'};
+    this.ajaxSetting = {url: '', type: 'get', dataType: 'json'};
     this.jmsTemplate = undefined;
     this.plugin = {};
     this.data = {};
@@ -151,6 +173,12 @@ DataElement.prototype._new = function () {
     this.onPreviusBefore = undefined;
     this.onPreviousAfter = undefined;
     this.onChangeComboPages = undefined;
+    this.onBeforeRow = function (a, b, c) {
+        return true;
+    };
+    this.onAfterRow = function (a, b, c) {
+        return true;
+    };
     this.pages = ['10', '20', '30', '50', '100'];
     this.back = false;
     return this;
@@ -304,8 +332,21 @@ DataElement.calculatesNext = function (this_) {
     }
     return {start: start_, end: end_};
 }
+/* @function page
+ * @param {Number} n
+ * @see numero pagina da visualiazzare
+ * @returns {DataElement}
+ **/
+DataElement.prototype.page = function (n) {
+    if (typeof (n) !== "undefined")
+        this.pageCurrent = (Number(n) - 1);
 
-
+    return this.next();
+};
+/* @function next
+ * @see avanza di pagina
+ * @returns {DataElement}
+ **/
 DataElement.prototype.next = function () {
     if (this.isServer)
         return DataElement.nextServer(this);
@@ -361,6 +402,10 @@ DataElement.calculatesPrevious = function (this_) {
 
     return {start: start_, end: end_};
 }
+/* @function previous
+ * @see pagina precedente
+ * @returns {DataElement}
+ **/
 DataElement.prototype.previous = function () {
     if (this.isServer)
         return DataElement.previousServer(this);
@@ -390,6 +435,11 @@ DataElement.prototype.previous = function () {
     return this;
 
 };
+/* @function restart
+ * @param {Object json} data
+ * @see riesegue un nuovo caricamento
+ * @returns {DataElement}
+ **/
 DataElement.prototype.restart = function (data) {
     var this_ = this;
     if (data)
@@ -404,14 +454,15 @@ DataElement.prototype.restart = function (data) {
         return DataElement.sendCallServer(this_, 'restart');
     } else
         return this_.start();
-    
+
 };
 
 DataElement.prototype.clear = function () {
-    var _this = this; //_this.selectorRowName
-    Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
-        el.parentNode.removeChild(el);
-    });
+    var _this = this;
+    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined")
+        Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
+            el.parentNode.removeChild(el);
+        });
 
     return this;
 };
@@ -419,10 +470,11 @@ DataElement.prototype.clear = function () {
 DataElement.prototype.init = function () {
     var _this = this;
     _this.rows = [];
-    Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
-        _this.rows.push(el)
-        el.parentNode.removeChild(el);
-    });
+    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined")
+        Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
+            _this.rows.push(el)
+            el.parentNode.removeChild(el);
+        });
     this.rowsTotal = _this.rows.length;
     this.pageMax = Math.ceil((_this.rows.length / _this.limit));
 
@@ -431,10 +483,11 @@ DataElement.prototype.init = function () {
 DataElement.prototype.initPageServer = function () {
     var _this = this;
     _this.rows = [];
-    Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
-        _this.rows.push(el)
-        el.parentNode.removeChild(el);
-    });
+    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined")
+        Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
+            _this.rows.push(el)
+            el.parentNode.removeChild(el);
+        });
 
     return this;
 };
@@ -477,12 +530,16 @@ DataElement.prototype.refreshLimit = function (n) {
 
 DataElement.prototype.writeLabels = function () {
     var _this = this;
-    Array.prototype.forEach.call(_this.labelPageCurrent, function (el, i) {
-        el.innerHTML = _this.back ? (_this.pageCurrent < _this.pageMax) ? (_this.pageCurrent + 1) : _this.pageCurrent : _this.pageCurrent;
-    });
-    Array.prototype.forEach.call(_this.labelPageTotal, function (el, i) {
-        el.innerHTML = _this.pageMax;
-    });
+
+    if (typeof (this.labelPageCurrent) !== "undefined")
+        Array.prototype.forEach.call(_this.labelPageCurrent, function (el, i) {
+            el.innerHTML = _this.back ? (_this.pageCurrent < _this.pageMax) ? (_this.pageCurrent + 1) : _this.pageCurrent : _this.pageCurrent;
+        });
+
+    if (typeof (this.labelPageTotal) !== "undefined")
+        Array.prototype.forEach.call(_this.labelPageTotal, function (el, i) {
+            el.innerHTML = _this.pageMax;
+        });
 
 
     return this;
@@ -545,10 +602,23 @@ if (!('forEach' in Array.prototype)) {
         for (var i = 0, n = this.length; i < n; i++)
             if (i in this)
                 action.call(that, this[i], i, this);
-    };
+    }
 };
-(function(){
-if(typeof window.console === 'undefined' || typeof window.console.log === 'undefined') {
-    window.console = { log: function() {}};
-}
-})();
+
+DataElement.paging = function (name, object) {
+    var n, o;
+    if (typeof (arguments[0]) === "object")
+        o = arguments[0];
+    else if (typeof (arguments[0]) === "string")
+        n = arguments[0];
+    if (typeof (arguments[1]) === "object")
+        o = arguments[1];
+    else if (typeof (arguments[1]) === "string")
+        n = arguments[1];
+    if (typeof (n) === "undefined")
+        n = new Date().getTime();
+
+    if (typeof (DataElement.get[n]) === "undefined")
+        DataElement.get[n] = new DataElement(o);
+    return DataElement.get[n];
+};

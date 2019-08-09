@@ -1,6 +1,16 @@
 # DataElement
 DataElement is a simple plugin for paging complex HTML elements working on the client side, for managing pages with average load
 
+# Getting Started
+
+1. Include DataElement on your page before the closing </body> tag
+```html
+<script src="/path/dist/core/1.1.0/data-element.min.js"></script>
+```
+2. Include DataElementSupport if you are using a javascript / json data object 
+```html
+<script src="/path/dist/support/1.1.0/data-element-support.min.jss"></script>
+```
 
 __Example type mapping Navigaror__
 ```html

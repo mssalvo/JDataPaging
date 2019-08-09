@@ -117,7 +117,7 @@ __Example type mapping body__
 
 
 
-__Example Istance DataElement__
+__Example Istance DataElement v.1.0.0__
 
 ```js
    var dataIstance=new DataElement({
@@ -130,6 +130,27 @@ __Example Istance DataElement__
            btnNext:'button.next',  
            btnPrevious:'button.previous' 
            });
- ```       
+ ```   
  
  
+__Example Istance DataElement v.1.1.0__
+ 
+ ```js
+        DataElement.paging('myname',{
+           box:'div.list-group',  
+           row:'a.list-group-item',  
+           comboPages:'select.custom-select',   
+           pages:[2,3,5,7],  
+           labelPageCurrent:'li.current',  
+           labelPageTotal:'li.total',   
+           btnNext:'a.next',  
+           btnPrevious:'a.previous' 
+        })
+ ```        
+__Recover the instance__
+
+ ```js
+ 
+ DataElement.get.myname
+ 
+ ```

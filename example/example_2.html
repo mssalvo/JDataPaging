@@ -12,17 +12,20 @@
   <script src="../dist/support/1.0.0/data-element-support.js"></script>
 </head>
 <body>
- 
-<div class="container">
-  <h2>Javascript (array / oggetti) Dati provenienti da Javascript</h2>
-  <div class="list-group">
-
-  </div>
-</div>
+         <div class="container">
+            <a class="btn btn-primary btn-block" href="../index.html" >&LT; Back </a> 
+        </div>  
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h5>DataElement Paging</h5>      
+                    <h2 class="display-4" style="font-size:2rem;">Javascript (array / oggetti) Dati provenienti da Javascript </h2>    
+                </div>
+                </div>
+        </div>
 <div class="container"> 
- 
 <ul class="pagination pagination-lg">
-  <li class="page-item page-link">Record per Pag:</li>  
+  <li class="page-item page-link">Show entries:</li>  
   <li class="page-item"> <select style="height: 100%;" class="page-link custom-select"><option>01</option></select> </li>  
   <li class="page-item"><a class="page-link previous" href="#">Previous</a></li>
   <li class="page-item page-link current"></li>
@@ -31,6 +34,13 @@
   <li class="page-item"><a class="page-link next" href="#">Next</a></li>
 </ul>
 </div>
+    
+<div class="container">
+  <div class="list-group">
+
+  </div>
+</div>
+ 
     <template jms-template="myTemplateRow">
     <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
     </template>  

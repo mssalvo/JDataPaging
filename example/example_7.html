@@ -63,7 +63,7 @@
    <!--ROW -->
     </template>  
 
-<script id="DataElement">
+<script>
          
         DataElement.paging('mycompany',{
            url:'./generated.json',
@@ -84,13 +84,6 @@
             plugin:DataElementSupport
         })
     </script>    
-              <code id="code" style="color: #929292">
-            
-        </code>
-       
-   
-      <script>
-            $("#code").html($("#DataElement").html().replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\ /ig, '&nbsp;').replace(/\n/g, '<br/>'));
-    </script> 
+
 </body>
 </html>

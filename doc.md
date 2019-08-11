@@ -58,6 +58,22 @@ Method | Action
 **refreshLimit** | update the record limit to display and recalculate the paging   
 
 
+## _to recover a previous instant, and use the methods available_
+
+example new istance
+
+```js
+DataElement.paging('myIstName', {box:'' .....});
+```
+
+example to recover
+
+```js
+DataElement.get.myIstName.next()
+DataElement.get.myIstName.previous()
+DataElement.get.myIstName.restart() 
+```
+
  
 __Example type mapping Navigaror__
 ```html

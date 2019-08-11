@@ -131,6 +131,7 @@ DataElement.prototype.dataSet = function (data) {
 }
 DataElement.prototype.start = function (data) {
     var th_ = this;
+    th_.pageCurrent=0;
     th_.log("START DataElement!")
     if (data)
         th_.data = data;
@@ -140,6 +141,7 @@ DataElement.prototype.start = function (data) {
     else
         return th_.init().initComboPages().initButtons().next().writeLabels();
 };
+
 DataElement.prototype.getCurrentPage = function () {
     return this.pageCurrent;
 };
@@ -179,7 +181,7 @@ DataElement.prototype._new = function () {
     this.onAfterRow = function (a, b, c) {
         return true;
     };
-    this.pages = ['10', '20', '30', '50', '100'];
+    this.pages = ['10', '20', '30', '50'];
     this.back = false;
     return this;
 };
@@ -449,12 +451,15 @@ DataElement.prototype.restart = function (data) {
     if (this_.isAjax) {
         this_.rows = [];
         this_.dataSupport.ajaxCallServer('start');
+        
     } else if (this_.isServer) {
         this_.pageCurrent = 1;
         return DataElement.sendCallServer(this_, 'restart');
-    } else
-        return this_.start();
-
+    } else if (this_.jmsTemplate)
+        return this_.creaView().init().next().writeLabels();
+    else
+        return this_.init().next().writeLabels();
+ 
 };
 
 DataElement.prototype.clear = function () {
@@ -496,7 +501,7 @@ DataElement.prototype.refreshLimit = function (n) {
         this.limit = Number(n);
     this.pageCurrent = 1;
     this.back = false;
-
+ 
     this.clear();
     var start_ = 0;
     var end = (this.limit * (this.pageCurrent));

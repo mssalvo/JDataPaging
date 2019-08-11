@@ -43,6 +43,21 @@ DataElement.paging('myIstName', {
             })
 ```
 
+## _methods available for customized needs_
+
+Method | Action  
+------- | ------- 
+**start** | excecutes the paging instance 
+**getCurrentPage** | returns the current page number 
+**getTotalPage** | returns the total number of pages calculated based on the limit of records to be displayed  
+**page** | displays the page indicated by the number passed as a parameter to the method  `myistance.get(3)`
+**next** | display the next page   
+**previous** | display the previous page   
+**restart** |excecutes paging with initial parameters   
+**clear** | delete the displayed rows  
+**refreshLimit** | update the record limit to display and recalculate the paging   
+
+
  
 __Example type mapping Navigaror__
 ```html

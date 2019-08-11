@@ -47,7 +47,7 @@ DataElement.prototype.creaView = function () {
     return this_;
 };
 DataElement.prototype.settyng = function (o) {
-    this.pages = ['1', '2', '3', '4', '5'];
+    this.pages = ['10', '20', '30', '50'];
     this.btnNext = undefined;
     this.btnPrevious = undefined;
     this.ajaxSetting = {url: '', type: 'get', dataType: 'json'};

@@ -1,5 +1,5 @@
 # DataElement
-DataElement is a simple plugin for paging complex HTML elements working on the client side, for managing pages with average load
+DataElement is a simple plugin for managing paging composed of complex HTML elements that work on the client and server side
  
  
 __Example type mapping Navigaror__

@@ -2,6 +2,8 @@
 DataElement is a simple plugin for managing paging composed of complex HTML elements that work on the client and server side
  
  
+ ## _configuration properties_
+ 
 Property | Type | Default | Obligatory | Description
 ------- | ------- | ------- | ------- | -------
 **box** | String |   | **yes** | indicate the parent html that contains the rows
@@ -29,6 +31,17 @@ Property | Type | Default | Obligatory | Description
 **onAfterRow** | Function |  | no |  executes the function after the row is created, 1. elemeto html (row) will be injected 2. the json object, 3. index of the row  `function(el,obj,index)`
 **plugin** | Object |  | no | indicate the name of the support plugin `DataElementSupport` if you use jmstemplate or call ajax
 
+
+## basic example data from html
+
+```js
+DataElement.paging('myIstName', {
+                box: 'div.list-group',
+                row: 'a.list-group-item',
+                btnNext: 'a.next',
+                btnPrevious: 'a.previous'
+            })
+```
 
  
 __Example type mapping Navigaror__

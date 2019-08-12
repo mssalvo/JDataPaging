@@ -19,10 +19,10 @@
             <div class="card">
                 <div class="card-body">
                     <h5>DataElement Paging</h5>      
-                    <h2 class="display-4" style="font-size:2rem;">Server-side Dati provenienti da Ajax con elaborazione lato server </h2>    
+                    <h2 class="display-4" style="font-size:2rem;">Dati provenienti da Ajax con elaborazione lato client </h2>    
                 </div>
             </div>
-        </div> 
+        </div>
         <div class="container"> 
             <ul class="pagination pagination-lg">
                 <li class="page-item page-link">Show entries:</li>  
@@ -32,34 +32,66 @@
                 <li class="page-item page-link">di</li>
                 <li class="page-item page-link total"></li>
                 <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+                <li class="page-item">search:</li>
+                <li class="page-item"><input type="text" class="mysearch"></li>
             </ul>
-        </div>    
+        </div> 
         <div class="container">
+             <a class="list-group-item list-group-item-action" jms-foreach="payload">
+                <div class="row">
+                    <div class="col" >provincia</div>
+                    <div class="col" >comune</div>
+                    <div class="col" >frazione</div> 
+                    <div class="col" >cap</div>  
+                </div>
+             </a>
             <div class="list-group">
-
+ 
             </div>
         </div>
 
+
         <template jms-template="myTemplateRow">
-            <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
+            
+            <a href="#" class="list-group-item list-group-item-action" jms-foreach="payload">
+                <div class="row">
+                    <div class="col" for-property="payload.prov_cap"></div>
+                    <div class="col" for-property="payload.comu_cap"></div>
+                    <div class="col" for-property="payload.fraz_cap,payload.s$,payload.fra2_cap"></div>  
+                    <div class="col" for-property="payload.capi_cap"></div>  
+                </div>
+            </a>    
         </template>  
+     
         <script>
 
             DataElement.paging('myname', {
-                url: './json-server-rows.json',
-                isServer: true,
+                url: './cap-caserta.json',
                 box: 'div.list-group',
                 row: 'a.list-group-item',
                 comboPages: 'select.custom-select',
-                pages: [2, 3, 5, 7],
+                inputSearch: 'input.mysearch',
+                pages: [10, 20, 30, 50],
                 labelPageCurrent: 'li.current',
                 labelPageTotal: 'li.total',
                 btnNext: 'a.next',
                 btnPrevious: 'a.previous',
                 jmsTemplate: 'myTemplateRow',
+                onPreviusBefore:function(a){console.log('onPreviusBefore',a)},
+                onPreviousAfter:function(a,b){console.log('onPreviusAfter',a,b);},
+                onNextBefore:function(a){console.log('onNextBefore',a)},
+                onNextAfter:function(a,b){console.log('onNextAfter',a,b);},
+                onChangeComboPages:function(a,b){console.log('onChangeComboPages',a,b);},
+                onComplete: function (a,b) {console.log("complete",a,b)},
+                onBeforeRow: function (el, obj, index) {
+                    console.log(el, obj, index);
+                    if (obj == "row 5")
+                        return false;
+                    return true;
+                },
                 plugin: DataElementSupport
             })
         </script>    
-        
+
     </body>
 </html>

@@ -454,10 +454,14 @@ DataElementSupport.prototype.getObjVal = function (exp, e, a, b, n) {
     if (u.length < 2) {
         if (exp[e] === this_.current)
             return n;
+        if (exp[e] === "s$")
+            return " ";
         return a[b][n]
     } else {
         if (u[1] === this_.current)
             return n;
+        if (u[1] === "s$")
+            return " ";
         if (a[b][n])
             return a[b][n][u[1]]
         return ""

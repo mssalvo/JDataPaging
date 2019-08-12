@@ -17,6 +17,7 @@ Property | Type | Default | Obligatory | Description
 **isServer** | Boolean | false | no | for server-side calls set the value to true  
 **comboPages** | String |  | no | indicates the html select tag that contains the number of rows to display
 **pages** | Array | [10,20,30,50] | no |  array of number for select construction indicated in the `comboPages`
+**inputSearch** | String |  | no |  indicates the html input element for the search field
 **labelPageCurrent** | String |  | no | indicates the html element that contains the current page number
 **labelPageTotal** | String |  | no | indicates the html element that contains the page total 
 **jmsTemplate** | String |  | no | indicates the html element that with the `jms-template` property that acts as a template containing the row structure  
@@ -56,6 +57,8 @@ Method | Action
 **restart** |excecutes paging with initial parameters   
 **clear** | delete the displayed rows  
 **refreshLimit** | update the record limit to display and recalculate the paging   
+**search** | filters and displays the records from the parameter passed in the search method `search('bla')`, displays and recalculates the paging  
+**removeParameter** | util - removes a parameter passed to a ajax call 
 
 
 ## _to recover a previous instant, and use the methods available_

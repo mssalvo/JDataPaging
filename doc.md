@@ -109,7 +109,7 @@ use of the jms-foreach attribute to cycle over an html element
 ```js
    {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
 ```
-
+as the value, indicate the name of the json array to cycle on
 ```html
    <div jms-foreach="rows" > </div>    
 ```
@@ -120,6 +120,7 @@ use of the for-property attribute to retrieve the value of a property of the cur
 ```js
    {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
 ```
+as the value indicate the name of the array . property name `rows.company`
 ```html
    <div jms-foreach="rows" > 
      <div for-property="rows.company" > </div> 
@@ -127,6 +128,16 @@ use of the for-property attribute to retrieve the value of a property of the cur
      <div for-property="rows.addres" > </div> 
    </div>    
 ```
+concatenate multiple property
+use @@ separator to concatenate multiple property `rows.company@@city@@addres`
+```html
+   <div jms-foreach="rows" > 
+     <div for-property="rows.company@@city@@addres" > </div> 
+     <div for-property="rows.city" > </div> 
+     <div for-property="rows.addres" > </div> 
+   </div>    
+```
+to add a space separator @@ more space `@@ ` `rows.company@@ @@city@@ @@addres`
 
 
 ### Control html

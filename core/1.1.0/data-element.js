@@ -47,7 +47,7 @@ DataElement.prototype.creaView = function () {
     return this_;
 };
 DataElement.prototype.settyng = function (o) {
-    this.pages = ['10', '20', '30', '40', '50'];
+    this.pages = ['10', '20', '30', '50'];
     this.btnNext = undefined;
     this.btnPrevious = undefined;
     this.ajaxSetting = {url: '', type: 'get', dataType: 'json'};
@@ -56,6 +56,7 @@ DataElement.prototype.settyng = function (o) {
     if (o.row)
         this.selectorRowName = o.row;
     this.rows = [];
+    this.rowsWrap = [];
     this.pageCurrent = 0;
     if (o.pages)
         this.pages = o.pages;
@@ -69,6 +70,8 @@ DataElement.prototype.settyng = function (o) {
         this.labelPageCurrent = document.querySelectorAll(o.labelPageCurrent)
     if (o.labelPageTotal)
         this.labelPageTotal = document.querySelectorAll(o.labelPageTotal)
+    if (o.inputSearch)
+        this.inputSearch = document.querySelectorAll(o.inputSearch)
     this.limit = Number(this.pages[0]);
     if (o.onComplete)
         this.onComplete = o.onComplete;
@@ -128,18 +131,18 @@ DataElement.prototype.dataSet = function (data) {
     var th_ = this;
     if (data)
         th_.data = data;
-}
+};
 DataElement.prototype.start = function (data) {
     var th_ = this;
-    th_.pageCurrent=0;
+    th_.pageCurrent = 0;
     th_.log("START DataElement!")
     if (data)
         th_.data = data;
 
     if (th_.jmsTemplate)
-        return th_.creaView().init().initComboPages().initButtons().next().writeLabels();
+        return th_.creaView().init().initComboPages().initInputSearch().initButtons().next().writeLabels();
     else
-        return th_.init().initComboPages().initButtons().next().writeLabels();
+        return th_.init().initComboPages().initInputSearch().initButtons().next().writeLabels();
 };
 
 DataElement.prototype.getCurrentPage = function () {
@@ -157,6 +160,7 @@ DataElement.prototype._new = function () {
     this.data = {};
     this.autoStart = true;
     this.rows = []; /*lista di elementi (Rows)*/
+    this.rowsWrap = [];
     this.selectorBox = undefined;
     this.selectorRowName = '';
     this.limit = 10; /* row visualizzate in pagine */
@@ -164,6 +168,8 @@ DataElement.prototype._new = function () {
     this.pagination = undefined;
     this.pageCurrent = 0;
     this.pageMax = 1;
+    this.inputSearch = undefined;
+    this.textSearch = undefined;
     this.labelPageCurrent = undefined;
     this.labelPageTotal = undefined;
     this.btnNext = undefined;
@@ -189,38 +195,38 @@ DataElement.prototype.onCompleteCall = function (args) {
     if (this.onComplete && typeof (this.onComplete) === "function")
         this.onComplete.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onNextBeforeCall = function (args) {
     if (this.onNextBefore && typeof (this.onNextBefore) === "function")
         this.onNextBefore.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onNextAfterCall = function (args) {
     if (this.onNextAfter && typeof (this.onNextAfter) === "function")
         this.onNextAfter.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onPreviusBeforeCall = function (args) {
     if (this.onPreviusBefore && typeof (this.onPreviusBefore) === "function")
         this.onPreviusBefore.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onPreviousAfterCall = function (args) {
     if (this.onPreviousAfter && typeof (this.onPreviousAfter) === "function")
         this.onPreviousAfter.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onChangeComboPagesCall = function (args) {
     if (this.onChangeComboPages && typeof (this.onChangeComboPages) === "function")
         this.onChangeComboPages.apply(this, args);
     return this;
 };
-DataElement.prototype.parameter = {}
+DataElement.prototype.parameter = {};
 DataElement.sendCallServer = function (this_, btn) {
     var obj = DataElement.calculatesSendStartEnd(this_);
     this_.parameter.start = obj.start;
@@ -228,6 +234,11 @@ DataElement.sendCallServer = function (this_, btn) {
     this_.parameter.limit = this_.limit;
     this_.parameter.page = this_.pageCurrent;
     this_.parameter.totalrows = this_.rowsTotal;
+    if (this_.textSearch)
+        this_.parameter.search = this_.textSearch;
+    if (typeof this_.textSearch === "undefined" && typeof this_.parameter.search !== "undefined")
+        delete this_.parameter.search;
+
     this_.parameter._tm = new Date().getTime();
 
     this_.dataSupport.ajax_.parameters = this_.parameter;
@@ -264,11 +275,13 @@ DataElement.prototype.startServer = function (data, btn) {
     }
 
     if (btn && btn === 'next')
-        this_.writeLabels().onNextAfterCall([arry, this_]).onCompleteCall(arry);
-    if (btn && btn === 'previous')
-        this_.writeLabels().onPreviousAfterCall([arry, this_]).onCompleteCall(arry);
-    if (btn && btn === 'changeCombo')
-        this_.writeLabels().onChangeComboPagesCall([{limit: this_.limit, rowsTotal: this_.rowsTotal, pageMax: this_.pageMax}, this_]).onCompleteCall();
+        this_.writeLabels().onNextAfterCall([arry, this_]).onCompleteCall([arry]);
+    else if (btn && btn === 'previous')
+        this_.writeLabels().onPreviousAfterCall([arry, this_]).onCompleteCall([arry]);
+    else if (btn && btn === 'changeCombo')
+        this_.writeLabels().onChangeComboPagesCall([{limit: this_.limit, rowsTotal: this_.rowsTotal, pageMax: this_.pageMax}, this_]).onCompleteCall([arry]);
+    else
+        this_.writeLabels().onCompleteCall([arry])
 
     return this_;
 
@@ -311,7 +324,7 @@ DataElement.calculatesSendStartEnd = function (this_) {
     }
 
     return {start: start_, end: end_};
-}
+};
 
 DataElement.calculatesNext = function (this_) {
     var start_ = 0;
@@ -333,7 +346,7 @@ DataElement.calculatesNext = function (this_) {
         end_ = this_.limit;
     }
     return {start: start_, end: end_};
-}
+};
 /* @function page
  * @param {Number} n
  * @see numero pagina da visualiazzare
@@ -371,7 +384,7 @@ DataElement.prototype.next = function () {
         this.selectorBox.appendChild(arry[i])
 
     }
-    this.writeLabels().onNextAfterCall([arry, this]).onCompleteCall(arry);
+    this.writeLabels().onNextAfterCall([arry, this]).onCompleteCall([arry]);
 
     return this;
 };
@@ -403,7 +416,7 @@ DataElement.calculatesPrevious = function (this_) {
     var end_ = (this_.limit * this_.pageCurrent);
 
     return {start: start_, end: end_};
-}
+};
 /* @function previous
  * @see pagina precedente
  * @returns {DataElement}
@@ -431,7 +444,7 @@ DataElement.prototype.previous = function () {
         this.selectorBox.appendChild(arry[i])
 
     }
-    this.writeLabels().onPreviousAfterCall([arry, this]).onCompleteCall(arry);
+    this.writeLabels().onPreviousAfterCall([arry, this]).onCompleteCall([arry]);
 
 
     return this;
@@ -451,7 +464,7 @@ DataElement.prototype.restart = function (data) {
     if (this_.isAjax) {
         this_.rows = [];
         this_.dataSupport.ajaxCallServer('start');
-        
+
     } else if (this_.isServer) {
         this_.pageCurrent = 1;
         return DataElement.sendCallServer(this_, 'restart');
@@ -459,7 +472,7 @@ DataElement.prototype.restart = function (data) {
         return this_.creaView().init().next().writeLabels();
     else
         return this_.init().next().writeLabels();
- 
+
 };
 
 DataElement.prototype.clear = function () {
@@ -475,9 +488,11 @@ DataElement.prototype.clear = function () {
 DataElement.prototype.init = function () {
     var _this = this;
     _this.rows = [];
+    _this.rowsWrap = [];
     if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined")
         Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
             _this.rows.push(el)
+            _this.rowsWrap.push(el);
             el.parentNode.removeChild(el);
         });
     this.rowsTotal = _this.rows.length;
@@ -488,9 +503,11 @@ DataElement.prototype.init = function () {
 DataElement.prototype.initPageServer = function () {
     var _this = this;
     _this.rows = [];
+    _this.rowsWrap = [];
     if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined")
         Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
-            _this.rows.push(el)
+            _this.rows.push(el);
+            _this.rowsWrap.push(el);
             el.parentNode.removeChild(el);
         });
 
@@ -501,7 +518,7 @@ DataElement.prototype.refreshLimit = function (n) {
         this.limit = Number(n);
     this.pageCurrent = 1;
     this.back = false;
- 
+
     this.clear();
     var start_ = 0;
     var end = (this.limit * (this.pageCurrent));
@@ -528,7 +545,7 @@ DataElement.prototype.refreshLimit = function (n) {
         return DataElement.sendCallServer(this, 'changeCombo');
     }
 
-    this.writeLabels().onChangeComboPagesCall([{limit: this.limit, rowsTotal: this.rowsTotal, pageMax: this.pageMax}, this]).onCompleteCall();
+    this.writeLabels().onChangeComboPagesCall([{limit: this.limit, rowsTotal: this.rowsTotal, pageMax: this.pageMax}, this]).onCompleteCall([arry]);
 
     return this;
 };
@@ -546,6 +563,23 @@ DataElement.prototype.writeLabels = function () {
             el.innerHTML = _this.pageMax;
         });
 
+
+    return this;
+};
+
+DataElement.prototype.initInputSearch = function () {
+    var this__ = this;
+    if (this.inputSearch)
+    {
+
+        Array.prototype.forEach.call(this.inputSearch, function (el, i) {
+            el.addEventListener('keyup', function () {
+                this__.search(el.value);
+            }, false)
+        });
+
+
+    }
 
     return this;
 };
@@ -601,14 +635,41 @@ DataElement.prototype.initButtons = function () {
     return this;
 };
 
-DataElement.prototype.search = function () {};
+DataElement.prototype.search = function (a) {
+    var this_ = this;
+    this_.textSearch = String(a).toLowerCase();
+    if (!this_.isServer) {
+        this_.rows = [];
+        for (var i in this_.rowsWrap)
+            if (String(this_.rowsWrap[i].innerText).toLowerCase().indexOf(this_.textSearch) !== -1)
+                this_.rows.push(this_.rowsWrap[i])
+
+        this_.clear();
+
+        this_.refreshLimit(this_.limit);
+    }
+    if (this.isServer) {
+        this_.pageCurrent = 1;
+        this_.clear();
+        return DataElement.sendCallServer(this, 'changeCombo');
+    }
+
+
+};
+DataElement.prototype.removeParameter = function (name) {
+    var this_ = this;
+    if (typeof this_.parameter[name] !== "undefined") {
+        delete this_.parameter[name];
+    }
+};
 if (!('forEach' in Array.prototype)) {
     Array.prototype.forEach = function (action, that) {
         for (var i = 0, n = this.length; i < n; i++)
             if (i in this)
                 action.call(that, this[i], i, this);
     }
-};
+}
+;
 
 DataElement.paging = function (name, object) {
     var n, o;

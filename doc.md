@@ -80,6 +80,45 @@ DataElement.get.myIstName.search('b...')
 
 
 # jms-template
+use of the jms-template attribute to dynamically create rows
+use a template tag or any html tag
+__Example__
+```html
+   <template jms-template="myTemplateRow">
+            <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
+   </template> 
+```
+or 
+```html
+   <div jms-template="myTemplateRow">
+            <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
+   </div> 
+```
+
+# jms-foreach
+use of the jms-foreach attribute to cycle over an html element
+
+```json
+   {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
+```
+
+```html
+   <div jms-foreach="rows" > </div>    
+```
+
+
+# for-property
+use of the jms-foreach attribute to cycle over an html element
+```json
+   {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
+```
+```html
+   <div jms-foreach="rows" > 
+     <div jms-property="rows.company" > </div> 
+     <div jms-property="rows.city" > </div> 
+     <div jms-property="rows.addres" > </div> 
+   </div>    
+```
 
 
 ### Control html

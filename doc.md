@@ -256,6 +256,8 @@ __Recover the instance__
  
  ```
 
+### Data from Ajax with client-side processing dynamic paging
+_Example_
 
  ```html
         <div class="container"> 

@@ -75,9 +75,15 @@ example to recover
 DataElement.get.myIstName.next()
 DataElement.get.myIstName.previous()
 DataElement.get.myIstName.restart() 
+DataElement.get.myIstName.search('b...') 
 ```
 
- 
+
+# jms-template
+
+
+
+
 __Example type mapping Navigaror__
 ```html
 

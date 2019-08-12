@@ -18,6 +18,9 @@ DataElementSupport.prototype.home = undefined;
 DataElementSupport.prototype.data = {};
 DataElementSupport.prototype.ajax_ = {};
 DataElementSupport.prototype.current = 'index';
+DataElementSupport.prototype.space = ' ';
+DataElementSupport.prototype.txtSpace = ' ';
+DataElementSupport.prototype.divisor = '@@';
 DataElementSupport.prototype.htmlTemplate = {};
 DataElementSupport.prototype._ = jQuery;
 DataElementSupport.expControll = new RegExp(/:\ *(\w+)\s*\@(:\1@|)/);
@@ -449,19 +452,49 @@ DataElementSupport.prototype.updateObject = function (elemExp, elementForEach, t
         this.removeProperty(elemExp, new RegExp(/(for-property|for-property\-.*)+$/));
     }
 };
+
+DataElementSupport.prototype.getValProp = function (exp, obj, n, isObj) {
+    var chars = [];
+    var this_ = this;
+    var props = exp.split(this_.divisor);
+    for (var p in props) {
+        if (props[p] === this_.current)
+            chars.push(n);
+        if (props[p] === this_.space)
+            chars.push(this_.txtSpace);
+        if (props[p].indexOf(' ') !== -1 && props[p].length > 2)
+            chars.push(props[p]);
+        if (props[p].split(' ').join('') !== '' && isObj && typeof obj[props[p]] !== "undefined")
+            chars.push(obj[props[p]]);
+        if (!isObj && typeof obj !== "undefined")
+            chars.push(obj);
+
+    }
+    return chars.join('');
+};
+
 DataElementSupport.prototype.getObjVal = function (exp, e, a, b, n) {
     var this_ = this, u = exp[e].split('.');
     if (u.length < 2) {
-        if (exp[e] === this_.current)
+        if (String(exp[e]).indexOf(this_.divisor) !== -1)
+        {
+            return this_.getValProp(exp[e], a[b][n], n, false)
+        } else if (exp[e] === this_.current)
             return n;
-        if (exp[e] === "s$")
-            return " ";
-        return a[b][n]
+        else if (exp[e] === this_.space)
+            return this_.txtSpace;
+        else
+            return a[b][n]
     } else {
+
+        if (String(u[1]).indexOf(this_.divisor) !== -1)
+        {
+            return this_.getValProp(u[1], a[b][n], n, true)
+        }
         if (u[1] === this_.current)
             return n;
-        if (u[1] === "s$")
-            return " ";
+        if (u[1] === this_.space)
+            return this_.txtSpace;
         if (a[b][n])
             return a[b][n][u[1]]
         return ""
@@ -635,7 +668,7 @@ DataElementSupport.prototype.ajaxCallServer = function (btn) {
                 if (btn && btn === "start")
                     this__.home.start(data);
                 if (btn && btn === "dataSet")
-                 this__.home.dataSet(data);   
+                    this__.home.dataSet(data);
                 else
                     this__.home.startServer(data, btn)
             })

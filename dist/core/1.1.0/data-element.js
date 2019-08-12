@@ -131,7 +131,7 @@ DataElement.prototype.dataSet = function (data) {
     var th_ = this;
     if (data)
         th_.data = data;
-}
+};
 DataElement.prototype.start = function (data) {
     var th_ = this;
     th_.pageCurrent = 0;
@@ -195,31 +195,31 @@ DataElement.prototype.onCompleteCall = function (args) {
     if (this.onComplete && typeof (this.onComplete) === "function")
         this.onComplete.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onNextBeforeCall = function (args) {
     if (this.onNextBefore && typeof (this.onNextBefore) === "function")
         this.onNextBefore.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onNextAfterCall = function (args) {
     if (this.onNextAfter && typeof (this.onNextAfter) === "function")
         this.onNextAfter.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onPreviusBeforeCall = function (args) {
     if (this.onPreviusBefore && typeof (this.onPreviusBefore) === "function")
         this.onPreviusBefore.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onPreviousAfterCall = function (args) {
     if (this.onPreviousAfter && typeof (this.onPreviousAfter) === "function")
         this.onPreviousAfter.apply(this, args);
     return this;
-}
+};
 
 DataElement.prototype.onChangeComboPagesCall = function (args) {
     if (this.onChangeComboPages && typeof (this.onChangeComboPages) === "function")
@@ -324,7 +324,7 @@ DataElement.calculatesSendStartEnd = function (this_) {
     }
 
     return {start: start_, end: end_};
-}
+};
 
 DataElement.calculatesNext = function (this_) {
     var start_ = 0;
@@ -346,7 +346,7 @@ DataElement.calculatesNext = function (this_) {
         end_ = this_.limit;
     }
     return {start: start_, end: end_};
-}
+};
 /* @function page
  * @param {Number} n
  * @see numero pagina da visualiazzare
@@ -416,7 +416,7 @@ DataElement.calculatesPrevious = function (this_) {
     var end_ = (this_.limit * this_.pageCurrent);
 
     return {start: start_, end: end_};
-}
+};
 /* @function previous
  * @see pagina precedente
  * @returns {DataElement}

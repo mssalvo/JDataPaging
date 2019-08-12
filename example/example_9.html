@@ -57,8 +57,9 @@
                 <div class="row">
                     <div class="col" for-property="payload.prov_cap"></div>
                     <div class="col" for-property="payload.comu_cap"></div>
-                    <div class="col" for-property="payload.fraz_cap,payload.s$,payload.fra2_cap"></div>  
+                    <div class="col" for-property="payload.fraz_cap@@ ,payload.fra2_cap"></div>  
                     <div class="col" for-property="payload.capi_cap"></div>  
+                    <div class="col" for-property="payload.index@@ @@capi_cap@@ @@ @@ @@ @@prov_cap@@ @@comu_cap@@ tutto ok ciao!!"></div>  
                 </div>
             </a>    
         </template>  
@@ -82,8 +83,8 @@
                 onNextBefore:function(a){console.log('onNextBefore',a)},
                 onNextAfter:function(a,b){console.log('onNextAfter',a,b);},
                 onChangeComboPages:function(a,b){console.log('onChangeComboPages',a,b);},
-                onComplete: function (a,b) {console.log("complete",a,b)},
-                onBeforeRow: function (el, obj, index) {
+                onComplete:function (a,b) {console.log("complete",a,b)},
+                onBeforeRow:function (el, obj, index) {
                     console.log(el, obj, index);
                     if (obj == "row 5")
                         return false;
@@ -91,7 +92,9 @@
                 },
                 plugin: DataElementSupport
             })
+            
+            
         </script>    
-
+        
     </body>
 </html>

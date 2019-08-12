@@ -98,7 +98,7 @@ or
 # jms-foreach
 use of the jms-foreach attribute to cycle over an html element
 
-```json
+```js
    {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
 ```
 
@@ -109,14 +109,14 @@ use of the jms-foreach attribute to cycle over an html element
 
 # for-property
 use of the jms-foreach attribute to cycle over an html element
-```json
+```js
    {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
 ```
 ```html
    <div jms-foreach="rows" > 
-     <div jms-property="rows.company" > </div> 
-     <div jms-property="rows.city" > </div> 
-     <div jms-property="rows.addres" > </div> 
+     <div for-property="rows.company" > </div> 
+     <div for-property="rows.city" > </div> 
+     <div for-property="rows.addres" > </div> 
    </div>    
 ```
 

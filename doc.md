@@ -106,9 +106,9 @@ use of the jms-foreach attribute to cycle over an html element
    <div jms-foreach="rows" > </div>    
 ```
 
-
+**_use to retrieve the value from the json object:_**
 # for-property
-use of the jms-foreach attribute to cycle over an html element
+use of the for-property attribute to retrieve the value of a property of the current json object
 ```js
    {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
 ```

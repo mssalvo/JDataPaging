@@ -95,6 +95,13 @@ or
    </div> 
 ```
 
+_jsm uses html attributes to cycle create match events and retrieve the value from a json object_
+_here are those interested in us for the constraint of dynamic paging_
+`jms-template`
+`jms-foreach`
+`for-property`
+`jms-event`
+
 # jms-foreach
 use of the jms-foreach attribute to cycle over an html element
 

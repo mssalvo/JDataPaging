@@ -1,0 +1,996 @@
+{
+   "esito": 200,
+   "descrizione": "OK",
+   "payload": [
+      {
+         "cod_regione": 13,
+         "cod_provincia": 69,
+         "regione": "Abruzzo",
+         "provincia": "Chieti",
+         "sigla": "CH",
+         "ripartizione_geo": "Sud",
+         "popolazione": "382076"
+      },
+      {
+         "cod_regione": 13,
+         "cod_provincia": 66,
+         "regione": "Abruzzo",
+         "provincia": "L'Aquila",
+         "sigla": "AQ",
+         "ripartizione_geo": "Sud",
+         "popolazione": "297424"
+      },
+      {
+         "cod_regione": 13,
+         "cod_provincia": 68,
+         "regione": "Abruzzo",
+         "provincia": "Pescara",
+         "sigla": "PE",
+         "ripartizione_geo": "Sud",
+         "popolazione": "295481"
+      },
+      {
+         "cod_regione": 13,
+         "cod_provincia": 67,
+         "regione": "Abruzzo",
+         "provincia": "Teramo",
+         "sigla": "TE",
+         "ripartizione_geo": "Sud",
+         "popolazione": "287411"
+      },
+      {
+         "cod_regione": 17,
+         "cod_provincia": 77,
+         "regione": "Basilicata",
+         "provincia": "Matera",
+         "sigla": "MT",
+         "ripartizione_geo": "Sud",
+         "popolazione": "204239"
+      },
+      {
+         "cod_regione": 17,
+         "cod_provincia": 76,
+         "regione": "Basilicata",
+         "provincia": "Potenza",
+         "sigla": "PZ",
+         "ripartizione_geo": "Sud",
+         "popolazione": "393529"
+      },
+      {
+         "cod_regione": 18,
+         "cod_provincia": 79,
+         "regione": "Calabria",
+         "provincia": "Catanzaro",
+         "sigla": "CZ",
+         "ripartizione_geo": "Sud",
+         "popolazione": "369578"
+      },
+      {
+         "cod_regione": 18,
+         "cod_provincia": 78,
+         "regione": "Calabria",
+         "provincia": "Cosenza",
+         "sigla": "CS",
+         "ripartizione_geo": "Sud",
+         "popolazione": "733797"
+      },
+      {
+         "cod_regione": 18,
+         "cod_provincia": 101,
+         "regione": "Calabria",
+         "provincia": "Crotone",
+         "sigla": "KR",
+         "ripartizione_geo": "Sud",
+         "popolazione": "173122"
+      },
+      {
+         "cod_regione": 18,
+         "cod_provincia": 80,
+         "regione": "Calabria",
+         "provincia": "Reggio di Calabria",
+         "sigla": "RC",
+         "ripartizione_geo": "Sud",
+         "popolazione": "564223"
+      },
+      {
+         "cod_regione": 18,
+         "cod_provincia": 102,
+         "regione": "Calabria",
+         "provincia": "Vibo Valentia",
+         "sigla": "VV",
+         "ripartizione_geo": "Sud",
+         "popolazione": "170746"
+      },
+      {
+         "cod_regione": 15,
+         "cod_provincia": 64,
+         "regione": "Campania",
+         "provincia": "Avellino",
+         "sigla": "AV",
+         "ripartizione_geo": "Sud",
+         "popolazione": "429178"
+      },
+      {
+         "cod_regione": 15,
+         "cod_provincia": 62,
+         "regione": "Campania",
+         "provincia": "Benevento",
+         "sigla": "BN",
+         "ripartizione_geo": "Sud",
+         "popolazione": "287042"
+      },
+      {
+         "cod_regione": 15,
+         "cod_provincia": 61,
+         "regione": "Campania",
+         "provincia": "Caserta",
+         "sigla": "CE",
+         "ripartizione_geo": "Sud",
+         "popolazione": "852872"
+      },
+      {
+         "cod_regione": 15,
+         "cod_provincia": 63,
+         "regione": "Campania",
+         "provincia": "Napoli",
+         "sigla": "NA",
+         "ripartizione_geo": "Sud",
+         "popolazione": "3059196"
+      },
+      {
+         "cod_regione": 15,
+         "cod_provincia": 65,
+         "regione": "Campania",
+         "provincia": "Salerno",
+         "sigla": "SA",
+         "ripartizione_geo": "Sud",
+         "popolazione": "1073643"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 37,
+         "regione": "Emilia-Romagna",
+         "provincia": "Bologna",
+         "sigla": "BO",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "915225"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 38,
+         "regione": "Emilia-Romagna",
+         "provincia": "Ferrara",
+         "sigla": "FE",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "344323"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 40,
+         "regione": "Emilia-Romagna",
+         "provincia": "Forlì-Cesena",
+         "sigla": "FC",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "358542"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 36,
+         "regione": "Emilia-Romagna",
+         "provincia": "Modena",
+         "sigla": "MO",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "633993"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 34,
+         "regione": "Emilia-Romagna",
+         "provincia": "Parma",
+         "sigla": "PR",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "392976"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 33,
+         "regione": "Emilia-Romagna",
+         "provincia": "Piacenza",
+         "sigla": "PC",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "263872"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 39,
+         "regione": "Emilia-Romagna",
+         "provincia": "Ravenna",
+         "sigla": "RA",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "347847"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 35,
+         "regione": "Emilia-Romagna",
+         "provincia": "Reggio nell'Emilia",
+         "sigla": "RE",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "453892"
+      },
+      {
+         "cod_regione": 8,
+         "cod_provincia": 99,
+         "regione": "Emilia-Romagna",
+         "provincia": "Rimini",
+         "sigla": "RN",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "290033"
+      },
+      {
+         "cod_regione": 6,
+         "cod_provincia": 31,
+         "regione": "Friuli-Venezia Giulia",
+         "provincia": "Gorizia",
+         "sigla": "GO",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "136491"
+      },
+      {
+         "cod_regione": 6,
+         "cod_provincia": 93,
+         "regione": "Friuli-Venezia Giulia",
+         "provincia": "Pordenone",
+         "sigla": "PN",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "286198"
+      },
+      {
+         "cod_regione": 6,
+         "cod_provincia": 32,
+         "regione": "Friuli-Venezia Giulia",
+         "provincia": "Trieste",
+         "sigla": "TS",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "242235"
+      },
+      {
+         "cod_regione": 6,
+         "cod_provincia": 30,
+         "regione": "Friuli-Venezia Giulia",
+         "provincia": "Udine",
+         "sigla": "UD",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "518840"
+      },
+      {
+         "cod_regione": 12,
+         "cod_provincia": 60,
+         "regione": "Lazio",
+         "provincia": "Frosinone",
+         "sigla": "FR",
+         "ripartizione_geo": "Centro",
+         "popolazione": "484566"
+      },
+      {
+         "cod_regione": 12,
+         "cod_provincia": 59,
+         "regione": "Lazio",
+         "provincia": "Latina",
+         "sigla": "LT",
+         "ripartizione_geo": "Centro",
+         "popolazione": "491230"
+      },
+      {
+         "cod_regione": 12,
+         "cod_provincia": 57,
+         "regione": "Lazio",
+         "provincia": "Rieti",
+         "sigla": "RI",
+         "ripartizione_geo": "Centro",
+         "popolazione": "147410"
+      },
+      {
+         "cod_regione": 12,
+         "cod_provincia": 58,
+         "regione": "Lazio",
+         "provincia": "Roma",
+         "sigla": "RM",
+         "ripartizione_geo": "Centro",
+         "popolazione": "3700424"
+      },
+      {
+         "cod_regione": 12,
+         "cod_provincia": 56,
+         "regione": "Lazio",
+         "provincia": "Viterbo",
+         "sigla": "VT",
+         "ripartizione_geo": "Centro",
+         "popolazione": "288783"
+      },
+      {
+         "cod_regione": 7,
+         "cod_provincia": 10,
+         "regione": "Liguria",
+         "provincia": "Genova",
+         "sigla": "GE",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "878082"
+      },
+      {
+         "cod_regione": 7,
+         "cod_provincia": 8,
+         "regione": "Liguria",
+         "provincia": "Imperia",
+         "sigla": "IM",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "205238"
+      },
+      {
+         "cod_regione": 7,
+         "cod_provincia": 11,
+         "regione": "Liguria",
+         "provincia": "La Spezia",
+         "sigla": "SP",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "215935"
+      },
+      {
+         "cod_regione": 7,
+         "cod_provincia": 9,
+         "regione": "Liguria",
+         "provincia": "Savona",
+         "sigla": "SV",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "272528"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 16,
+         "regione": "Lombardia",
+         "provincia": "Bergamo",
+         "sigla": "BG",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "973129"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 17,
+         "regione": "Lombardia",
+         "provincia": "Brescia",
+         "sigla": "BS",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "1108776"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 13,
+         "regione": "Lombardia",
+         "provincia": "Como",
+         "sigla": "CO",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "537500"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 19,
+         "regione": "Lombardia",
+         "provincia": "Cremona",
+         "sigla": "CR",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "335939"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 97,
+         "regione": "Lombardia",
+         "provincia": "Lecco",
+         "sigla": "LC",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "311452"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 98,
+         "regione": "Lombardia",
+         "provincia": "Lodi",
+         "sigla": "LO",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "197672"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 20,
+         "regione": "Lombardia",
+         "provincia": "Mantova",
+         "sigla": "MN",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "377790"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 15,
+         "regione": "Lombardia",
+         "provincia": "Milano",
+         "sigla": "MI",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "2940579"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 108,
+         "regione": "Lombardia",
+         "provincia": "Monza e della Brianza",
+         "sigla": "MB",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "766631"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 18,
+         "regione": "Lombardia",
+         "provincia": "Pavia",
+         "sigla": "PV",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "493753"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 14,
+         "regione": "Lombardia",
+         "provincia": "Sondrio",
+         "sigla": "SO",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "176856"
+      },
+      {
+         "cod_regione": 3,
+         "cod_provincia": 12,
+         "regione": "Lombardia",
+         "provincia": "Varese",
+         "sigla": "VA",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "812477"
+      },
+      {
+         "cod_regione": 11,
+         "cod_provincia": 42,
+         "regione": "Marche",
+         "provincia": "Ancona",
+         "sigla": "AN",
+         "ripartizione_geo": "Centro",
+         "popolazione": "448473"
+      },
+      {
+         "cod_regione": 11,
+         "cod_provincia": 44,
+         "regione": "Marche",
+         "provincia": "Ascoli Piceno",
+         "sigla": "AP",
+         "ripartizione_geo": "Centro",
+         "popolazione": "203153"
+      },
+      {
+         "cod_regione": 11,
+         "cod_provincia": 109,
+         "regione": "Marche",
+         "provincia": "Fermo",
+         "sigla": "FM",
+         "ripartizione_geo": "Centro",
+         "popolazione": "166218"
+      },
+      {
+         "cod_regione": 11,
+         "cod_provincia": 43,
+         "regione": "Marche",
+         "provincia": "Macerata",
+         "sigla": "MC",
+         "ripartizione_geo": "Centro",
+         "popolazione": "301523"
+      },
+      {
+         "cod_regione": 11,
+         "cod_provincia": 41,
+         "regione": "Marche",
+         "provincia": "Pesaro e Urbino",
+         "sigla": "PU",
+         "ripartizione_geo": "Centro",
+         "popolazione": "333857"
+      },
+      {
+         "cod_regione": 14,
+         "cod_provincia": 70,
+         "regione": "Molise",
+         "provincia": "Campobasso",
+         "sigla": "CB",
+         "ripartizione_geo": "Sud",
+         "popolazione": "230749"
+      },
+      {
+         "cod_regione": 14,
+         "cod_provincia": 94,
+         "regione": "Molise",
+         "provincia": "Isernia",
+         "sigla": "IS",
+         "ripartizione_geo": "Sud",
+         "popolazione": "89852"
+      },
+      {
+         "cod_regione": 1,
+         "cod_provincia": 6,
+         "regione": "Piemonte",
+         "provincia": "Alessandria",
+         "sigla": "AL",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "418231"
+      },
+      {
+         "cod_regione": 1,
+         "cod_provincia": 5,
+         "regione": "Piemonte",
+         "provincia": "Asti",
+         "sigla": "AT",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "208339"
+      },
+      {
+         "cod_regione": 1,
+         "cod_provincia": 96,
+         "regione": "Piemonte",
+         "provincia": "Biella",
+         "sigla": "BI",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "187249"
+      },
+      {
+         "cod_regione": 1,
+         "cod_provincia": 4,
+         "regione": "Piemonte",
+         "provincia": "Cuneo",
+         "sigla": "CN",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "556330"
+      },
+      {
+         "cod_regione": 1,
+         "cod_provincia": 3,
+         "regione": "Piemonte",
+         "provincia": "Novara",
+         "sigla": "NO",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "343040"
+      },
+      {
+         "cod_regione": 1,
+         "cod_provincia": 1,
+         "regione": "Piemonte",
+         "provincia": "Torino",
+         "sigla": "TO",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "2165619"
+      },
+      {
+         "cod_regione": 1,
+         "cod_provincia": 103,
+         "regione": "Piemonte",
+         "provincia": "Verbano-Cusio-Ossola",
+         "sigla": "VB",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "159040"
+      },
+      {
+         "cod_regione": 1,
+         "cod_provincia": 2,
+         "regione": "Piemonte",
+         "provincia": "Vercelli",
+         "sigla": "VC",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "176829"
+      },
+      {
+         "cod_regione": 16,
+         "cod_provincia": 72,
+         "regione": "Puglia",
+         "provincia": "Bari",
+         "sigla": "BA",
+         "ripartizione_geo": "Sud",
+         "popolazione": "1218038"
+      },
+      {
+         "cod_regione": 16,
+         "cod_provincia": 110,
+         "regione": "Puglia",
+         "provincia": "Barletta-Andria-Trani",
+         "sigla": "BT",
+         "ripartizione_geo": "Sud",
+         "popolazione": "766036"
+      },
+      {
+         "cod_regione": 16,
+         "cod_provincia": 74,
+         "regione": "Puglia",
+         "provincia": "Brindisi",
+         "sigla": "BR",
+         "ripartizione_geo": "Sud",
+         "popolazione": "402422"
+      },
+      {
+         "cod_regione": 16,
+         "cod_provincia": 71,
+         "regione": "Puglia",
+         "provincia": "Foggia",
+         "sigla": "FG",
+         "ripartizione_geo": "Sud",
+         "popolazione": "649598"
+      },
+      {
+         "cod_regione": 16,
+         "cod_provincia": 75,
+         "regione": "Puglia",
+         "provincia": "Lecce",
+         "sigla": "LE",
+         "ripartizione_geo": "Sud",
+         "popolazione": "787825"
+      },
+      {
+         "cod_regione": 16,
+         "cod_provincia": 73,
+         "regione": "Puglia",
+         "provincia": "Taranto",
+         "sigla": "TA",
+         "ripartizione_geo": "Sud",
+         "popolazione": "579806"
+      },
+      {
+         "cod_regione": 20,
+         "cod_provincia": 92,
+         "regione": "Sardegna",
+         "provincia": "Cagliari",
+         "sigla": "CA",
+         "ripartizione_geo": "Isole",
+         "popolazione": "543310"
+      },
+      {
+         "cod_regione": 20,
+         "cod_provincia": 107,
+         "regione": "Sardegna",
+         "provincia": "Carbonia-Iglesias",
+         "sigla": "CI",
+         "ripartizione_geo": "Isole",
+         "popolazione": "131890"
+      },
+      {
+         "cod_regione": 20,
+         "cod_provincia": 106,
+         "regione": "Sardegna",
+         "provincia": "Medio Campidano",
+         "sigla": "VS",
+         "ripartizione_geo": "Isole",
+         "popolazione": "105400"
+      },
+      {
+         "cod_regione": 20,
+         "cod_provincia": 91,
+         "regione": "Sardegna",
+         "provincia": "Nuoro",
+         "sigla": "NU",
+         "ripartizione_geo": "Isole",
+         "popolazione": "164260"
+      },
+      {
+         "cod_regione": 20,
+         "cod_provincia": 105,
+         "regione": "Sardegna",
+         "provincia": "Ogliastra",
+         "sigla": "OG",
+         "ripartizione_geo": "Isole",
+         "popolazione": "58389"
+      },
+      {
+         "cod_regione": 20,
+         "cod_provincia": 104,
+         "regione": "Sardegna",
+         "provincia": "Olbia-Tempio",
+         "sigla": "OT",
+         "ripartizione_geo": "Isole",
+         "popolazione": "138334"
+      },
+      {
+         "cod_regione": 20,
+         "cod_provincia": 95,
+         "regione": "Sardegna",
+         "provincia": "Oristano",
+         "sigla": "OR",
+         "ripartizione_geo": "Isole",
+         "popolazione": "167971"
+      },
+      {
+         "cod_regione": 20,
+         "cod_provincia": 90,
+         "regione": "Sardegna",
+         "provincia": "Sassari",
+         "sigla": "SS",
+         "ripartizione_geo": "Isole",
+         "popolazione": "322326"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 84,
+         "regione": "Sicilia",
+         "provincia": "Agrigento",
+         "sigla": "AG",
+         "ripartizione_geo": "Isole",
+         "popolazione": "448053"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 85,
+         "regione": "Sicilia",
+         "provincia": "Caltanissetta",
+         "sigla": "CL",
+         "ripartizione_geo": "Isole",
+         "popolazione": "274035"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 87,
+         "regione": "Sicilia",
+         "provincia": "Catania",
+         "sigla": "CT",
+         "ripartizione_geo": "Isole",
+         "popolazione": "1054778"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 86,
+         "regione": "Sicilia",
+         "provincia": "Enna",
+         "sigla": "EN",
+         "ripartizione_geo": "Isole",
+         "popolazione": "177200"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 83,
+         "regione": "Sicilia",
+         "provincia": "Messina",
+         "sigla": "ME",
+         "ripartizione_geo": "Isole",
+         "popolazione": "662450"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 82,
+         "regione": "Sicilia",
+         "provincia": "Palermo",
+         "sigla": "PA",
+         "ripartizione_geo": "Isole",
+         "popolazione": "1235923"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 88,
+         "regione": "Sicilia",
+         "provincia": "Ragusa",
+         "sigla": "RG",
+         "ripartizione_geo": "Isole",
+         "popolazione": "295264"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 89,
+         "regione": "Sicilia",
+         "provincia": "Siracusa",
+         "sigla": "SR",
+         "ripartizione_geo": "Isole",
+         "popolazione": "396167"
+      },
+      {
+         "cod_regione": 19,
+         "cod_provincia": 81,
+         "regione": "Sicilia",
+         "provincia": "Trapani",
+         "sigla": "TP",
+         "ripartizione_geo": "Isole",
+         "popolazione": "425121"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 51,
+         "regione": "Toscana",
+         "provincia": "Arezzo",
+         "sigla": "AR",
+         "ripartizione_geo": "Centro",
+         "popolazione": "323288"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 48,
+         "regione": "Toscana",
+         "provincia": "Firenze",
+         "sigla": "FI",
+         "ripartizione_geo": "Centro",
+         "popolazione": "933860"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 53,
+         "regione": "Toscana",
+         "provincia": "Grosseto",
+         "sigla": "GR",
+         "ripartizione_geo": "Centro",
+         "popolazione": "211086"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 49,
+         "regione": "Toscana",
+         "provincia": "Livorno",
+         "sigla": "LI",
+         "ripartizione_geo": "Centro",
+         "popolazione": "326444"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 46,
+         "regione": "Toscana",
+         "provincia": "Lucca",
+         "sigla": "LU",
+         "ripartizione_geo": "Centro",
+         "popolazione": "372244"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 45,
+         "regione": "Toscana",
+         "provincia": "Massa-Carrara",
+         "sigla": "MS",
+         "ripartizione_geo": "Centro",
+         "popolazione": "197652"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 50,
+         "regione": "Toscana",
+         "provincia": "Pisa",
+         "sigla": "PI",
+         "ripartizione_geo": "Centro",
+         "popolazione": "384555"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 47,
+         "regione": "Toscana",
+         "provincia": "Pistoia",
+         "sigla": "PT",
+         "ripartizione_geo": "Centro",
+         "popolazione": "268503"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 100,
+         "regione": "Toscana",
+         "provincia": "Prato",
+         "sigla": "PO",
+         "ripartizione_geo": "Centro",
+         "popolazione": "227886"
+      },
+      {
+         "cod_regione": 9,
+         "cod_provincia": 52,
+         "regione": "Toscana",
+         "provincia": "Siena",
+         "sigla": "SI",
+         "ripartizione_geo": "Centro",
+         "popolazione": "252288"
+      },
+      {
+         "cod_regione": 4,
+         "cod_provincia": 21,
+         "regione": "Trentino-Alto Adige/Südtirol",
+         "provincia": "Bolzano/Bozen",
+         "sigla": "BZ",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "462999"
+      },
+      {
+         "cod_regione": 4,
+         "cod_provincia": 22,
+         "regione": "Trentino-Alto Adige/Südtirol",
+         "provincia": "Trento",
+         "sigla": "TN",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "477017"
+      },
+      {
+         "cod_regione": 10,
+         "cod_provincia": 54,
+         "regione": "Umbria",
+         "provincia": "Perugia",
+         "sigla": "PG",
+         "ripartizione_geo": "Centro",
+         "popolazione": "605950"
+      },
+      {
+         "cod_regione": 10,
+         "cod_provincia": 55,
+         "regione": "Umbria",
+         "provincia": "Terni",
+         "sigla": "TR",
+         "ripartizione_geo": "Centro",
+         "popolazione": "219876"
+      },
+      {
+         "cod_regione": 2,
+         "cod_provincia": 7,
+         "regione": "Valle d'Aosta/Vallée d'Aoste",
+         "provincia": "Valle d'Aosta/Vallée d'Aoste",
+         "sigla": "AO",
+         "ripartizione_geo": "Nord-ovest",
+         "popolazione": "119548"
+      },
+      {
+         "cod_regione": 5,
+         "cod_provincia": 25,
+         "regione": "Veneto",
+         "provincia": "Belluno",
+         "sigla": "BL",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "209550"
+      },
+      {
+         "cod_regione": 5,
+         "cod_provincia": 28,
+         "regione": "Veneto",
+         "provincia": "Padova",
+         "sigla": "PD",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "849857"
+      },
+      {
+         "cod_regione": 5,
+         "cod_provincia": 29,
+         "regione": "Veneto",
+         "provincia": "Rovigo",
+         "sigla": "RO",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "242538"
+      },
+      {
+         "cod_regione": 5,
+         "cod_provincia": 26,
+         "regione": "Veneto",
+         "provincia": "Treviso",
+         "sigla": "TV",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "795264"
+      },
+      {
+         "cod_regione": 5,
+         "cod_provincia": 27,
+         "regione": "Veneto",
+         "provincia": "Venezia",
+         "sigla": "VE",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "809586"
+      },
+      {
+         "cod_regione": 5,
+         "cod_provincia": 23,
+         "regione": "Veneto",
+         "provincia": "Verona",
+         "sigla": "VR",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "826582"
+      },
+      {
+         "cod_regione": 5,
+         "cod_provincia": 24,
+         "regione": "Veneto",
+         "provincia": "Vicenza",
+         "sigla": "VI",
+         "ripartizione_geo": "Nord-est",
+         "popolazione": "794317"
+      }
+   ]
+}

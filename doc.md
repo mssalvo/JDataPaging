@@ -226,22 +226,6 @@ __Example__
                 <div class="col"> XXXXXXXXXX XXXX </div>
                 </div>
               </a>
-            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element--> <!--(row)-->
-                <div class="row">
-                <div class="col">XXXXXXXXXX XXXX</div>
-                <div class="col"> XXXXXXXXXX XXXX</div>
-                <div class="col"> XXXXXXXXXX XXXX</div>
-                <div class="col"> XXXXXXXXXX XXXX </div>
-                </div>
-              </a>
-            <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element--> <!--(row)-->
-                <div class="row">
-                <div class="col">XXXXXXXXXX XXXX</div>
-                <div class="col"> XXXXXXXXXX XXXX</div>
-                <div class="col"> XXXXXXXXXX XXXX</div>
-                <div class="col"> XXXXXXXXXX XXXX </div>
-                </div>
-              </a>
 
       </div><!-- End Main Element-->
 
@@ -271,3 +255,84 @@ __Recover the instance__
  DataElement.get.myname
  
  ```
+
+
+ ```html
+        <div class="container"> 
+        <!--NAVIGATORE--> 
+            <ul class="pagination pagination-lg">
+                <li class="page-item page-link">Show entries:</li>  
+                <li class="page-item"> <select style="height: 100%;" class="page-link custom-select"><option>01</option></select> </li>  
+                <li class="page-item"><a class="page-link previous" href="#">Previous</a></li>
+                <li class="page-item page-link current"></li>
+                <li class="page-item page-link">di</li>
+                <li class="page-item page-link total"></li>
+                <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+                <li class="page-item">search:</li>
+                <li class="page-item"><input type="text" class="mysearch"></li>
+            </ul>
+        <!--NAVIGATORE--> 
+        </div> 
+        <div class="container">
+                <div class="row"> <!--HEADER--> 
+                    <div class="col" >regione</div>
+                    <div class="col" >provincia</div>
+                    <div class="col" >sigla</div>
+                    <div class="col" >ripartizione_geo</div>  
+                    <div class="col" >popolazione</div>  
+                </div>
+        <!--BOX MAIN--> 
+            <div class="list-group">
+ 
+            </div>
+        <!--BOX MAIN-->     
+        </div>
+
+<!--TEMPLATE ROW jms--> 
+        <template jms-template="myTemplateRow">
+            <!--ROW-->
+            <a href="#" class="list-group-item list-group-item-action" jms-foreach="payload">  
+                <div class="row">
+                    <div class="col" for-property="payload.regione"></div>   <!--COLUMN-->   
+                    <div class="col" for-property="payload.provincia"></div>  <!--COLUMN-->   
+                    <div class="col" for-property="payload.sigla"></div> <!--COLUMN-->   
+                    <div class="col" for-property="payload.ripartizione_geo"></div>  <!--COLUMN-->    
+                    <div class="col" for-property="payload.popolazione"></div>   <!--COLUMN-->  
+                    <div class="col" for-property="payload.index@@ @@sigla@@ @@regione @@my static text"></div>   <!--COLUMN MULTY VALUE-->  
+                </div>
+            </a> 
+           <!--ROW-->   
+        </template> 
+<!--TEMPLATE ROW jms--> 
+
+ ```
+
+
+ ```js
+            DataElement.paging('myname', {
+                url: './cap-caserta.json',
+                box: 'div.list-group',
+                row: 'a.list-group-item',
+                comboPages: 'select.custom-select',
+                inputSearch: 'input.mysearch',
+                pages: [10, 20, 30, 50],
+                labelPageCurrent: 'li.current',
+                labelPageTotal: 'li.total',
+                btnNext: 'a.next',
+                btnPrevious: 'a.previous',
+                jmsTemplate: 'myTemplateRow',
+                onPreviusBefore:function(a){console.log('onPreviusBefore',a)},
+                onPreviousAfter:function(a,b){console.log('onPreviusAfter',a,b);},
+                onNextBefore:function(a){console.log('onNextBefore',a)},
+                onNextAfter:function(a,b){console.log('onNextAfter',a,b);},
+                onChangeComboPages:function(a,b){console.log('onChangeComboPages',a,b);},
+                onComplete:function (a,b) {console.log("complete",a,b)},
+                onBeforeRow:function (el, obj, index) {
+                    console.log(el, obj, index);
+                    if (obj == "row 5")
+                        return false;
+                    return true;
+                },
+                plugin: DataElementSupport
+            })
+ ``` 

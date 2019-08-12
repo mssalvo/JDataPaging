@@ -137,29 +137,27 @@ use @@ separator to concatenate multiple property `rows.company@@city@@addres`
      <div for-property="rows.addres" > </div> 
    </div>    
 ```
-to add a space separator @@ more space `@@ ` `rows.company@@ @@city@@ @@addres`
-
-
-### Control html
-
- use of jms-template to dynamically create rows
- 
-__Example__   
- 
-
-* [jms-foreach](#jms-foreach)
-
-* [for-property-*](#for-property)
-
-* [jms-template](#jms-template)
-
-
+to add a space separator @@ more space `@@ `   `rows.company@@ @@city@@ @@addres`
 ```html
-   <template jms-template="myTemplateRow">
-            <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
-   </template> 
+     <div for-property="rows.company@@ @@city@@ @@addres" > </div>    
+```
+to recover the array index separator @@ plus index `@@index` or `rows.index`
+```html
+     <div for-property="rows.company@@ @@index" > </div>  
+        <!--OR-->
+     <div for-property="rows.index" > </div> 
 ```
 
+concatenate a free static text, separator @@ plus text `@@my text free`
+note the text must contain a space character `@@my text` or `@@ mytext` or `@@mytext `
+```html
+     <div for-property="rows.company@@ @@my static text free" > </div> 
+        <!--OR--> 
+    <div for-property="rows.@@my static text free" > </div>  
+```
+
+
+ 
 ### jms-event
  
 It defines the type of event associated with the item

@@ -166,14 +166,57 @@ __Example__
 
 * [jms-event](#jms-event)
 
+associate functions with html elements
 
+* 1. set the autoStart property to false `autoStart:false`
+* 2. find the created instance of the paging
+* 3. from the instance calls the object fn going up from dataSupport `dataSupport.fn`
+all the functions will be injected with the DataElement instance and the event
+to retrieve the context of the associated html element use this `this.value`  `this.innerHTML`
+
+__Example__
+
+```js
+var istance= DataElement.paging('myIstName', {autoStart:false, .....});
+ 
+istance.dataSupport.fn.myFunctionName=function(dte,evt){
+           console.log("dte",dte)
+           console.log("evt",evt)
+ 
+           alert("test jms-event " +this.value)
+            }
+      
+      //start creating paging      
+     istance.start();       
+ 
+```
+let's match the newly created function to the html element
+the syntax is the following
+single event name or multi event
+character two points `:`
+function object fn `fn`
+separatore @ `@`
+function name created  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
 ```html
 <input type="button" jms-event="click:fn@myFunctionName" value="go!">
 
 <input type="button" jms-event="click focus blur:fn@myFunctionName" value="go!">
 ```
 
+Note:
+if the property autoStart is set to false  `autoStart:false`
+at the end of all declarations
+it is mandatory to call the start method
+to start creating paging `istance.start()`
 
+```js
+var istance= DataElement.paging('myIstName', {autoStart:false, .....});
+
+istance.start();       
+
+//or
+DataElement.paging.myIstName.start();
+```
 
 __Example type mapping Navigaror__
 ```html

@@ -87,7 +87,7 @@ DataElement.get.myIstName.search('b...')
 
 
 # jms-template
-utilizza dell'attributo jms-template per dichiarare il contenuto di una strittura html (row)
+utilizza l'attributo jms-template, per dichiarare il contenuto di una strittura html (row)
 usa un tag template o qualsiasi tag html
 __Esempio__
 ```html
@@ -114,13 +114,13 @@ come valore, indica il nome dell'array json su cui eseguire il ciclo
    <div jms-foreach="rows" > </div>    
 ```
 
-**_utilizzare per recuperare il valore dall'oggetto json:_**
+**_utilizza per recuperare il valore dall'oggetto json:_**
 # for-property
 utilizza dell'attributo for-property per recuperare il valore di una proprietà dell'oggetto json corrente
 ```js
    {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
 ```
-come valore inserisci il nome dell'array +.+ nome della proprieta per recuperare il valore `rows.company`
+per recuperare il valore, usa for-property come valore inserisci il nome dell'array +.+ (nome della proprieta) `rows.company`
 ```html
    <div jms-foreach="rows" > 
      <div for-property="rows.company" > </div> 
@@ -128,7 +128,7 @@ come valore inserisci il nome dell'array +.+ nome della proprieta per recuperare
      <div for-property="rows.addres" > </div> 
    </div>    
 ```
-concatena più proprietà
+per concatenare più proprietà,
 usa il separatore @@ per concatenare più property `rows.company@@city@@addres`
 ```html
    <div jms-foreach="rows" > 
@@ -164,19 +164,20 @@ nota che il testo deve contenere un carattere spazio `@@my text` o `@@ mytext` o
  
 associa eventi e funzioni all'elemento html
 
-__Example__
+__Esempio__
 
 * [jms-event](#jms-event)
 
-associa le funzioni agli elementi html
+associa le funzioni agli elementi html,
 ci sono diversi modi per associare una funzione a un elemento html con l'evento jms
 * vediamo il più complesso:
 
-* 1. impostare la proprietà autoStart su false `autoStart:false`
-* 2. recupera l'istanza creata del paginatore
-* 3. dichiara l'oggetto fn parente di dataSupport `dataSupport.fn`
-a tutte le funzioni verrà iniettata l'istanza DataElement e l'evento
-per recuperare il contesto dell'elemento html associato usare in this `this.value`  `this.innerHTML`
+* 1 impostare la proprietà autoStart su false `autoStart:false`
+* 2 recupera l'istanza creata del paginatore
+* 3 dichiara l'oggetto fn proprietà di dataSupport `dataSupport.fn` 
+
+a tutte le funzioni create, verrà iniettata l'istanza DataElement + l'evento,
+per recuperare il contesto dell'elemento html associato, usare in this `this.value`  `this.innerHTML`
 
 __Esempio__
 
@@ -197,10 +198,10 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
 _abbiniamo la funzione appena creata all'elemento html_
 _la sintassi è la seguente_
 * nome del singolo evento o multi evento (click focus blur keyup keypress ... ...)
-* carattere due punti `:`
-* fn `fn` (oggetto funzione)
-* separatore @ `@`
-* nome della funzione creata  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
+* + carattere due punti `:`
+* + sigla (fn) `fn` (oggetto funzione)
+* + separatore @ `@`
+* + nome della funzione creata  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
 ```html
 <input type="button" jms-event="click:fn@myFunctionName" value="go!">
 
@@ -208,9 +209,9 @@ _la sintassi è la seguente_
 ```
 
 Note:
-se la proprietà autoStart è impostata su false  `autoStart:false`
-alla fine di tutte le dichiarazioni
-è obbligatorio chiamare il metodo start
+se la proprietà autoStart è impostata su false  `autoStart:false`, 
+alla fine di tutte le dichiarazioni,
+è obbligatorio chiamare il metodo start 
 per inizializzare il paginatore  `istance.start()`
 
 ```js
@@ -243,7 +244,7 @@ DataElement.paging('myIstName',
  
 ```
 
-abbiniamo la funzione appena creata all'elemento html
+abbiniamo la funzione appena creata all'elemento html,
 la sintassi è la seguente
 
 ```html
@@ -255,9 +256,9 @@ la sintassi è la seguente
 
 ```
 Note:
-se usi method.jmsEvent('..', fn) `jmsEvent`
-non è necessario impostare la proprietà autoStart su false
-e quindi non è necessario richiamare il metodo start  `start`
+se usi method.jmsEvent('..', fn) `jmsEvent`, 
+non è necessario impostare la proprietà autoStart su false, 
+e quindi non è necessario richiamare il metodo start  `start`, 
 per la creazione di paginatore
 
 
@@ -318,7 +319,7 @@ __Example__
 ```
  
  
- 3 . Istanzia un oggetto DataElement impostando i vari attributi che mappano l'html pertinente
+ 3 . Istanzia un oggetto DataElement, impostando i vari attributi che mappano l'html
  `box` `row` `comboPages` `pages` `labelPageCurrent` `labelPageTotal` `btnNext` `btnPrevious`
  
  __Example Istance DataElement v.1.1.0__
@@ -342,7 +343,7 @@ __Recover the instance__
  
  ```
 
-### Dati da Ajax con paging dinamico di elaborazione lato client
+### Dati da Ajax elaborazione dinanica lato client
 _Esempio_
 
  ```html
@@ -395,7 +396,7 @@ _Esempio_
 
  ```
 
-* ecco una dichiarazione con tutte le proprietà esistenti
+* ecco una dichiarazione con tutte le proprietà disponibili
 
  ```js
             DataElement.paging('myname', {

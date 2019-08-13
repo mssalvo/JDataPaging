@@ -50,7 +50,7 @@ Method | Action
 **start** | esegue l'istanza del paginatore
 **getCurrentPage** | restituisce il numero di pagina corrente
 **getTotalPage** | restituisce il numero totale di pagine calcolate in base al limite dei record da visualizzare 
-**page** | visualizza la pagina indicata dal numero passato come parametro al metodo `myistance.get (3)`
+**page** | visualizza la pagina indicata dal numero passato come parametro al metodo `myistance.page(3)`
 **next** |visualizza la pagina successiva  
 **previous** | visualizza la pagina precedente
 **restart** | riesegue il paginatore con i parametri iniziali
@@ -198,10 +198,10 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
 _abbiniamo la funzione appena creata all'elemento html_
 _la sintassi è la seguente_
 * nome del singolo evento o multi evento (click focus blur keyup keypress ... ...)
-* + carattere due punti `:`
-* + sigla (fn) `fn` (oggetto funzione)
-* + separatore @ `@`
-* + nome della funzione creata  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
+ + carattere due punti `:`
+ + sigla (fn) `fn` (oggetto funzione)
+ + separatore @ `@`
+ + nome della funzione creata  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
 ```html
 <input type="button" jms-event="click:fn@myFunctionName" value="go!">
 

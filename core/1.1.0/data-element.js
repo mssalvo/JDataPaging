@@ -191,6 +191,13 @@ DataElement.prototype._new = function () {
     this.back = false;
     return this;
 };
+DataElement.prototype.jmsEvent = function (name,fn) {
+     var th_ = this;
+    if (typeof (th_.dataSupport) !== "undefined")
+        th_.dataSupport.fn[name]=fn;
+    else th_.log("the function could not be subscribed, dataSupport and undefined! Add the DataElementSupport plugin. Example: DataElement.paging('myIstName', {plugin:DataElementSupport, .....})")
+    return th_;
+};
 DataElement.prototype.onCompleteCall = function (args) {
     if (this.onComplete && typeof (this.onComplete) === "function")
         this.onComplete.apply(this, args);
@@ -661,6 +668,11 @@ DataElement.prototype.removeParameter = function (name) {
     if (typeof this_.parameter[name] !== "undefined") {
         delete this_.parameter[name];
     }
+};
+DataElement.prototype.addParameter = function (name,value) {
+    var this_ = this;
+    this_.parameter[name]=value;
+ 
 };
 if (!('forEach' in Array.prototype)) {
     Array.prototype.forEach = function (action, that) {

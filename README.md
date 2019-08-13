@@ -18,7 +18,7 @@ The pagin that adapts to the structure of your web page, create your own custom 
 
 
 * ### [Usage Documentation EN](https://github.com/mssalvo/DataElement/blob/master/translate/en/doc.md). 
-* ### [Uso Documentazione IT](https://github.com/mssalvo/DataElement/blob/master/translate/it/doc.md).
+* ### [Usa Documentazione IT](https://github.com/mssalvo/DataElement/blob/master/translate/it/doc.md).
 
  
  

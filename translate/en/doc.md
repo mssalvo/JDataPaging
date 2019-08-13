@@ -161,7 +161,7 @@ note the text must contain a space character `@@my text` or `@@ mytext` or `@@my
  
 ### jms-event
  
-associate events and functions to the html element
+It defines the type of event associated with the item
 
 __Example__
 

@@ -1,39 +1,38 @@
 # DataElement
-DataElement is a simple plugin for managing paging composed of complex HTML elements that work on the client and server side
+DataElement è un semplice plug-in per gestire le paginazioni  composte da elementi HTML complessi, gestisce il loro funzionamento sia lato client che server
  
- 
- ## _configuration properties_
+ ## _proprietà di configurazione_
  
 Property | Type | Default | Obligatory | Description
 ------- | ------- | ------- | ------- | -------
-**box** | String |   | **yes** | indicate the parent html that contains the rows
-**row** | String |   | **yes** | indicate the line item
-**btnNext** | String |  | **yes** |  indicate the html element that acts as a `Next` button
-**btnPrevious** | String |  | **yes** | indicate the html element that acts as a `Previous` button 
-**data** | Object |  | no | Object javascript or json 
-**url** | String |  | no | http address called ajax 
-**param** | Function |  | no | function to add parameters to the ajax call
-**ajaxSetting** | Function | get | no | configure parameters for ajax calls
-**isServer** | Boolean | false | no | for server-side calls set the value to true  
-**comboPages** | String |  | no | indicates the html select tag that contains the number of rows to display
-**pages** | Array | [10,20,30,50] | no |  indicates the matrix of numbers to manage the limit of rows to be displayed on a page `[10,20,30,50]`
-**inputSearch** | String |  | no |  indicates the html input element for the search field
-**labelPageCurrent** | String |  | no | indicates the html element that contains the current page number
-**labelPageTotal** | String |  | no | indicates the html element that contains the page total 
-**jmsTemplate** | String |  | no | indicates the html element that with the `jms-template` property that acts as a template containing the row structure  
-**autoStart** | Boolean | true | no | executes the pager build at startup 
-**onPreviusBefore** | Function |  | no | executes the function before the command `button Previus` is executed and istance DataElement is injected `function(istance)`
-**onPreviousAfter** | Function |  | no | executes the function after the `button Previus` command is executed, the new lines displayed and the instance DataElement will be injected `function(rows,istance)`
-**onNextBefore** | Function |  | no | executes the function before the `button Next` command is executed istance DataElement will be injected `function(istance)`
-**onNextAfter** | Function |  | no | executes the function after the `button Next` command is executed, the new lines displayed and the instance DataElement will be injected `function(rows,istance)`
-**onChangeComboPages** | Function |  | no | executes the function after the command `Change Combo` is executed, the recalculation will be injected as object {limit: 5, rowsTotal: 14, pageMax: 3} plus the instance DataElement `function(obj,istance)`
-**onComplete** | Function |  | no |  execute the function at the end of each command `button Next`` button Previus` `comboPages` useful if you need to match new events to newly created html objects
-**onBeforeRow** | Function | true | no |  execute the function before the creation of the row the function must return a boolean` (true the row is created - false the row is excluded) `, we will be injected 1. elemeto html (row) 2. the object json, 3. index of row  `function(el,obj,index)`
-**onAfterRow** | Function |  | no |  executes the function after the row is created, 1. elemeto html (row) will be injected 2. the json object, 3. index of the row  `function(el,obj,index)`
-**plugin** | Object |  | no | indicate the name of the support plugin `DataElementSupport` if you use jmstemplate or call ajax
+**box** | String |   | **yes** | indicare l'elemento html principale che contiene le righe
+**row** | String |   | **yes** | indicare l'elemento html che compone la riga
+**btnNext** | String |  | **yes** |  indica l'elemento html che funge da pulsante `Next`
+**btnPrevious** | String |  | **yes** | indica l'elemento html che funge da pulsante `Precedente` 
+**data** | Object |  | no | Oggetto javascript o json 
+**url** | String |  | no | indirizzo ulr http per una chiamata ajax
+**param** | Function |  | no | funzione per aggiungere parametri all'url di una chiamata ajax
+**ajaxSetting** | Function | get | no | configura i parametri per le chiamate ajax (default type=get, dataType=json)
+**isServer** | Boolean | false | no |  per le chiamate gestite lato server impostare il valore a true
+**comboPages** | String |  | no | indicare il tag <select> html che contiene il limite numerico di righe da visualizzare
+**pages** | Array | [10,20,30,50] | no | indica la matrice di numeri per gestire il limite di righe da visualizzare in una pagina `[10,20,30,50]`
+**inputSearch** | String |  | no |  indica l'elemento di input html per il campo di ricerca
+**labelPageCurrent** | String |  | no | indica l'elemento html che contiene il numero di pagina corrente
+**labelPageTotal** | String |  | no | indica l'elemento html che contiene il totale della pagina 
+**jmsTemplate** | String |  | no | indica l'elemento html che con la proprietà `jms-template` che funge da modello contenente la struttura delle righe  
+**autoStart** | Boolean | true | no |esegue la generazione del paginatore all'avvio
+**onPreviusBefore** | Function |  | no | esegue la funzione prima dell'esecuzione del comando `pulsante Previus` verrà iniettato alla funzione l'istanza corrente di DataElement `function(istance)`
+**onPreviousAfter** | Function |  | no | esegue la funzione dopo che è stato eseguito il comando `pulsante Previus`, verranno iniettate alla funzione, le nuove righe visualizzate e l'istanza corrente di DataElement `function(rows,istance)`
+**onNextBefore** | Function |  | no |  esegue la funzione prima dell'esecuzione del comando `pulsante Next` verrà iniettato alla funzione l'istanza corrente di DataElement `function(istance)`
+**onNextAfter** | Function |  | no |  esegue la funzione dopo che è stato eseguito il comando `pulsante Next`, verranno iniettate alla funzione, le nuove righe visualizzate e l'istanza corrente di DataElement `function(rows,istance)`
+**onChangeComboPages** | Function |  | no | esegue la funzione dopo l'esecuzione del comando `change Combo`, verrà iniettato il ricalcolo come oggetto {limite: 5, righe Totale: 14, pageMax: 3} più l'istanza corrente di DataElement `function(obj, istanza)`
+**onComplete** | Function |  | no |   esegue la funzione alla fine di ciascun comando pulsante `Next`  `Previus`  `comboPages` utile se è necessario abbinare nuovi eventi a oggetti html appena creati
+**onBeforeRow** | Function | true | no |  esegue la funzione prima della creazione della riga, la funzione deve restituire un valore booleano `(true viene creata la riga - falso viene esclusa la riga)`, verrenno iniettati alla funzione 1. l'elemeto html da creare (riga) 2. l'oggetto json, 3. l'indice della riga corrente `function(el,obj,index)`
+**onAfterRow** | Function |  | no |  esegue la funzione dopo aver creato la riga, verrenno iniettati alla funzione 1. l'elemeto html già creato (riga) 2. l'oggetto json, 3. l'indice della riga corrente `function(el,obj,index)`
+**plugin** | Object |  | no | indica il nome del plug-in di supporto `DataElementSupport` se usi jmstemplate o chiami ajax  `plugin:DataElementSupport`
 
 
-## basic example data from html
+## dati di esempio di base da HTML
 
 ```js
 DataElement.paging('myIstName', {
@@ -44,33 +43,33 @@ DataElement.paging('myIstName', {
             })
 ```
 
-## _methods available for customized needs_
+## _metodi disponibili per esigenze personalizzate_
 
 Method | Action  
 ------- | ------- 
-**start** | excecutes the paging instance 
-**getCurrentPage** | returns the current page number 
-**getTotalPage** | returns the total number of pages calculated based on the limit of records to be displayed  
-**page** | displays the page indicated by the number passed as a parameter to the method  `myistance.get(3)`
-**next** | display the next page   
-**previous** | display the previous page   
-**restart** |excecutes paging with initial parameters   
-**clear** | delete the displayed rows  
-**refreshLimit** | update the record limit to display and recalculate the paging   
-**search** | filters and displays the records from the parameter passed in the search method `search('bla')`, displays and recalculates the paging  
-**removeParameter** | util - removes a parameter passed to a ajax call 
-**addParameter**    | util - adds a parameter to the url passed to an ajax call
-**jmsEvent**    | associate functions with html elements  
+**start** | esegue l'istanza del paginatore
+**getCurrentPage** | restituisce il numero di pagina corrente
+**getTotalPage** | restituisce il numero totale di pagine calcolate in base al limite dei record da visualizzare 
+**page** | visualizza la pagina indicata dal numero passato come parametro al metodo `myistance.get (3)`
+**next** |visualizza la pagina successiva  
+**previous** | visualizza la pagina precedente
+**restart** | riesegue il paginatore con i parametri iniziali
+**clear** | elimina le righe visualizzate 
+**refreshLimit** | aggiorna il limite di righe da visualizzare e ricalcolare il paginatore  
+**search** | filtra e visualizza le righe che risultano positive alla condizione passata al parametro nel metodo di ricerca `search('bla')`, visualizza e ricalcola il paginatore
+**removeParameter** | util - rimuove un parametro passato a una chiamata ajax
+**addParameter**    |util - aggiunge un parametro all'URL passato a una chiamata ajax
+**jmsEvent**    | associa le funzioni agli elementi html
 
-## _to recover a previous instant, and use the methods available_
+## _per recuperare un istanzia precedente e utilizzare i metodi disponibili_
 
-example new istance
+esempio nuova istanzia
 
 ```js
 DataElement.paging('myIstName', {box:'' .....});
 ```
 
-example to recover
+esempio recupero istanzia
 
 ```js
 DataElement.get.myIstName.next()
@@ -79,8 +78,8 @@ DataElement.get.myIstName.restart()
 DataElement.get.myIstName.search('b...') 
 ```
 
-### jsm uses html attributes to cycle create match events and retrieve the value from a json object
-### here are those interested in us for the constraint of dynamic paging
+### jsm utilizza gli attributi html per creare, ciclicare gli elementi html, recuperare il valore da un oggetto json
+### ecco gli attributi interessati per creare un paginatore dinamico
 `jms-template`
 `jms-foreach`
 `for-property`
@@ -88,15 +87,15 @@ DataElement.get.myIstName.search('b...')
 
 
 # jms-template
-use of the jms-template attribute to dynamically create rows
-use a template tag or any html tag
-__Example__
+utilizza dell'attributo jms-template per dichiarare il contenuto di una strittura html (row)
+usa un tag template o qualsiasi tag html
+__Esempio__
 ```html
    <template jms-template="myTemplateRow">
             <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
    </template> 
 ```
-or 
+oppure 
 ```html
    <div jms-template="myTemplateRow">
             <a href="#" class="list-group-item list-group-item-action" jms-foreach="rows" for-property="rows"></a>    
@@ -105,23 +104,23 @@ or
 
 
 # jms-foreach
-use of the jms-foreach attribute to cycle over an html element
+uso dell'attributo jms-foreach per ciclare su un elemento html
 
 ```js
    {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
 ```
-as the value, indicate the name of the json array to cycle on
+come valore, indica il nome dell'array json su cui eseguire il ciclo
 ```html
    <div jms-foreach="rows" > </div>    
 ```
 
-**_use to retrieve the value from the json object:_**
+**_utilizzare per recuperare il valore dall'oggetto json:_**
 # for-property
-use of the for-property attribute to retrieve the value of a property of the current json object
+utilizza dell'attributo for-property per recuperare il valore di una proprietà dell'oggetto json corrente
 ```js
    {rows:[{company:'',city:'',addres:''},{company:'',city:'',addres:''},{company:'',city:'',addres:''}]}   
 ```
-as the value indicate the name of the array . property name `rows.company`
+come valore inserisci il nome dell'array +.+ nome della proprieta per recuperare il valore `rows.company`
 ```html
    <div jms-foreach="rows" > 
      <div for-property="rows.company" > </div> 
@@ -129,8 +128,8 @@ as the value indicate the name of the array . property name `rows.company`
      <div for-property="rows.addres" > </div> 
    </div>    
 ```
-concatenate multiple property
-use @@ separator to concatenate multiple property `rows.company@@city@@addres`
+concatena più proprietà
+usa il separatore @@ per concatenare più property `rows.company@@city@@addres`
 ```html
    <div jms-foreach="rows" > 
      <div for-property="rows.company@@city@@addres" > </div> 
@@ -138,19 +137,21 @@ use @@ separator to concatenate multiple property `rows.company@@city@@addres`
      <div for-property="rows.addres" > </div> 
    </div>    
 ```
-to add a space separator @@ more space `@@ `   `rows.company@@ @@city@@ @@addres`
+per aggiungere un carattere spazio, usa separatore@@ + carattere spazio `@@  `   `rows.company@@ @@city@@ @@addres`
+
 ```html
      <div for-property="rows.company@@ @@city@@ @@addres" > </div>    
 ```
-to recover the array index separator @@ plus index `@@index` or `rows.index`
+per recuperare l'indice dell'array usa  @@index  `@@index` oppure usa `rows.index`
+
 ```html
      <div for-property="rows.company@@ @@index" > </div>  
         <!--OR-->
      <div for-property="rows.index" > </div> 
 ```
 
-concatenate a free static text, separator @@ plus text `@@my text free`
-note the text must contain a space character `@@my text` or `@@ mytext` or `@@mytext `
+per concatenare un testo statico, usa separatore @@ + testo  `@@my text free`
+nota che il testo deve contenere un carattere spazio `@@my text` o `@@ mytext` o  `@@mytext `
 ```html
      <div for-property="rows.company@@ @@my static text free" > </div> 
         <!--OR--> 
@@ -161,23 +162,23 @@ note the text must contain a space character `@@my text` or `@@ mytext` or `@@my
  
 ### jms-event
  
-associate events and functions to the html element
+associa eventi e funzioni all'elemento html
 
 __Example__
 
 * [jms-event](#jms-event)
 
-associate functions with html elements
-there are several ways to associate a function with an html element with jms event
-* we see the most complex:
+associa le funzioni agli elementi html
+ci sono diversi modi per associare una funzione a un elemento html con l'evento jms
+* vediamo il più complesso:
 
-* 1. set the autoStart property to false `autoStart:false`
-* 2. find the created instance of the paging
-* 3. from the instance calls the object fn going up from dataSupport `dataSupport.fn`
-all the functions will be injected with the DataElement instance and the event
-to retrieve the context of the associated html element use this `this.value`  `this.innerHTML`
+* 1. impostare la proprietà autoStart su false `autoStart:false`
+* 2. recupera l'istanza creata del paginatore
+* 3. dichiara l'oggetto fn parente di dataSupport `dataSupport.fn`
+a tutte le funzioni verrà iniettata l'istanza DataElement e l'evento
+per recuperare il contesto dell'elemento html associato usare in this `this.value`  `this.innerHTML`
 
-__Example__
+__Esempio__
 
 ```js
 var istance= DataElement.paging('myIstName', {autoStart:false, .....});
@@ -193,13 +194,13 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
      istance.start();       
  
 ```
-let's match the newly created function to the html element
-the syntax is the following
-single event name or multi event
-character two points `:`
-function object fn `fn`
-separatore @ `@`
-function name created  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
+_abbiniamo la funzione appena creata all'elemento html_
+_la sintassi è la seguente_
+* nome del singolo evento o multi evento (click focus blur keyup keypress ... ...)
+* carattere due punti `:`
+* fn `fn` (oggetto funzione)
+* separatore @ `@`
+* nome della funzione creata  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
 ```html
 <input type="button" jms-event="click:fn@myFunctionName" value="go!">
 
@@ -207,10 +208,10 @@ function name created  `click:fn@myFunctionName`  multy event  `click focus blur
 ```
 
 Note:
-if the property autoStart is set to false  `autoStart:false`
-at the end of all declarations
-it is mandatory to call the start method
-to start creating paging `istance.start()`
+se la proprietà autoStart è impostata su false  `autoStart:false`
+alla fine di tutte le dichiarazioni
+è obbligatorio chiamare il metodo start
+per inizializzare il paginatore  `istance.start()`
 
 ```js
 var istance= DataElement.paging('myIstName', {autoStart:false,plugin:DataElementSupport, .....});
@@ -223,7 +224,7 @@ DataElement.paging.myIstName.start();
 
 
 
-* now we see the simplest:
+* ora vediamo il modo più semplice:
 
 ```js
 DataElement.paging('myIstName', 
@@ -242,8 +243,8 @@ DataElement.paging('myIstName',
  
 ```
 
-let's match the newly created function to the html element
-the syntax is the following
+abbiniamo la funzione appena creata all'elemento html
+la sintassi è la seguente
 
 ```html
 
@@ -254,13 +255,13 @@ the syntax is the following
 
 ```
 Note:
-if you use the method.jmsEvent('..', fn) `jmsEvent`
-there is no need to set the autoStart property to false
-and therefore it is not necessary to recall the start method  `start`
-for paging creation
+se usi method.jmsEvent('..', fn) `jmsEvent`
+non è necessario impostare la proprietà autoStart su false
+e quindi non è necessario richiamare il metodo start  `start`
+per la creazione di paginatore
 
 
-__Example type mapping Navigaror__
+__Esempio di mappatura  Navigator__
 ```html
 
 <div class="d-flex justify-content-end  text-muted align-items-center pager-custom-group">
@@ -279,14 +280,14 @@ __Example type mapping Navigaror__
 </div>
 
 ```
-# HTML source - Data from HTML
-__Example type mapping body__
+# Fonte dati da HTML
+__Esempio mappatura__
 
-1 . Identify the parent element that encloses the rows
+1 . Identificare l'elemento principale che racchiude le righe
 ```html
   <div class="list-group list-group-flush"> <!--Main Element-->   <!--(box)-->
 ```
-2 . Identify child element that represents a row
+2 . Identificare l'elemento figlio che rappresenta una riga
 ```html
    <a href='#' class="list-group-item list-group-item-action py-20"> <!--Child Element-->  <!--(row)-->
 ```
@@ -317,7 +318,7 @@ __Example__
 ```
  
  
- 3 . Instance a DataElement object by setting the various attributes that map the relevant html
+ 3 . Istanzia un oggetto DataElement impostando i vari attributi che mappano l'html pertinente
  `box` `row` `comboPages` `pages` `labelPageCurrent` `labelPageTotal` `btnNext` `btnPrevious`
  
  __Example Istance DataElement v.1.1.0__
@@ -341,8 +342,8 @@ __Recover the instance__
  
  ```
 
-### Data from Ajax with client-side processing dynamic paging
-_Example_
+### Dati da Ajax con paging dinamico di elaborazione lato client
+_Esempio_
 
  ```html
         <div class="container"> 
@@ -394,7 +395,7 @@ _Example_
 
  ```
 
-* here is a statement with all the existing properties
+* ecco una dichiarazione con tutte le proprietà esistenti
 
  ```js
             DataElement.paging('myname', {

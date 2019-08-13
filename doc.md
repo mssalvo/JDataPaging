@@ -167,6 +167,8 @@ __Example__
 * [jms-event](#jms-event)
 
 associate functions with html elements
+there are several ways to associate a function with an html element with jms event
+* we see the most complex:
 
 * 1. set the autoStart property to false `autoStart:false`
 * 2. find the created instance of the paging
@@ -210,13 +212,52 @@ it is mandatory to call the start method
 to start creating paging `istance.start()`
 
 ```js
-var istance= DataElement.paging('myIstName', {autoStart:false, .....});
+var istance= DataElement.paging('myIstName', {autoStart:false,plugin:DataElementSupport, .....});
 
 istance.start();       
 
 //or
 DataElement.paging.myIstName.start();
 ```
+
+
+
+* now we see the simplest:
+
+```js
+DataElement.paging('myIstName', 
+                    {box:'',
+                     ... ..,
+                     plugin:DataElementSupport, 
+                    }).jmsEvent('myFunctionName1',function(istance,evt){
+                istance.log('myFunctionName1',this.innerHTML,istance,evt)
+            }).jmsEvent('myFunctionName2',function(istance,evt){
+                istance.log('myFunctionName2',this.innerHTML,istance,evt)
+            }).jmsEvent('myFunctionName3',function(istance,evt){
+               istance.log('myFunctionName3',this.innerHTML,istance,evt)
+            }).jmsEvent('myFunctionName4',function(istance,evt){
+                istance.log('myFunctionName4',this.innerHTML,istance,evt)
+                })
+ 
+```
+
+let's match the newly created function to the html element
+the syntax is the following
+
+```html
+
+<div jms-event="click:fn@myFunctionName1"></div> 
+<div jms-event="click:fn@myFunctionName2"></div>
+<div jms-event="click:fn@myFunctionName3"></div>
+<div jms-event="click:fn@myFunctionName4"></div>
+
+```
+Note:
+if you use the method.jmsEvent('..', fn) `jmsEvent`
+there is no need to set the autoStart property to false
+and therefore it is not necessary to recall the start method  `start`
+for paging creation
+
 
 __Example type mapping Navigaror__
 ```html
@@ -338,9 +379,9 @@ _Example_
             <!--ROW-->
             <a href="#" class="list-group-item list-group-item-action" jms-foreach="payload">  
                 <div class="row">
-                    <div class="col" for-property="payload.regione"></div>   <!--COLUMN-->   
+                    <div class="col" for-property="payload.regione" jms-event="click:fn@myFunctionName1"></div>   <!--COLUMN-->   
                     <div class="col" for-property="payload.provincia"></div>  <!--COLUMN-->   
-                    <div class="col" for-property="payload.sigla"></div> <!--COLUMN-->   
+                    <div class="col" for-property="payload.sigla" jms-event="click:fn@myFunctionName2"></div> <!--COLUMN-->   
                     <div class="col" for-property="payload.ripartizione_geo"></div>  <!--COLUMN-->    
                     <div class="col" for-property="payload.popolazione"></div>   <!--COLUMN-->  
                     <div class="col" for-property="payload.index@@ @@sigla@@ @@regione @@my static text"></div>   <!--COLUMN MULTY VALUE-->  
@@ -352,10 +393,15 @@ _Example_
 
  ```
 
+* here is a statement with all the existing properties
 
  ```js
             DataElement.paging('myname', {
                 url: './cap-caserta.json',
+                param:function(p){ p.myparam1='hello';p.myparam2='3434323442444'},
+                ajaxSetting:function(set){set.type="get",set.dataType="json"},
+                isServer:false,
+                autoStart:true,    
                 box: 'div.list-group',
                 row: 'a.list-group-item',
                 comboPages: 'select.custom-select',
@@ -378,6 +424,11 @@ _Example_
                         return false;
                     return true;
                 },
+                onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
                 plugin: DataElementSupport
+            }).jmsEvent('myFunctionName1',function(istance,evt){
+                istance.log('myFunctionName1',this.innerHTML,istance,evt)
+            }).jmsEvent('myFunctionName2',function(istance,evt){
+                istance.log('myFunctionName2',this.innerHTML,istance,evt)
             })
  ``` 

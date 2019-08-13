@@ -55,10 +55,10 @@
             
             <a href="#" class="list-group-item list-group-item-action" jms-foreach="payload">
                 <div class="row">
-                    <div class="col" for-property="payload.prov_cap"></div>
-                    <div class="col" for-property="payload.comu_cap"></div>
-                    <div class="col" for-property="payload.fraz_cap@@ ,payload.fra2_cap"></div>  
-                    <div class="col" for-property="payload.capi_cap"></div>  
+                    <div class="col" for-property="payload.prov_cap" jms-event="click:fn@doSomething1"></div>
+                    <div class="col" for-property="payload.comu_cap" jms-event="click:fn@doSomething2"> </div>
+                    <div class="col" for-property="payload.fraz_cap@@ ,payload.fra2_cap" jms-event="click:fn@doSomething3"> </div>  
+                    <div class="col" for-property="payload.capi_cap" jms-event="click:fn@doSomething4"> </div>  
                     <div class="col" for-property="payload.index@@ @@capi_cap@@ @@ @@ @@ @@prov_cap@@ @@comu_cap@@ tutto ok ciao!!"></div>  
                 </div>
             </a>    
@@ -68,6 +68,8 @@
 
             DataElement.paging('myname', {
                 url: './cap-caserta.json',
+                param:function(p){ p.pippo='ciao';p.key='salvo2009'},
+                ajaxSetting:function(set){set.type="get",set.dataType="json"},
                 box: 'div.list-group',
                 row: 'a.list-group-item',
                 comboPages: 'select.custom-select',
@@ -90,7 +92,16 @@
                         return false;
                     return true;
                 },
+                onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
                 plugin: DataElementSupport
+            }).jmsEvent('doSomething1',function(istance,evt){
+                istance.log('doSomething1',this.innerHTML,istance,evt)
+            }).jmsEvent('doSomething2',function(istance,evt){
+                istance.log('doSomething2',this.innerHTML,istance,evt)
+            }).jmsEvent('doSomething3',function(istance,evt){
+               istance.log('doSomething3',this.innerHTML,istance,evt)
+            }).jmsEvent('doSomething4',function(istance,evt){
+                istance.log('doSomething4',this.innerHTML,istance,evt)
             })
             
             

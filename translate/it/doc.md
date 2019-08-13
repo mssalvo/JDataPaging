@@ -50,7 +50,7 @@ Method | Action
 **start** | esegue l'istanza del paginatore
 **getCurrentPage** | restituisce il numero di pagina corrente
 **getTotalPage** | restituisce il numero totale di pagine calcolate in base al limite dei record da visualizzare 
-**page** | visualizza la pagina indicata dal numero passato come parametro al metodo `myistance.get (3)`
+**page** | visualizza la pagina indicata dal numero passato come parametro al metodo `myistance.page(3)`
 **next** |visualizza la pagina successiva  
 **previous** | visualizza la pagina precedente
 **restart** | riesegue il paginatore con i parametri iniziali

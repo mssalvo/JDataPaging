@@ -198,10 +198,10 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
 _abbiniamo la funzione appena creata all'elemento html_
 _la sintassi è la seguente_
 * nome del singolo evento o multi evento (click focus blur keyup keypress ... ...)
-* + carattere due punti `:`
-* + sigla (fn) `fn` (oggetto funzione)
-* + separatore @ `@`
-* + nome della funzione creata  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
+ + carattere due punti `:`
+ + sigla (fn) `fn` (oggetto funzione)
+ + separatore @ `@`
+ + nome della funzione creata  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
 ```html
 <input type="button" jms-event="click:fn@myFunctionName" value="go!">
 

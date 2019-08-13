@@ -59,7 +59,8 @@ Method | Action
 **refreshLimit** | update the record limit to display and recalculate the paging   
 **search** | filters and displays the records from the parameter passed in the search method `search('bla')`, displays and recalculates the paging  
 **removeParameter** | util - removes a parameter passed to a ajax call 
-
+**addParameter**    | util - adds a parameter to the url passed to an ajax call
+**jmsEvent**    | associate functions with html elements  
 
 ## _to recover a previous instant, and use the methods available_
 

@@ -245,6 +245,8 @@ DataElement.sendCallServer = function (this_, btn) {
         this_.parameter.search = this_.textSearch;
     if (typeof this_.textSearch === "undefined" && typeof this_.parameter.search !== "undefined")
         delete this_.parameter.search;
+    if (this_.textSearch === "" && typeof this_.parameter.search !== "undefined")
+        delete this_.parameter.search;
 
     this_.parameter._tm = new Date().getTime();
 

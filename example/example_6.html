@@ -10,6 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="../dist/core/1.1.0/data-element.js"></script>
   <script src="../dist/support/1.1.0/data-element-support.js"></script>
+  <style>.ble{background-color: #007bff!important;color:#000!important;cursor: pointer;border-radius:5%}</style>
 </head>
 <body>
       <div class="container">
@@ -28,11 +29,13 @@
 <ul class="pagination pagination-lg">
   <li class="page-item page-link">Show entries:</li>  
   <li class="page-item"> <select style="height: 100%;" class="page-link custom-select"><option>01</option></select> </li>  
-  <li class="page-item"><a class="page-link previous" href="#">Previous</a></li>
+  <li class="page-item"><a class="page-link ble previous" href="#">Previous</a></li>
   <li class="page-item page-link current"></li>
-  <li class="page-item page-link">di</li>
+  <li class="page-item page-link">of</li>
   <li class="page-item page-link total"></li>
-  <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+  <li class="page-item"><a class="page-link ble next" href="#">Next</a></li>
+  <li class="page-item page-link">search:</li>
+  <li class="page-item"><input type="text" class="mysearch page-link"></li> 
 </ul>
 </div>    
 <!--NAVIGATORE-->    
@@ -79,6 +82,7 @@
            row:'a.list-group-item',  // ROW
            comboPages:'select.custom-select',   
            pages:[2,3,5,7],  
+           inputSearch: 'input.mysearch',
            labelPageCurrent:'li.current',  
            labelPageTotal:'li.total',   
            btnNext:'a.next',  

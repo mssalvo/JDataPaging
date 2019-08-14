@@ -8,8 +8,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="http://cdn.mevsoft.com/data-element/1.1.0/data-element.min.js"></script>
- 
+         <script src="../dist/core/1.1.0/data-element.js"></script>
+        <style>.ble{background-color: #007bff!important;color:#000!important;cursor: pointer;border-radius:5%}</style>
     </head>
     <body>
         <div class="container">
@@ -24,42 +24,437 @@
                 </div>
         </div>
         <div class="container-fluid body">
-        <div class="container">
+        <div class="container"> 
             <ul class="pagination pagination-lg">
-                <li class="page-item page-link">Show entries:</li>
-                <li class="page-item"><select style="height: 100%;" class="page-link custom-select"><option>01</option></select></li>
-                <li class="page-item"><a class="page-link previous" href="#">Previous</a></li>
-                <li class="page-item page-link current"></li>
-                <li class="page-item page-link">di</li>
-                <li class="page-item page-link total"></li>
-                <li class="page-item"><a class="page-link next" href="#">Next</a></li>
+                <li class="page-item page-link">Show entries:</li>  
+                <li class="page-item"> <select style="height: 100%;" class="page-link custom-select"></select> </li>  
+                <li class="page-item"><a class="page-link ble previous">Previous</a></li>
+                <li class="page-item page-link current">1</li>
+                <li class="page-item page-link">of</li>
+                <li class="page-item page-link total">3</li>
+                <li class="page-item"><a class="page-link ble next" >Next</a></li>
+                <li class="page-item page-link">search:</li>
+                <li class="page-item"><input type="text" class="mysearch page-link"></li>
             </ul>
         </div>
-        <div class="container">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Row 1</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 2</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 3</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 4</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 5</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 6</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 7</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 8</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 9</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 10</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 11</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 12</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 13</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 14</a>
-                <a href="#" class="list-group-item list-group-item-action">Row 15</a>
-            </div>
+       <div class="container">
+                <div class="row">
+                    <div class="col">Regione</div>
+                    <div class="col">Provincia</div>
+                    <div class="col">Sigla</div>
+                    <div class="col">Pipartizione geo</div>  
+                    <div class="col">Popolazione</div>  
+                </div>
+            <div class="list-group"><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Abruzzo</div>
+                    <div class="col">Chieti</div>
+                    <div class="col">CH</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">382076</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Abruzzo</div>
+                    <div class="col">L'Aquila</div>
+                    <div class="col">AQ</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">297424</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Abruzzo</div>
+                    <div class="col">Pescara</div>
+                    <div class="col">PE</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">295481</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Abruzzo</div>
+                    <div class="col">Teramo</div>
+                    <div class="col">TE</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">287411</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Basilicata</div>
+                    <div class="col">Matera</div>
+                    <div class="col">MT</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">204239</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Basilicata</div>
+                    <div class="col">Potenza</div>
+                    <div class="col">PZ</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">393529</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Calabria</div>
+                    <div class="col">Catanzaro</div>
+                    <div class="col">CZ</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">369578</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Calabria</div>
+                    <div class="col">Cosenza</div>
+                    <div class="col">CS</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">733797</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Calabria</div>
+                    <div class="col">Crotone</div>
+                    <div class="col">KR</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">173122</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Calabria</div>
+                    <div class="col">Reggio di Calabria</div>
+                    <div class="col">RC</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">564223</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Calabria</div>
+                    <div class="col">Vibo Valentia</div>
+                    <div class="col">VV</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">170746</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Campania</div>
+                    <div class="col">Avellino</div>
+                    <div class="col">AV</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">429178</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Campania</div>
+                    <div class="col">Benevento</div>
+                    <div class="col">BN</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">287042</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Campania</div>
+                    <div class="col">Caserta</div>
+                    <div class="col">CE</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">852872</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Campania</div>
+                    <div class="col">Napoli</div>
+                    <div class="col">NA</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">3059196</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Campania</div>
+                    <div class="col">Salerno</div>
+                    <div class="col">SA</div>
+                    <div class="col">Sud</div>  
+                    <div class="col">1073643</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Bologna</div>
+                    <div class="col">BO</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">915225</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Ferrara</div>
+                    <div class="col">FE</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">344323</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Forlì-Cesena</div>
+                    <div class="col">FC</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">358542</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Modena</div>
+                    <div class="col">MO</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">633993</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Parma</div>
+                    <div class="col">PR</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">392976</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Piacenza</div>
+                    <div class="col">PC</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">263872</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Ravenna</div>
+                    <div class="col">RA</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">347847</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Reggio nell'Emilia</div>
+                    <div class="col">RE</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">453892</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Emilia-Romagna</div>
+                    <div class="col">Rimini</div>
+                    <div class="col">RN</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">290033</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Friuli-Venezia Giulia</div>
+                    <div class="col">Gorizia</div>
+                    <div class="col">GO</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">136491</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Friuli-Venezia Giulia</div>
+                    <div class="col">Pordenone</div>
+                    <div class="col">PN</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">286198</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Friuli-Venezia Giulia</div>
+                    <div class="col">Trieste</div>
+                    <div class="col">TS</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">242235</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Friuli-Venezia Giulia</div>
+                    <div class="col">Udine</div>
+                    <div class="col">UD</div>
+                    <div class="col">Nord-est</div>  
+                    <div class="col">518840</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lazio</div>
+                    <div class="col">Frosinone</div>
+                    <div class="col">FR</div>
+                    <div class="col">Centro</div>  
+                    <div class="col">484566</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lazio</div>
+                    <div class="col">Latina</div>
+                    <div class="col">LT</div>
+                    <div class="col">Centro</div>  
+                    <div class="col">491230</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lazio</div>
+                    <div class="col">Rieti</div>
+                    <div class="col">RI</div>
+                    <div class="col">Centro</div>  
+                    <div class="col">147410</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lazio</div>
+                    <div class="col">Roma</div>
+                    <div class="col">RM</div>
+                    <div class="col">Centro</div>  
+                    <div class="col">3700424</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lazio</div>
+                    <div class="col">Viterbo</div>
+                    <div class="col">VT</div>
+                    <div class="col">Centro</div>  
+                    <div class="col">288783</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Liguria</div>
+                    <div class="col">Genova</div>
+                    <div class="col">GE</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">878082</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Liguria</div>
+                    <div class="col">Imperia</div>
+                    <div class="col">IM</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">205238</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Liguria</div>
+                    <div class="col">La Spezia</div>
+                    <div class="col">SP</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">215935</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Liguria</div>
+                    <div class="col">Savona</div>
+                    <div class="col">SV</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">272528</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Bergamo</div>
+                    <div class="col">BG</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">973129</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Brescia</div>
+                    <div class="col">BS</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">1108776</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Como</div>
+                    <div class="col">CO</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">537500</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Cremona</div>
+                    <div class="col">CR</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">335939</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Lecco</div>
+                    <div class="col">LC</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">311452</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Lodi</div>
+                    <div class="col">LO</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">197672</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Mantova</div>
+                    <div class="col">MN</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">377790</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Milano</div>
+                    <div class="col">MI</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">2940579</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Monza e della Brianza</div>
+                    <div class="col">MB</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">766631</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Pavia</div>
+                    <div class="col">PV</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">493753</div>  
+                </div>
+           </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Sondrio</div>
+                    <div class="col">SO</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">176856</div>  
+                </div>
+            </a><a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">Lombardia</div>
+                    <div class="col">Varese</div>
+                    <div class="col">VA</div>
+                    <div class="col">Nord-ovest</div>  
+                    <div class="col">812477</div>  
+                </div>
+            </a></div>
         </div>
+            
         <script id="DataElement">
             DataElement.paging('myname', {
                 box: 'div.list-group',
                 row: 'a.list-group-item',
                 comboPages: 'select.custom-select',
-                pages: [2, 3, 5, 7],
+                pages: [5, 10, 15, 30],
+                inputSearch: 'input.mysearch',
                 labelPageCurrent: 'li.current',
                 labelPageTotal: 'li.total',
                 btnNext: 'a.next',

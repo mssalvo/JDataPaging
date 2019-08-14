@@ -1,5 +1,5 @@
 /*!
- * DataElementSupport v1.1.0
+ * DataElementSupport v1.1.0 ©
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/DataElement/tree/master/dist/support
  *  GNU General Public License v3.0
@@ -13,7 +13,7 @@
     window.jQuery || console.log('DataElementSupport Info :: jQuery not istance! > check include jquery.js')
 })();
 
-function DataElementSupport() {}
+function DataElementSupport() {this.count=0;}
 DataElementSupport.prototype.home = undefined;
 DataElementSupport.prototype.data = {};
 DataElementSupport.prototype.ajax_ = {};
@@ -205,6 +205,14 @@ DataElementSupport.prototype.settingTagOption = function (m, e, o) {
 DataElementSupport.prototype.isAttributeForProp = function (attrs) {
     for (var a in attrs) {
         if (attrs[a] && /(for-property|for-property\-.*)+$/.test(attrs[a].name)) {
+            return 1;
+        }
+    }
+    return 0;
+};
+DataElementSupport.prototype.isAttributeWrite = function (attrs) {
+    for (var a in attrs) {
+        if (attrs[a] && /(jms-write|jms-write-.*)+$/.test(attrs[a].name)) {
             return 1;
         }
     }
@@ -463,7 +471,7 @@ DataElementSupport.prototype.getValProp = function (exp, obj, n, isObj) {
         if (props[p] === this_.space)
             chars.push(this_.txtSpace);
         if (props[p].indexOf(' ') !== -1 && props[p].length > 2)
-            chars.push(props[p]);
+            chars.push(props[p].split("$").join('.'));
         if (props[p].split(' ').join('') !== '' && isObj && typeof obj[props[p]] !== "undefined")
             chars.push(obj[props[p]]);
         if (!isObj && typeof obj !== "undefined")
@@ -499,6 +507,102 @@ DataElementSupport.prototype.getObjVal = function (exp, e, a, b, n) {
             return a[b][n][u[1]]
         return ""
     }
+};
+
+DataElementSupport.prototype.valueProperty = function (exps) {
+    var this_ = this;
+    var chars = [];
+    if(typeof exps!=="undefined" && exps!==""){
+    ++this_.count;
+    if (String(exps).indexOf(this_.divisor) !== -1) {
+        var props = exps.split(this_.divisor);
+        for (var p in props) {
+            if (props[p] === this_.current)
+                chars.push(this_.count);
+            else if (props[p] === this_.space)
+                chars.push(this_.txtSpace);
+            else if (props[p].indexOf(' ') !== -1 && props[p].length > 2)
+                chars.push(props[p]);
+            else if (props[p].split(' ').join('') !== '') {
+                try {
+                    var j= props[p].split(" ").join("");
+                    var val = eval('(' + 'this_.data' + '.' + j + ')');
+                    if (typeof val !== "undefined")
+                        chars.push(val);
+                } catch (err) {
+                 console.log(j,err)
+                }
+            }
+        }
+        return chars.join('');
+    } else {
+        try {
+            exps=exps.split(" ").join("");
+            var val_ = eval('(' + 'this_.data' + '.' + exps + ')');
+            if (typeof val_ !== "undefined")
+                return val_;
+        } catch (err) {
+         console.log(exps,err)
+        }
+        return "";
+    }
+    }
+     return "";
+};
+DataElementSupport.prototype.updateProperty = function (elemExp) {
+    var this_ = this;
+    if (elemExp) {
+        for (var att = 0; att < elemExp.attributes.length; att++) {
+            (function (elemExp, attribute) {
+                if (attribute && /(jms-write|jms-write-.*)+$/.test(attribute.name)) {
+                    var matchAttr = attribute.name.split('jms-write-')
+                    var exps = attribute.value.split(',');
+                    if (exps) {
+                        for (var e in exps) {
+                            if (elemExp['nodeType'] === 1) {
+                                if (elemExp['nodeName'] === 'INPUT') {
+                                    if (matchAttr[1]) {
+                                        this_._(elemExp).attr(matchAttr[1], this_.valueProperty(exps[e]));
+                                    } else {
+                                        elemExp['value'] = this_.valueProperty(exps[e]);
+                                    }
+                                } else if (elemExp['nodeName'] === 'OPTION') {
+                                    if (matchAttr[1]) {
+                                        this_.settingTagOption(matchAttr[1], elemExp, this_.valueProperty(exps[e]));
+                                    } else {
+                                        this_._(elemExp).html(this_.valueProperty(exps[e]))
+                                    }
+                                } else {
+                                    if (matchAttr[1]) {
+                                        this_.settingTag(matchAttr[1], elemExp, this_.valueProperty(exps[e]));
+                                    } else {
+                                        this_._(elemExp).append(this_.valueProperty(exps[e]))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            })(elemExp, elemExp.attributes[att])
+        }
+       this_.removeProperty(elemExp, new RegExp(/(jms-write|jms-write-.*)+$/));
+    }
+};
+DataElementSupport.prototype.writeProperty = function (o) {
+    var this_ = this;
+    var forProperty = [];
+    Array.prototype.forEach.call(o.getElementsByTagName('*'), function (el, i) { 
+         if (this_.isAttributeWrite(el.attributes)) {
+            forProperty['jms-write-' + i] = {obj: el};
+         }
+    })
+    var fork = forProperty;
+    for (var x in fork) {
+        (function (a) {
+            this_.updateProperty(a);
+        })(fork[x]['obj'])
+    }
+    return true;
 };
 DataElementSupport.prototype.isUndefined = function (t) {
     return null === t ? !0 : t ? "undefined" === typeof t : !0
@@ -602,6 +706,7 @@ DataElementSupport.prototype.isforEach = function (o) {
                 }
 
                 this_._(fork[x]['obj']).parent().append(clone);
+                this_.writeProperty(clone);
                 this_.initHtmlEvent(clone);
                 this_.isforEachIn(clone, ctx_data[key], t)
 
@@ -624,6 +729,7 @@ DataElementSupport.prototype.createView = function (templateName, data, objView)
     var exl = this__._(this__.getHtmlTemplate(templateName)).get();
     this__._(objView).html(exl);
     this__.isforEach(objView);
+    this__.writeProperty(document);
     this__.initHtmlEvent(objView);
     return this;
 };

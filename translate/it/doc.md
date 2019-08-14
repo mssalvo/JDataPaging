@@ -83,7 +83,10 @@ DataElement.get.myIstName.search('b...')
 `jms-template`
 `jms-foreach`
 `for-property`
+`for-property-*`
 `jms-event`
+`jms-write`
+`jms-write-*`
 
 
 # jms-template
@@ -128,7 +131,7 @@ per recuperare il valore, usa for-property come valore inserisci il nome dell'ar
      <div for-property="rows.addres" > </div> 
    </div>    
 ```
-per concatenare più proprietà,
+concatena più proprietà,
 usa il separatore @@ per concatenare più property `rows.company@@city@@addres`
 ```html
    <div jms-foreach="rows" > 
@@ -137,6 +140,17 @@ usa il separatore @@ per concatenare più property `rows.company@@city@@addres`
      <div for-property="rows.addres" > </div> 
    </div>    
 ```
+
+per creare o scrivere il valore in un attributo nuovo o esistente
+
+```html
+   <div jms-foreach="rows"> 
+     <a for-property-href="rows.city"></a> <!--risultato <a href="cuneo"></a>-->
+     <a for-property-id="rows.city"></a>  <!--risultato <a id="cuneo"></a>-->
+     <a for-property-mia-nuova-property="rows.city"></a> <!--risultato <a mia-nuova-property="cuneo"></a>-->
+   </div>
+```
+
 per aggiungere un carattere spazio, usa separatore@@ + carattere spazio `@@  `   `rows.company@@ @@city@@ @@addres`
 
 ```html

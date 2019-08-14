@@ -84,7 +84,10 @@ DataElement.get.myIstName.search('b...')
 `jms-template`
 `jms-foreach`
 `for-property`
+`for-property-*`
 `jms-event`
+`jms-write`
+`jms-write-*
 
 
 # jms-template
@@ -138,6 +141,18 @@ use @@ separator to concatenate multiple property `rows.company@@city@@addres`
      <div for-property="rows.addres" > </div> 
    </div>    
 ```
+
+to create or write the value in a new or existing attribute
+
+```html
+   <div jms-foreach="rows"> 
+     <a for-property-href="rows.city"></a> <!--result <a href="cuneo"></a>-->
+     <a for-property-id="rows.city"></a>  <!--result <a id="cuneo"></a>-->
+     <a for-property-mia-nuova-property="rows.city"></a> <!--result <a mia-nuova-property="cuneo"></a>-->
+   </div>
+```
+
+
 to add a space separator @@ more space `@@ `   `rows.company@@ @@city@@ @@addres`
 ```html
      <div for-property="rows.company@@ @@city@@ @@addres" > </div>    

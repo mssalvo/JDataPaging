@@ -494,6 +494,7 @@ per gestire il paginatore lato serve impostare la proprietà `isServer` a `true`
           box:'div.list-group',  
           row:'a.list-group-item',  
           btnNext:'a.next',  
-          btnPrevious:'a.previous' 
+          btnPrevious:'a.previous',
+          plugin: DataElementSupport
        })
 ```

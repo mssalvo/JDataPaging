@@ -32,7 +32,7 @@ Property | Type | Default | Obligatory | Description
 **plugin** | Object |  | no | indica il nome del plug-in di supporto `DataElementSupport` se usi jmstemplate o chiami ajax  `plugin:DataElementSupport`
 
 
-## dati di esempio di base da HTML
+## esempio base di fonte dati da HTML
 
 ```js
 DataElement.paging('myIstName', {
@@ -80,13 +80,13 @@ DataElement.get.myIstName.search('b...')
 
 ### jsm utilizza gli attributi html per creare, ciclicare gli elementi html, recuperare il valore da un oggetto json
 ### ecco gli attributi interessati per creare un paginatore dinamico
-`jms-template`
-`jms-foreach`
-`for-property`
-`for-property-*`
-`jms-event`
-`jms-write`
-`jms-write-*`
++ `jms-template`
++ `jms-foreach`
++ `for-property`
++ `for-property-*`
++ `jms-event`
++ `jms-write`
++ `jms-write-*`
 
 
 # jms-template
@@ -209,9 +209,10 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
      istance.start();       
  
 ```
-_abbiniamo la funzione appena creata all'elemento html_
-_la sintassi è la seguente_
-* nome del singolo evento o multi evento (click focus blur keyup keypress ... ...)
+_abbiniamo la funzione appena creata all'elemento html_ 
+
+ __la sintassi è la seguente__
+ + nome del singolo evento o multi evento (click focus blur keyup keypress ... ...)
  + carattere due punti `:`
  + sigla (fn) `fn` (oggetto funzione)
  + separatore @ `@`

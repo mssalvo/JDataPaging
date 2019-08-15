@@ -453,10 +453,15 @@ _Esempio_
 ### Gestire la paginazione dinanica lato server
 per gestire la paginazione lato server, 
 saranno passati sempre al server i suddetti parametri: `start`  `end`  `limit`  `page`  `totalrows`
+
  __?start=10&end=20&limit=10&page=2&totalrows=110__
-quando si utilizza la casella di ricerca, sarà aggiunto un altro parametro a quelli standart dal nome `search`
+
+quando si utilizza la casella di ricerca, sarà aggiunto un nuovo parametro a quelli standart dal nome `search`
+
  __?start=10&end=20&limit=10&page=2&totalrows=110&search=italy__ 
+
 il parametro search sarà presente fin quando la casella di ricerca conterrà un valore
+
 altrimenti sarà rimosso.
 
 per gestire la paginazione lato server in modo corretto,

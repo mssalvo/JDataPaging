@@ -491,6 +491,7 @@ to manage the pager side you need to set the `isServer` property to` true`
           box:'div.list-group',  
           row:'a.list-group-item',  
           btnNext:'a.next',  
-          btnPrevious:'a.previous' 
+          btnPrevious:'a.previous',
+          plugin: DataElementSupport
        })
 ```

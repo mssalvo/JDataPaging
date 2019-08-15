@@ -467,7 +467,7 @@ altrimenti sarà rimosso.
 per gestire la paginazione lato server in modo corretto,
 la struttura minina dell'oggetto json di risposta,
 deve contenere la proprietà dal nome `totalrows` ,
-nel `totalrows` indica il totale generale dei record, non quelli passati come ogetto json, ma il totale disponibile.
+nel `totalrows` indica il totale generale dei record, non il totale dei record dell'ogetto json, ma il totale dei record disponibile.
 
 
 ```js

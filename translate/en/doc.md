@@ -448,3 +448,46 @@ _Example_
                 istance.log('myFunctionName2',this.innerHTML,istance,evt)
             })
  ``` 
+
+
+### Manage server-side paging
+to manage server-side paging
+They will always be passed to the server the above parameters: `start`  `end`  `limit`  `page`  `totalrows`
+
+ __?start=10&end=20&limit=10&page=2&totalrows=110__
+
+when using the search box,a new parameter will be added to the standard ones named `search`
+
+ __?start=10&end=20&limit=10&page=2&totalrows=110&search=italy__ 
+
+the search parameter will be present until the search box contains a value
+
+otherwise it will be removed.
+
+to manage server-side paging correctly,
+the minine structure of the response object json,
+must contain the property with the name `totalrows`,
+in the `totalrows` indicates the grand total of the records, not the total of the json's records, but the total number of records available.
+
+```js
+{
+   "totalrows": 110,
+   "data": [{"name": "jon","age": 20},{"name": "jon","age": 20},{"name": "jon","age": 20}]
+}
+```
+
+* Note: without the `totalrows` property above, it will not be possible to manage paging
+
+### Minimum configuration to handle server-side requests
+to manage the pager side you need to set the `isServer` property to` true`
+
+```js
+ DataElement.paging('myname',{
+          url: './myServerUlr.php',
+          isServer: true,
+          box:'div.list-group',  
+          row:'a.list-group-item',  
+          btnNext:'a.next',  
+          btnPrevious:'a.previous' 
+       })
+```

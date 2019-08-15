@@ -87,7 +87,7 @@ DataElement.get.myIstName.search('b...')
 + `for-property-*`
 + `jms-event`
 + `jms-write`
-+ `jms-write-*
++ `jms-write-*`
 
 
 # jms-template

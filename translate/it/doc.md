@@ -210,7 +210,6 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
  
 ```
 _abbiniamo la funzione appena creata all'elemento html_ 
-
  __la sintassi è la seguente__
  + nome del singolo evento o multi evento (click focus blur keyup keypress ... ...)
  + carattere due punti `:`

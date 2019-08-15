@@ -81,13 +81,13 @@ DataElement.get.myIstName.search('b...')
 
 ### jsm uses html attributes to cycle create match events and retrieve the value from a json object
 ### here are those interested in us for the constraint of dynamic paging
-`jms-template`
-`jms-foreach`
-`for-property`
-`for-property-*`
-`jms-event`
-`jms-write`
-`jms-write-*
++ `jms-template`
++ `jms-foreach`
++ `for-property`
++ `for-property-*`
++ `jms-event`
++ `jms-write`
++ `jms-write-*
 
 
 # jms-template
@@ -208,13 +208,13 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
      istance.start();       
  
 ```
-let's match the newly created function to the html element
-the syntax is the following
-single event name or multi event
-character two points `:`
-function object fn `fn`
-separatore @ `@`
-function name created  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
+_let's match the newly created function to the html element_ 
+__the syntax is the following__
++ single event name or multi event
++ character two points `:`
++ sign (fn) `fn` (function object) 
++ separator @ `@`
++ function name created  `click:fn@myFunctionName`  multy event  `click focus blur:fn@myFunctionName`
 ```html
 <input type="button" jms-event="click:fn@myFunctionName" value="go!">
 

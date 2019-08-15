@@ -1,6 +1,9 @@
 # DataElement
 DataElement is a simple plugin for managing paging composed of complex HTML elements that work on the client and server side
  
+
+* ## [Demo DataElement](https://mssalvo.github.io/DataElement/index.html)
+
  
  ## _configuration properties_
  

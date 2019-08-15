@@ -39,12 +39,12 @@
         </div> 
         <div class="container">
                 <div class="row">
-                    <div class="col" jms-write="col.col1.titolo@@ @@col.col2.titolo@@ @@my test"></div>
-                    <div class="col" jms-write="col.col2.titolo@@ @@payload[0].provincia"></div>
-                    <div class="col" jms-write="col.col3.titolo"></div>
-                    <div class="col" jms-write-html="col.col4.titolo"></div>  
-                    <div class="col" jms-write="col.col5.titolo"></div> 
-                    <div class="col" jms-write-html="col.col5.titolo@@ @@<div jms-write='col.col1.titolo'></div>"></div> 
+                    <div class="col" jms-write="col.regione.titolo"></div>
+                    <div class="col" jms-write="col.provincia.titolo"></div>
+                    <div class="col" jms-write="col.comune.titolo"></div>
+                    <div class="col" jms-write-html="col.frazione.titolo"></div>  
+                    <div class="col" jms-write="col.cap.titolo"></div> 
+                    <div class="col" jms-write-html="@@<div jms-write='col.comune.titolo'></div>" jms-write-append="@@esempio inclusione div con jms-write"></div> 
                 </div>
             <div class="list-group">
  
@@ -56,18 +56,17 @@
                 <div class="row">
                     <div class="col" for-property="payload.regione"></div>
                     <div class="col" for-property="payload.provincia"></div>
-                    <div class="col" for-property="payload.sigla@@ " jms-write="col.col2.titolo@@ @@payload[0].ripartizione_geo@@ "></div>
-                    <div class="col" for-property="payload.ripartizione_geo"></div>  
-                    <div class="col" for-property="payload.popolazione@@ "  for-property-jms-write-append="payload.@@col$col3$titolo " jms-write="payload[0].ripartizione_geo@@ ">
-                     
-                    </div>  
+                    <div class="col" for-property="payload.comune@@ @@comune_2"></div>
+                    <div class="col" for-property="payload.frazione@@ @@frazione_2@@dugt@@ @@topografico@@topografico_2@@ @@num_civico"></div>  
+                    <div class="col" for-property="payload.cap"></div>  
+                    <div class="col" for-property="payload.index@@ testo statico"></div> 
                 </div>
             </a>    
         </template>  
         <script>
 
             DataElement.paging('myname', {
-                url: './provincia.json',
+                url: './cap-salerno.json',
                 box: 'div.list-group',
                 row: 'a.list-group-item',
                 comboPages: 'select.custom-select',

@@ -1,6 +1,10 @@
 # DataElement
 DataElement è un semplice plug-in per gestire le paginazioni  composte da elementi HTML complessi, gestisce il loro funzionamento sia lato client che server
  
+
+* ## [Demo DataElement](https://mssalvo.github.io/DataElement/index.html)
+
+
  ## _proprietà di configurazione_
  
 Property | Type | Default | Obligatory | Description

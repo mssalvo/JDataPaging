@@ -449,3 +449,25 @@ _Esempio_
                 istance.log('myFunctionName2',this.innerHTML,istance,evt)
             })
  ``` 
+
+### Gestire la paginazione dinanica lato server
+per gestire la paginazione lato server, 
+saranno passati sempre al server i suddetti parametri: `start`  `end`  `limit`  `page`  `totalrows`
+ __?start=10&end=20&limit=10&page=2&totalrows=110__
+quando si utilizza la casella di ricerca, sarà aggiunto un altro parametro a quelli standart dal nome `search`
+ __?start=10&end=20&limit=10&page=2&totalrows=110&search=italy__ 
+il parametro search sarà presente fin quando la casella di ricerca conterrà un valore
+altrimenti sarà rimosso.
+
+per gestire la paginazione lato server in modo corretto,
+la struttura minina dell'oggetto json di risposta,
+deve contenere la proprietà dal nome `totalrows` ,
+nel `totalrows` indica il totale generale dei record, non quelli passati come ogetto json, ma il totale disponibile.
+ ```js
+{
+   "totalrows": 110,
+   "data": [{"name": "jon","age": 20},{"name": "jon","age": 20},{"name": "jon","age": 20}]
+}
+ ```
+
+* Nota: senza la sudetta proprietà `totalrows` non sara possibile gestire la paginazione 

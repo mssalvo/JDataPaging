@@ -463,11 +463,28 @@ per gestire la paginazione lato server in modo corretto,
 la struttura minina dell'oggetto json di risposta,
 deve contenere la proprietà dal nome `totalrows` ,
 nel `totalrows` indica il totale generale dei record, non quelli passati come ogetto json, ma il totale disponibile.
- ```js
+
+
+```js
 {
    "totalrows": 110,
    "data": [{"name": "jon","age": 20},{"name": "jon","age": 20},{"name": "jon","age": 20}]
 }
- ```
+```
 
 * Nota: senza la sudetta proprietà `totalrows` non sara possibile gestire la paginazione 
+
+
+### Configurazione minima per gestire richieste lato server
+per gestire il paginatore lato serve impostare la proprietà `isServer` a `true` 
+ 
+```js
+ DataElement.paging('myname',{
+          url: './myServerUlr.php',
+          isServer: true,
+          box:'div.list-group',  
+          row:'a.list-group-item',  
+          btnNext:'a.next',  
+          btnPrevious:'a.previous' 
+       })
+```

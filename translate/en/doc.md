@@ -1,8 +1,8 @@
-# DataElement
-DataElement is a simple plugin for managing paging composed of complex HTML elements that work on the client and server side
+# JDataPaging
+JDataPaging is a simple plugin for managing paging composed of complex HTML elements that work on the client and server side
  
 
-* ## [Demo DataElement](https://mssalvo.github.io/DataElement/index.html)
+* ## [Demo JDataPaging](https://mssalvo.github.io/JDataPaging/index.html)
 
  
  ## _configuration properties_
@@ -25,21 +25,21 @@ Property | Type | Default | Obligatory | Description
 **labelPageTotal** | String |  | no | indicates the html element that contains the page total 
 **jmsTemplate** | String |  | no | indicates the html element that with the `jms-template` property that acts as a template containing the row structure  
 **autoStart** | Boolean | true | no | executes the pager build at startup 
-**onPreviusBefore** | Function |  | no | executes the function before the command `button Previus` is executed and istance DataElement is injected `function(istance)`
-**onPreviousAfter** | Function |  | no | executes the function after the `button Previus` command is executed, the new lines displayed and the instance DataElement will be injected `function(rows,istance)`
-**onNextBefore** | Function |  | no | executes the function before the `button Next` command is executed istance DataElement will be injected `function(istance)`
-**onNextAfter** | Function |  | no | executes the function after the `button Next` command is executed, the new lines displayed and the instance DataElement will be injected `function(rows,istance)`
-**onChangeComboPages** | Function |  | no | executes the function after the command `Change Combo` is executed, the recalculation will be injected as object {limit: 5, rowsTotal: 14, pageMax: 3} plus the instance DataElement `function(obj,istance)`
+**onPreviusBefore** | Function |  | no | executes the function before the command `button Previus` is executed and istance JDataPaging is injected `function(istance)`
+**onPreviousAfter** | Function |  | no | executes the function after the `button Previus` command is executed, the new lines displayed and the instance JDataPaging will be injected `function(rows,istance)`
+**onNextBefore** | Function |  | no | executes the function before the `button Next` command is executed istance JDataPaging will be injected `function(istance)`
+**onNextAfter** | Function |  | no | executes the function after the `button Next` command is executed, the new lines displayed and the instance JDataPaging will be injected `function(rows,istance)`
+**onChangeComboPages** | Function |  | no | executes the function after the command `Change Combo` is executed, the recalculation will be injected as object {limit: 5, rowsTotal: 14, pageMax: 3} plus the instance JDataPaging `function(obj,istance)`
 **onComplete** | Function |  | no |  execute the function at the end of each command `button Next`` button Previus` `comboPages` useful if you need to match new events to newly created html objects
 **onBeforeRow** | Function | true | no |  execute the function before the creation of the row the function must return a boolean` (true the row is created - false the row is excluded) `, we will be injected 1. elemeto html (row) 2. the object json, 3. index of row  `function(el,obj,index)`
 **onAfterRow** | Function |  | no |  executes the function after the row is created, 1. elemeto html (row) will be injected 2. the json object, 3. index of the row  `function(el,obj,index)`
-**plugin** | Object |  | no | indicate the name of the support plugin `DataElementSupport` if you use jmstemplate or call ajax
+**plugin** | Object |  | no | indicate the name of the support plugin `JDataPagingSupport` if you use jmstemplate or call ajax
 
 
 ## basic example data from html
 
 ```js
-DataElement.paging('myIstName', {
+JDataPaging.paging('myIstName', {
                 box: 'div.list-group',
                 row: 'a.list-group-item',
                 btnNext: 'a.next',
@@ -70,16 +70,16 @@ Method | Action
 example new istance
 
 ```js
-DataElement.paging('myIstName', {box:'' .....});
+JDataPaging.paging('myIstName', {box:'' .....});
 ```
 
 example to recover
 
 ```js
-DataElement.get.myIstName.next()
-DataElement.get.myIstName.previous()
-DataElement.get.myIstName.restart() 
-DataElement.get.myIstName.search('b...') 
+JDataPaging.get.myIstName.next()
+JDataPaging.get.myIstName.previous()
+JDataPaging.get.myIstName.restart() 
+JDataPaging.get.myIstName.search('b...') 
 ```
 
 ### jsm uses html attributes to cycle create match events and retrieve the value from a json object
@@ -192,13 +192,13 @@ there are several ways to associate a function with an html element with jms eve
 * 1. set the autoStart property to false `autoStart:false`
 * 2. find the created instance of the paging
 * 3. from the instance calls the object fn going up from dataSupport `dataSupport.fn`
-all the functions will be injected with the DataElement instance and the event
+all the functions will be injected with the JDataPaging instance and the event
 to retrieve the context of the associated html element use this `this.value`  `this.innerHTML`
 
 __Example__
 
 ```js
-var istance= DataElement.paging('myIstName', {autoStart:false, .....});
+var istance= JDataPaging.paging('myIstName', {autoStart:false, .....});
  
 istance.dataSupport.fn.myFunctionName=function(dte,evt){
            console.log("dte",dte)
@@ -231,12 +231,12 @@ it is mandatory to call the start method
 to start creating paging `istance.start()`
 
 ```js
-var istance= DataElement.paging('myIstName', {autoStart:false,plugin:DataElementSupport, .....});
+var istance= JDataPaging.paging('myIstName', {autoStart:false,plugin:JDataPagingSupport, .....});
 
 istance.start();       
 
 //or
-DataElement.paging.myIstName.start();
+JDataPaging.paging.myIstName.start();
 ```
 
 
@@ -244,10 +244,10 @@ DataElement.paging.myIstName.start();
 * now we see the simplest:
 
 ```js
-DataElement.paging('myIstName', 
+JDataPaging.paging('myIstName', 
                     {box:'',
                      ... ..,
-                     plugin:DataElementSupport, 
+                     plugin:JDataPagingSupport, 
                     }).jmsEvent('myFunctionName1',function(istance,evt){
                 istance.log('myFunctionName1',this.innerHTML,istance,evt)
             }).jmsEvent('myFunctionName2',function(istance,evt){
@@ -335,12 +335,12 @@ __Example__
 ```
  
  
- 3 . Instance a DataElement object by setting the various attributes that map the relevant html
+ 3 . Instance a JDataPaging object by setting the various attributes that map the relevant html
  `box` `row` `comboPages` `pages` `labelPageCurrent` `labelPageTotal` `btnNext` `btnPrevious`
  
- __Example Istance DataElement v.1.1.0__
+ __Example Istance JDataPaging v.1.1.0__
  ```js
-        DataElement.paging('myname',{
+        JDataPaging.paging('myname',{
            box:'div.list-group',  
            row:'a.list-group-item',  
            comboPages:'select.custom-select',   
@@ -355,7 +355,7 @@ __Recover the instance__
 
  ```js
  
- DataElement.get.myname
+ JDataPaging.get.myname
  
  ```
 
@@ -415,7 +415,7 @@ _Example_
 * here is a statement with all the existing properties
 
  ```js
-            DataElement.paging('myname', {
+            JDataPaging.paging('myname', {
                 url: './cap-caserta.json',
                 param:function(p){ p.myparam1='hello';p.myparam2='3434323442444'},
                 ajaxSetting:function(set){set.type="get",set.dataType="json"},
@@ -444,7 +444,7 @@ _Example_
                     return true;
                 },
                 onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
-                plugin: DataElementSupport
+                plugin: JDataPagingSupport
             }).jmsEvent('myFunctionName1',function(istance,evt){
                 istance.log('myFunctionName1',this.innerHTML,istance,evt)
             }).jmsEvent('myFunctionName2',function(istance,evt){
@@ -485,13 +485,13 @@ in the `totalrows` indicates the grand total of the records, not the total of th
 to manage the pager side you need to set the `isServer` property to` true`
 
 ```js
- DataElement.paging('myname',{
+ JDataPaging.paging('myname',{
           url: './myServerUlr.php',
           isServer: true,
           box:'div.list-group',  
           row:'a.list-group-item',  
           btnNext:'a.next',  
           btnPrevious:'a.previous',
-          plugin: DataElementSupport
+          plugin: JDataPagingSupport
        })
 ```

@@ -1,32 +1,32 @@
-# DataElement
-DataElement is a simple plugin for managing paging composed of complex HTML elements that work on the client and server side
+# JDataPaging
+JDataPaging is a simple plugin for managing paging composed of complex HTML elements that work on the client and server side
 
 # Paging system
-The pagin that adapts to the structure of your web page, create your own custom pagin html structure, and DataElement will adapt to it
+The pagin that adapts to the structure of your web page, create your own custom pagin html structure, and JDataPaging will adapt to it
 
 # Getting Started
 
-1. Include DataElement on your page before the closing </body> tag
+1. Include JDataPaging on your page before the closing </body> tag
 ```html
 <script src="/path/dist/core/1.1.0/data-element.min.js"></script>
 ```
-2. Include DataElementSupport if you are using a javascript / json data object 
+2. Include JDataPagingSupport if you are using a javascript / json data object 
 ```html
 <script src="/path/dist/support/1.1.0/data-element-support.min.js"></script>
 ```
 
 
 
-* ### [Usage Documentation EN](https://github.com/mssalvo/DataElement/blob/master/translate/en/doc.md)
-* ### [Usa Documentazione IT](https://github.com/mssalvo/DataElement/blob/master/translate/it/doc.md)
+* ### [Usage Documentation EN](https://github.com/mssalvo/JDataPaging/blob/master/translate/en/doc.md)
+* ### [Usa Documentazione IT](https://github.com/mssalvo/JDataPaging/blob/master/translate/it/doc.md)
 
-* ## [Demo DataElement](https://mssalvo.github.io/DataElement/index.html)
+* ## [Demo JDataPaging](https://mssalvo.github.io/JDataPaging/index.html)
  
  
-__Example Istance DataElement v.1.1.0__
+__Example Istance JDataPaging v.1.1.0__
  
  ```js
-        DataElement.paging('myname',{
+        JDataPaging.paging('myname',{
            box:'div.list-group',  
            row:'a.list-group-item',  
            comboPages:'select.custom-select',   
@@ -41,7 +41,7 @@ __Recover the instance__
 
  ```js
  
- DataElement.get.myname
+ JDataPaging.get.myname
  
  ```
  

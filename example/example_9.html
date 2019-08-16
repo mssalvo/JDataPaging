@@ -96,9 +96,9 @@
                 onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
                 plugin: JDataPagingSupport
             }).jmsEvent('doSomething1',function(istance,evt){
-                istance.log('doSomething1',this.innerHTML,istance,evt)
+               alert(this.innerHTML)
             }).jmsEvent('doSomething2',function(istance,evt){
-                istance.log('doSomething2',this.innerHTML,istance,evt)
+                alert(this.innerHTML)
             }).jmsEvent('doSomething3',function(istance,evt){
                istance.log('doSomething3',this.innerHTML,istance,evt)
             }).jmsEvent('doSomething4',function(istance,evt){

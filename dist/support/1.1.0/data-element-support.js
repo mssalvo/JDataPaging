@@ -1,36 +1,36 @@
 /*!
- * DataElementSupport v1.1.0 ©
+ * JDataPagingSupport v1.1.0 ©
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
- * https://github.com/mssalvo/DataElement/tree/master/dist/support
+ * https://github.com/mssalvo/JDataPaging/tree/master/dist/support
  *  GNU General Public License v3.0
- *  https://github.com/mssalvo/DataElement/blob/master/LICENSE
+ *  https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
  * */
 
 (function () {
     if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined') {
         window.console = {log: function () {}};
     }
-    window.jQuery || console.log('DataElementSupport Info :: jQuery not istance! > check include jquery.js')
+    window.jQuery || console.log('JDataPagingSupport Info :: jQuery not istance! > check include jquery.js')
 })();
 
-function DataElementSupport() {this.count=0;}
-DataElementSupport.prototype.home = undefined;
-DataElementSupport.prototype.data = {};
-DataElementSupport.prototype.ajax_ = {};
-DataElementSupport.prototype.current = 'index';
-DataElementSupport.prototype.space = ' ';
-DataElementSupport.prototype.txtSpace = ' ';
-DataElementSupport.prototype.divisor = '@@';
-DataElementSupport.prototype.htmlTemplate = {};
-DataElementSupport.prototype._ = jQuery;
-DataElementSupport.expControll = new RegExp(/:\ *(\w+)\s*\@(:\1@|)/);
-DataElementSupport.expEvent = new RegExp(/^([a-z \ *]|:\1:)+/);
-DataElementSupport.expAction = new RegExp(/@\ *(\w+)\s*\/?(@.*\1.|)/);
-DataElementSupport.prototype.fn = {};
-DataElementSupport.prototype.trim = function (a) {
+function JDataPagingSupport() {this.count=0;}
+JDataPagingSupport.prototype.home = undefined;
+JDataPagingSupport.prototype.data = {};
+JDataPagingSupport.prototype.ajax_ = {};
+JDataPagingSupport.prototype.current = 'index';
+JDataPagingSupport.prototype.space = ' ';
+JDataPagingSupport.prototype.txtSpace = ' ';
+JDataPagingSupport.prototype.divisor = '@@';
+JDataPagingSupport.prototype.htmlTemplate = {};
+JDataPagingSupport.prototype._ = jQuery;
+JDataPagingSupport.expControll = new RegExp(/:\ *(\w+)\s*\@(:\1@|)/);
+JDataPagingSupport.expEvent = new RegExp(/^([a-z \ *]|:\1:)+/);
+JDataPagingSupport.expAction = new RegExp(/@\ *(\w+)\s*\/?(@.*\1.|)/);
+JDataPagingSupport.prototype.fn = {};
+JDataPagingSupport.prototype.trim = function (a) {
     return a.replace(/^\s+|\s+$/gm, '');
 };
-DataElementSupport.event = function (o, e, f, b) {
+JDataPagingSupport.event = function (o, e, f, b) {
     if (o.attachEvent) {
         o.attachEvent("on" + e, f)
     } else if (o.addEventListener) {
@@ -40,7 +40,7 @@ DataElementSupport.event = function (o, e, f, b) {
     }
     return this
 };
-DataElementSupport.bindPro = function (f, o) {
+JDataPagingSupport.bindPro = function (f, o) {
 
     if (f.bind === Function.prototype.bind && Function.prototype.bind)
         return Function.prototype.bind.apply(f, Array.prototype.slice.call(arguments, 1));
@@ -51,14 +51,14 @@ DataElementSupport.bindPro = function (f, o) {
         return f.apply(o, n.concat(Array.prototype.slice.call(arguments)))
     }
 };
-DataElementSupport.bind = function (o, e, f, a, arg) {
+JDataPagingSupport.bind = function (o, e, f, a, arg) {
     var n = (new String(e)).split(" ");
     for (var r = 0; r < n.length; r++) {
         this.event(o, n[r], this.bindPro(f, a, arg), true)
     }
     return this
 };
-DataElementSupport.prototype.isforEachIn = function (o, ctx, ic) {
+JDataPagingSupport.prototype.isforEachIn = function (o, ctx, ic) {
     var elementsForEach_ = [], this_ = this;
 
     Array.prototype.forEach.call(o.querySelectorAll('[for-foreach]'), function (el, i) {
@@ -103,7 +103,7 @@ DataElementSupport.prototype.isforEachIn = function (o, ctx, ic) {
 
     return this_;
 };
-DataElementSupport.prototype.removeProperty = function (ob, reg) {
+JDataPagingSupport.prototype.removeProperty = function (ob, reg) {
     if (ob && ob.attributes) {
         var u = [];
         for (var j = 0; j < ob.attributes.length; j++) {
@@ -125,7 +125,7 @@ DataElementSupport.prototype.removeProperty = function (ob, reg) {
 
     return this;
 };
-DataElementSupport.prototype.propert = function (prop) {
+JDataPagingSupport.prototype.propert = function (prop) {
     var p = prop.split(".");
     if (p.length) {
         return {key: p[0], val: p[1]}
@@ -133,7 +133,7 @@ DataElementSupport.prototype.propert = function (prop) {
         return {key: p[0], val: p[0]}
     }
 };
-DataElementSupport.prototype.settingTag = function (m, e, o) {
+JDataPagingSupport.prototype.settingTag = function (m, e, o) {
     switch (m) {
         case 'html':
             this._(e).html(o)
@@ -159,7 +159,7 @@ DataElementSupport.prototype.settingTag = function (m, e, o) {
     }
     return this;
 };
-DataElementSupport.prototype.settingTagOption = function (m, e, o) {
+JDataPagingSupport.prototype.settingTagOption = function (m, e, o) {
 
     switch (m) {
         case 'html':
@@ -181,7 +181,7 @@ DataElementSupport.prototype.settingTagOption = function (m, e, o) {
 
     return this;
 };
-DataElementSupport.prototype.settingTagOption = function (m, e, o) {
+JDataPagingSupport.prototype.settingTagOption = function (m, e, o) {
 
     switch (m) {
         case 'html':
@@ -202,7 +202,7 @@ DataElementSupport.prototype.settingTagOption = function (m, e, o) {
 
     return this;
 };
-DataElementSupport.prototype.isAttributeForProp = function (attrs) {
+JDataPagingSupport.prototype.isAttributeForProp = function (attrs) {
     for (var a in attrs) {
         if (attrs[a] && /(for-property|for-property\-.*)+$/.test(attrs[a].name)) {
             return 1;
@@ -210,7 +210,7 @@ DataElementSupport.prototype.isAttributeForProp = function (attrs) {
     }
     return 0;
 };
-DataElementSupport.prototype.isAttributeWrite = function (attrs) {
+JDataPagingSupport.prototype.isAttributeWrite = function (attrs) {
     for (var a in attrs) {
         if (attrs[a] && /(jms-write|jms-write-.*)+$/.test(attrs[a].name)) {
             return 1;
@@ -218,13 +218,13 @@ DataElementSupport.prototype.isAttributeWrite = function (attrs) {
     }
     return 0;
 };
-DataElementSupport.prototype.getHtmlTemplate = function (k) {
+JDataPagingSupport.prototype.getHtmlTemplate = function (k) {
     return this.htmlTemplate[k];
 };
-DataElementSupport.prototype.setHtmlTemplate = function (k, v) {
+JDataPagingSupport.prototype.setHtmlTemplate = function (k, v) {
     this.htmlTemplate[k] = v;
 };
-DataElementSupport.prototype.searchHtlmTemplate = function (o) {
+JDataPagingSupport.prototype.searchHtlmTemplate = function (o) {
     var this_ = this;
     Array.prototype.forEach.call((o || document).querySelectorAll('[jms-template]'), function (el, i) {
         this_.setHtmlTemplate(el.getAttribute('jms-template'), el.innerHTML)
@@ -232,7 +232,7 @@ DataElementSupport.prototype.searchHtlmTemplate = function (o) {
     })
     return this_;
 };
-DataElementSupport.prototype.updateObjectIn = function (elemExp, elementForEach, ctx, t) {
+JDataPagingSupport.prototype.updateObjectIn = function (elemExp, elementForEach, ctx, t) {
     if (elemExp) {
         for (var att = 0; att < elemExp.attributes.length; att++) {
             (function (att, elemExp, t) {
@@ -347,7 +347,7 @@ DataElementSupport.prototype.updateObjectIn = function (elemExp, elementForEach,
     }
     return this;
 };
-DataElementSupport.prototype.updateObject = function (elemExp, elementForEach, t, data) {
+JDataPagingSupport.prototype.updateObject = function (elemExp, elementForEach, t, data) {
     var this_ = this;
     if (elemExp) {
         for (var att = 0; att < elemExp.attributes.length; att++) {
@@ -461,7 +461,7 @@ DataElementSupport.prototype.updateObject = function (elemExp, elementForEach, t
     }
 };
 
-DataElementSupport.prototype.getValProp = function (exp, obj, n, isObj) {
+JDataPagingSupport.prototype.getValProp = function (exp, obj, n, isObj) {
     var chars = [];
     var this_ = this;
     var props = exp.split(this_.divisor);
@@ -481,7 +481,7 @@ DataElementSupport.prototype.getValProp = function (exp, obj, n, isObj) {
     return chars.join('');
 };
 
-DataElementSupport.prototype.getObjVal = function (exp, e, a, b, n) {
+JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
     var this_ = this, u = exp[e].split('.');
     if (u.length < 2) {
         if (String(exp[e]).indexOf(this_.divisor) !== -1)
@@ -509,7 +509,7 @@ DataElementSupport.prototype.getObjVal = function (exp, e, a, b, n) {
     }
 };
 
-DataElementSupport.prototype.valueProperty = function (exps) {
+JDataPagingSupport.prototype.valueProperty = function (exps) {
     var this_ = this;
     var chars = [];
     if(typeof exps!=="undefined" && exps!==""){
@@ -549,7 +549,7 @@ DataElementSupport.prototype.valueProperty = function (exps) {
     }
      return "";
 };
-DataElementSupport.prototype.updateProperty = function (elemExp) {
+JDataPagingSupport.prototype.updateProperty = function (elemExp) {
     var this_ = this;
     if (elemExp) {
         for (var att = 0; att < elemExp.attributes.length; att++) {
@@ -588,7 +588,7 @@ DataElementSupport.prototype.updateProperty = function (elemExp) {
        this_.removeProperty(elemExp, new RegExp(/(jms-write|jms-write-.*)+$/));
     }
 };
-DataElementSupport.prototype.writeProperty = function (o) {
+JDataPagingSupport.prototype.writeProperty = function (o) {
     var this_ = this;
     var forProperty = [];
     Array.prototype.forEach.call(o.getElementsByTagName('*'), function (el, i) { 
@@ -604,13 +604,13 @@ DataElementSupport.prototype.writeProperty = function (o) {
     }
     return true;
 };
-DataElementSupport.prototype.isUndefined = function (t) {
+JDataPagingSupport.prototype.isUndefined = function (t) {
     return null === t ? !0 : t ? "undefined" === typeof t : !0
 };
-DataElementSupport.prototype.isArrayNative = function (a) {
+JDataPagingSupport.prototype.isArrayNative = function (a) {
     return !!a && (typeof a === "object" || typeof a === "function") && "length" in a && !("setInterval" in a) && (Object.prototype.toString.call(a) === "[object Array]" || "callee" in a || "item" in a);
 };
-DataElementSupport.prototype.array = function (b) {
+JDataPagingSupport.prototype.array = function (b) {
     if (!this.isArrayNative(b))
         return [b];
     if (b.item) {
@@ -621,14 +621,14 @@ DataElementSupport.prototype.array = function (b) {
     }
     return Array.prototype.slice.call(b);
 };
-DataElementSupport.searchHtmlEvent = function (o) {
+JDataPagingSupport.searchHtmlEvent = function (o) {
     var jmsEvent = [];
     Array.prototype.forEach.call(o.querySelectorAll("[jms-event]"), function (el, i) {
         jmsEvent[el.getAttribute("jms-event") + "-" + i] = el;
     })
     return jmsEvent;
 };
-DataElementSupport.prototype.set = function (val, n) {
+JDataPagingSupport.prototype.set = function (val, n) {
     var l = val.split('.');
     switch (l.length) {
         case 1:
@@ -656,7 +656,7 @@ DataElementSupport.prototype.set = function (val, n) {
 
     return this;
 }
-DataElementSupport.prototype.isforEach = function (o) {
+JDataPagingSupport.prototype.isforEach = function (o) {
     var elementsForEach = [], this_ = this;
     if (typeof (this_.home) === "undefined")
         this_.home = {onBeforeRow: function (a, b) {
@@ -723,7 +723,7 @@ DataElementSupport.prototype.isforEach = function (o) {
     return this_;
 };
 
-DataElementSupport.prototype.createView = function (templateName, data, objView) {
+JDataPagingSupport.prototype.createView = function (templateName, data, objView) {
     var this__ = this;
     this__.searchHtlmTemplate(document).data = data;
     var exl = this__._(this__.getHtmlTemplate(templateName)).get();
@@ -734,18 +734,18 @@ DataElementSupport.prototype.createView = function (templateName, data, objView)
     return this;
 };
 
-DataElementSupport.prototype.initHtmlEvent = function (o) {
+JDataPagingSupport.prototype.initHtmlEvent = function (o) {
     var this_ = this, __proto = this_;
-    var jmsEvent = DataElementSupport.searchHtmlEvent(o);
+    var jmsEvent = JDataPagingSupport.searchHtmlEvent(o);
     // jms-event="click blur:M@home";
     // jms-event="click blur:V@home";
     // jms-event="click blur:C@home";
     // jms-event="click blur:MVC@home";
     for (var k in jmsEvent) {
         var par = k.split("-")[0],
-                evt = this_.trim(DataElementSupport.expEvent.exec(par)[0]),
-                ctr = DataElementSupport.expControll.exec(par)[1],
-                action = DataElementSupport.expAction.exec(par)[1],
+                evt = this_.trim(JDataPagingSupport.expEvent.exec(par)[0]),
+                ctr = JDataPagingSupport.expControll.exec(par)[1],
+                action = JDataPagingSupport.expAction.exec(par)[1],
                 types = ctr.split(" ").join("")/*.toLowerCase()*/,
                 action = action.split(" ").join(""),
                 obj = jmsEvent[k],
@@ -753,7 +753,7 @@ DataElementSupport.prototype.initHtmlEvent = function (o) {
         obj.removeAttribute('jms-event')
         for (var s in nEvent) {
             (function (t, act, arg) {
-                DataElementSupport.bind(obj, nEvent[s], __proto[t][(function (a) {
+                JDataPagingSupport.bind(obj, nEvent[s], __proto[t][(function (a) {
                     return  a
                 })(act)], obj, arg);
             })(types, action, this_.home)
@@ -761,7 +761,7 @@ DataElementSupport.prototype.initHtmlEvent = function (o) {
 
     }
 };
-DataElementSupport.prototype.ajaxCallServer = function (btn) {
+JDataPagingSupport.prototype.ajaxCallServer = function (btn) {
     var this__ = this;
     this__._.ajax({
         type: this__.home.ajaxSetting.type || "get",
@@ -788,6 +788,6 @@ DataElementSupport.prototype.ajaxCallServer = function (btn) {
             });
     return this;
 };
-DataElementSupport.istance = function () {
-    return new DataElementSupport();
+JDataPagingSupport.istance = function () {
+    return new JDataPagingSupport();
 }

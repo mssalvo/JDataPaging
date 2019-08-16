@@ -1,8 +1,8 @@
-# DataElement
-DataElement è un semplice plug-in per gestire le paginazioni  composte da elementi HTML complessi, gestisce il loro funzionamento sia lato client che server
+# JDataPaging
+JDataPaging è un semplice plug-in per gestire le paginazioni  composte da elementi HTML complessi, gestisce il loro funzionamento sia lato client che server
  
 
-* ## [Demo DataElement](https://mssalvo.github.io/DataElement/index.html)
+* ## [Demo JDataPaging](https://mssalvo.github.io/JDataPaging/index.html)
 
 
  ## _proprietà di configurazione_
@@ -25,21 +25,21 @@ Property | Type | Default | Obligatory | Description
 **labelPageTotal** | String |  | no | indica l'elemento html che contiene il totale della pagina 
 **jmsTemplate** | String |  | no | indica l'elemento html che con la proprietà `jms-template` che funge da modello contenente la struttura delle righe  
 **autoStart** | Boolean | true | no |esegue la generazione del paginatore all'avvio
-**onPreviusBefore** | Function |  | no | esegue la funzione prima dell'esecuzione del comando `pulsante Previus` verrà iniettato alla funzione l'istanza corrente di DataElement `function(istance)`
-**onPreviousAfter** | Function |  | no | esegue la funzione dopo che è stato eseguito il comando `pulsante Previus`, verranno iniettate alla funzione, le nuove righe visualizzate e l'istanza corrente di DataElement `function(rows,istance)`
-**onNextBefore** | Function |  | no |  esegue la funzione prima dell'esecuzione del comando `pulsante Next` verrà iniettato alla funzione l'istanza corrente di DataElement `function(istance)`
-**onNextAfter** | Function |  | no |  esegue la funzione dopo che è stato eseguito il comando `pulsante Next`, verranno iniettate alla funzione, le nuove righe visualizzate e l'istanza corrente di DataElement `function(rows,istance)`
-**onChangeComboPages** | Function |  | no | esegue la funzione dopo l'esecuzione del comando `change Combo`, verrà iniettato il ricalcolo come oggetto {limite: 5, righe Totale: 14, pageMax: 3} più l'istanza corrente di DataElement `function(obj, istanza)`
+**onPreviusBefore** | Function |  | no | esegue la funzione prima dell'esecuzione del comando `pulsante Previus` verrà iniettato alla funzione l'istanza corrente di JDataPaging `function(istance)`
+**onPreviousAfter** | Function |  | no | esegue la funzione dopo che è stato eseguito il comando `pulsante Previus`, verranno iniettate alla funzione, le nuove righe visualizzate e l'istanza corrente di JDataPaging `function(rows,istance)`
+**onNextBefore** | Function |  | no |  esegue la funzione prima dell'esecuzione del comando `pulsante Next` verrà iniettato alla funzione l'istanza corrente di JDataPaging `function(istance)`
+**onNextAfter** | Function |  | no |  esegue la funzione dopo che è stato eseguito il comando `pulsante Next`, verranno iniettate alla funzione, le nuove righe visualizzate e l'istanza corrente di JDataPaging `function(rows,istance)`
+**onChangeComboPages** | Function |  | no | esegue la funzione dopo l'esecuzione del comando `change Combo`, verrà iniettato il ricalcolo come oggetto {limite: 5, righe Totale: 14, pageMax: 3} più l'istanza corrente di JDataPaging `function(obj, istanza)`
 **onComplete** | Function |  | no |   esegue la funzione alla fine di ciascun comando pulsante `Next`  `Previus`  `comboPages` utile se è necessario abbinare nuovi eventi a oggetti html appena creati
 **onBeforeRow** | Function | true | no |  esegue la funzione prima della creazione della riga, la funzione deve restituire un valore booleano `(true viene creata la riga - falso viene esclusa la riga)`, verrenno iniettati alla funzione 1. l'elemeto html da creare (riga) 2. l'oggetto json, 3. l'indice della riga corrente `function(el,obj,index)`
 **onAfterRow** | Function |  | no |  esegue la funzione dopo aver creato la riga, verrenno iniettati alla funzione 1. l'elemeto html già creato (riga) 2. l'oggetto json, 3. l'indice della riga corrente `function(el,obj,index)`
-**plugin** | Object |  | no | indica il nome del plug-in di supporto `DataElementSupport` se usi jmstemplate o chiami ajax  `plugin:DataElementSupport`
+**plugin** | Object |  | no | indica il nome del plug-in di supporto `JDataPagingSupport` se usi jmstemplate o chiami ajax  `plugin:JDataPagingSupport`
 
 
 ## esempio base di fonte dati da HTML
 
 ```js
-DataElement.paging('myIstName', {
+JDataPaging.paging('myIstName', {
                 box: 'div.list-group',
                 row: 'a.list-group-item',
                 btnNext: 'a.next',
@@ -70,16 +70,16 @@ Method | Action
 esempio nuova istanzia
 
 ```js
-DataElement.paging('myIstName', {box:'' .....});
+JDataPaging.paging('myIstName', {box:'' .....});
 ```
 
 esempio recupero istanzia
 
 ```js
-DataElement.get.myIstName.next()
-DataElement.get.myIstName.previous()
-DataElement.get.myIstName.restart() 
-DataElement.get.myIstName.search('b...') 
+JDataPaging.get.myIstName.next()
+JDataPaging.get.myIstName.previous()
+JDataPaging.get.myIstName.restart() 
+JDataPaging.get.myIstName.search('b...') 
 ```
 
 ### jsm utilizza gli attributi html per creare, ciclicare gli elementi html, recuperare il valore da un oggetto json
@@ -194,13 +194,13 @@ ci sono diversi modi per associare una funzione a un elemento html con l'evento 
 * 2 recupera l'istanza creata del paginatore
 * 3 dichiara l'oggetto fn proprietà di dataSupport `dataSupport.fn` 
 
-a tutte le funzioni create, verrà iniettata l'istanza DataElement + l'evento,
+a tutte le funzioni create, verrà iniettata l'istanza JDataPaging + l'evento,
 per recuperare il contesto dell'elemento html associato, usare in this `this.value`  `this.innerHTML`
 
 __Esempio__
 
 ```js
-var istance= DataElement.paging('myIstName', {autoStart:false, .....});
+var istance= JDataPaging.paging('myIstName', {autoStart:false, .....});
  
 istance.dataSupport.fn.myFunctionName=function(dte,evt){
            console.log("dte",dte)
@@ -233,12 +233,12 @@ alla fine di tutte le dichiarazioni,
 per inizializzare il paginatore  `istance.start()`
 
 ```js
-var istance= DataElement.paging('myIstName', {autoStart:false,plugin:DataElementSupport, .....});
+var istance= JDataPaging.paging('myIstName', {autoStart:false,plugin:JDataPagingSupport, .....});
 
 istance.start();       
 
 //or
-DataElement.paging.myIstName.start();
+JDataPaging.paging.myIstName.start();
 ```
 
 
@@ -246,10 +246,10 @@ DataElement.paging.myIstName.start();
 * ora vediamo il modo più semplice:
 
 ```js
-DataElement.paging('myIstName', 
+JDataPaging.paging('myIstName', 
                     {box:'',
                      ... ..,
-                     plugin:DataElementSupport, 
+                     plugin:JDataPagingSupport, 
                     }).jmsEvent('myFunctionName1',function(istance,evt){
                 istance.log('myFunctionName1',this.innerHTML,istance,evt)
             }).jmsEvent('myFunctionName2',function(istance,evt){
@@ -337,12 +337,12 @@ __Example__
 ```
  
  
- 3 . Istanzia un oggetto DataElement, impostando i vari attributi che mappano l'html
+ 3 . Istanzia un oggetto JDataPaging, impostando i vari attributi che mappano l'html
  `box` `row` `comboPages` `pages` `labelPageCurrent` `labelPageTotal` `btnNext` `btnPrevious`
  
- __Example Istance DataElement v.1.1.0__
+ __Example Istance JDataPaging v.1.1.0__
  ```js
-        DataElement.paging('myname',{
+        JDataPaging.paging('myname',{
            box:'div.list-group',  
            row:'a.list-group-item',  
            comboPages:'select.custom-select',   
@@ -357,7 +357,7 @@ __Recover the instance__
 
  ```js
  
- DataElement.get.myname
+ JDataPaging.get.myname
  
  ```
 
@@ -417,7 +417,7 @@ _Esempio_
 * ecco una dichiarazione con tutte le proprietà disponibili
 
  ```js
-            DataElement.paging('myname', {
+            JDataPaging.paging('myname', {
                 url: './cap-caserta.json',
                 param:function(p){ p.myparam1='hello';p.myparam2='3434323442444'},
                 ajaxSetting:function(set){set.type="get",set.dataType="json"},
@@ -446,7 +446,7 @@ _Esempio_
                     return true;
                 },
                 onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
-                plugin: DataElementSupport
+                plugin: JDataPagingSupport
             }).jmsEvent('myFunctionName1',function(istance,evt){
                 istance.log('myFunctionName1',this.innerHTML,istance,evt)
             }).jmsEvent('myFunctionName2',function(istance,evt){
@@ -488,13 +488,13 @@ nel `totalrows` indica il totale generale dei record, non il totale dei record d
 per gestire il paginatore lato serve impostare la proprietà `isServer` a `true` 
  
 ```js
- DataElement.paging('myname',{
+ JDataPaging.paging('myname',{
           url: './myServerUlr.php',
           isServer: true,
           box:'div.list-group',  
           row:'a.list-group-item',  
           btnNext:'a.next',  
           btnPrevious:'a.previous',
-          plugin: DataElementSupport
+          plugin: JDataPagingSupport
        })
 ```

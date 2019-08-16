@@ -1,52 +1,52 @@
 /*!
- * DataElement v1.1.0 ©
+ * JDataPaging v1.1.0 ©
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
- * https://github.com/mssalvo/DataElement 
+ * https://github.com/mssalvo/JDataPaging 
  * GNU General Public License v3.0
- * https://github.com/mssalvo/DataElement/blob/master/LICENSE
+ * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
  **/
 
-function DataElement(o) {
+function JDataPaging(o) {
     var t_ = this;
-    t_.log("INIT DataElement!")
+    t_.log("INIT JDataPaging!")
     if (o)
         t_._new().settyng(o)
     else
-        t_.log("DataElement Info: >> No object declared : Example [ DataElement.paging('myname',{data:object,box:' '}) ] info: https://github.com/mssalvo/DataElement")
+        t_.log("JDataPaging Info: >> No object declared : Example [ JDataPaging.paging('myname',{data:object,box:' '}) ] info: https://github.com/mssalvo/JDataPaging")
 
 }
 ;
-DataElement.rows = []; /*lista di elementi (Rows)*/
-DataElement.selectorBox = {};/*elemento che racchiude gli elementi figli (Rows)*/
-DataElement.selectorRowName = '';
-DataElement.limit = 4; /* row visualizzate in pagine */
-DataElement.pagination = {};
-DataElement.pageCurrent = 0;
-DataElement.pageMax = 1;
-DataElement.labelPageCurrent = undefined;
-DataElement.labelPageTotal = undefined;
-DataElement.btnNext = undefined;
-DataElement.btnPrevious = undefined;
-DataElement.comboPages = undefined;
-DataElement.pages = ['10', '20', '30', '40', '50'];
-DataElement.prototype.dataSupport = undefined;
-DataElement.get = {};
+JDataPaging.rows = []; /*lista di elementi (Rows)*/
+JDataPaging.selectorBox = {};/*elemento che racchiude gli elementi figli (Rows)*/
+JDataPaging.selectorRowName = '';
+JDataPaging.limit = 4; /* row visualizzate in pagine */
+JDataPaging.pagination = {};
+JDataPaging.pageCurrent = 0;
+JDataPaging.pageMax = 1;
+JDataPaging.labelPageCurrent = undefined;
+JDataPaging.labelPageTotal = undefined;
+JDataPaging.btnNext = undefined;
+JDataPaging.btnPrevious = undefined;
+JDataPaging.comboPages = undefined;
+JDataPaging.pages = ['10', '20', '30', '40', '50'];
+JDataPaging.prototype.dataSupport = undefined;
+JDataPaging.get = {};
 if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined')
     window.console = {log: function () {}};
-DataElement.prototype.log = window.console.log;
+JDataPaging.prototype.log = window.console.log;
 
-DataElement.prototype.creaView = function () {
+JDataPaging.prototype.creaView = function () {
     var this_ = this;
     if (this_.plugin) {
         this_.clear();
         this_.dataSupport.home = this_;
         this_.dataSupport.createView(this_.jmsTemplate, this_.data, this_.selectorBox);
     } else {
-        this_.log("[DataElement] Info error:: dataSupport not istance > check include data-support.js")
+        this_.log("[JDataPaging] Info error:: dataSupport not istance > check include data-support.js")
     }
     return this_;
 };
-DataElement.prototype.settyng = function (o) {
+JDataPaging.prototype.settyng = function (o) {
     this.pages = ['10', '20', '30', '50'];
     this.btnNext = undefined;
     this.btnPrevious = undefined;
@@ -127,15 +127,15 @@ DataElement.prototype.settyng = function (o) {
 
     return this;
 };
-DataElement.prototype.dataSet = function (data) {
+JDataPaging.prototype.dataSet = function (data) {
     var th_ = this;
     if (data)
         th_.data = data;
 };
-DataElement.prototype.start = function (data) {
+JDataPaging.prototype.start = function (data) {
     var th_ = this;
     th_.pageCurrent = 0;
-    th_.log("START DataElement!")
+    th_.log("START JDataPaging!")
     if (data)
         th_.data = data;
 
@@ -145,13 +145,13 @@ DataElement.prototype.start = function (data) {
         return th_.init().initComboPages().initInputSearch().initButtons().next().writeLabels();
 };
 
-DataElement.prototype.getCurrentPage = function () {
+JDataPaging.prototype.getCurrentPage = function () {
     return this.pageCurrent;
 };
-DataElement.prototype.getTotalPage = function () {
+JDataPaging.prototype.getTotalPage = function () {
     return this.pageMax;
 };
-DataElement.prototype._new = function () {
+JDataPaging.prototype._new = function () {
     this.isServer = false;
     this.isAjax = false;
     this.ajaxSetting = {url: '', type: 'get', dataType: 'json'};
@@ -191,51 +191,51 @@ DataElement.prototype._new = function () {
     this.back = false;
     return this;
 };
-DataElement.prototype.jmsEvent = function (name,fn) {
+JDataPaging.prototype.jmsEvent = function (name,fn) {
      var th_ = this;
     if (typeof (th_.dataSupport) !== "undefined")
         th_.dataSupport.fn[name]=fn;
-    else th_.log("the function could not be subscribed, dataSupport and undefined! Add the DataElementSupport plugin. Example: DataElement.paging('myIstName', {plugin:DataElementSupport, .....})")
+    else th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
     return th_;
 };
-DataElement.prototype.onCompleteCall = function (args) {
+JDataPaging.prototype.onCompleteCall = function (args) {
     if (this.onComplete && typeof (this.onComplete) === "function")
         this.onComplete.apply(this, args);
     return this;
 };
 
-DataElement.prototype.onNextBeforeCall = function (args) {
+JDataPaging.prototype.onNextBeforeCall = function (args) {
     if (this.onNextBefore && typeof (this.onNextBefore) === "function")
         this.onNextBefore.apply(this, args);
     return this;
 };
 
-DataElement.prototype.onNextAfterCall = function (args) {
+JDataPaging.prototype.onNextAfterCall = function (args) {
     if (this.onNextAfter && typeof (this.onNextAfter) === "function")
         this.onNextAfter.apply(this, args);
     return this;
 };
 
-DataElement.prototype.onPreviusBeforeCall = function (args) {
+JDataPaging.prototype.onPreviusBeforeCall = function (args) {
     if (this.onPreviusBefore && typeof (this.onPreviusBefore) === "function")
         this.onPreviusBefore.apply(this, args);
     return this;
 };
 
-DataElement.prototype.onPreviousAfterCall = function (args) {
+JDataPaging.prototype.onPreviousAfterCall = function (args) {
     if (this.onPreviousAfter && typeof (this.onPreviousAfter) === "function")
         this.onPreviousAfter.apply(this, args);
     return this;
 };
 
-DataElement.prototype.onChangeComboPagesCall = function (args) {
+JDataPaging.prototype.onChangeComboPagesCall = function (args) {
     if (this.onChangeComboPages && typeof (this.onChangeComboPages) === "function")
         this.onChangeComboPages.apply(this, args);
     return this;
 };
-DataElement.prototype.parameter = {};
-DataElement.sendCallServer = function (this_, btn) {
-    var obj = DataElement.calculatesSendStartEnd(this_);
+JDataPaging.prototype.parameter = {};
+JDataPaging.sendCallServer = function (this_, btn) {
+    var obj = JDataPaging.calculatesSendStartEnd(this_);
     this_.parameter.start = obj.start;
     this_.parameter.end = obj.end;
     this_.parameter.limit = this_.limit;
@@ -259,7 +259,7 @@ DataElement.sendCallServer = function (this_, btn) {
     return this_;
 };
 
-DataElement.prototype.startServer = function (data, btn) {
+JDataPaging.prototype.startServer = function (data, btn) {
     var this_ = this;
 
     if (data)
@@ -297,21 +297,21 @@ DataElement.prototype.startServer = function (data, btn) {
 
 };
 
-DataElement.nextServer = function (this_) {
+JDataPaging.nextServer = function (this_) {
     this_.onNextBeforeCall([this_]);
 
     if (this_.pageCurrent < 1 || this_.pageCurrent > 0 && this_.rowsTotal > 0 && (this_.pageCurrent * this_.limit) < this_.rowsTotal)
     {
         ++this_.pageCurrent;
         this_.clear();
-        DataElement.sendCallServer(this_, 'next');
+        JDataPaging.sendCallServer(this_, 'next');
     } else
         this_.pageCurrent = this_.pageMax;
 
     return this_;
 };
 
-DataElement.calculatesSendStartEnd = function (this_) {
+JDataPaging.calculatesSendStartEnd = function (this_) {
     var start_ = 0;
 
     if (this_.pageCurrent === 1) {
@@ -335,7 +335,7 @@ DataElement.calculatesSendStartEnd = function (this_) {
     return {start: start_, end: end_};
 };
 
-DataElement.calculatesNext = function (this_) {
+JDataPaging.calculatesNext = function (this_) {
     var start_ = 0;
     if (this_.pageCurrent > 1) {
         start_ = ((this_.limit * this_.pageCurrent) - this_.limit) <= this_.rows.length ? ((this_.limit * this_.pageCurrent) - this_.limit) : ((this_.limit * (this_.pageCurrent - 1)) - this_.limit);
@@ -359,9 +359,9 @@ DataElement.calculatesNext = function (this_) {
 /* @function page
  * @param {Number} n
  * @see numero pagina da visualiazzare
- * @returns {DataElement}
+ * @returns {JDataPaging}
  **/
-DataElement.prototype.page = function (n) {
+JDataPaging.prototype.page = function (n) {
     if (typeof (n) !== "undefined")
         this.pageCurrent = (Number(n) - 1);
 
@@ -369,11 +369,11 @@ DataElement.prototype.page = function (n) {
 };
 /* @function next
  * @see avanza di pagina
- * @returns {DataElement}
+ * @returns {JDataPaging}
  **/
-DataElement.prototype.next = function () {
+JDataPaging.prototype.next = function () {
     if (this.isServer)
-        return DataElement.nextServer(this);
+        return JDataPaging.nextServer(this);
 
     this.onNextBeforeCall([this])
     ++this.pageCurrent;
@@ -381,7 +381,7 @@ DataElement.prototype.next = function () {
 
     this.clear();
 
-    var obj = DataElement.calculatesNext(this);
+    var obj = JDataPaging.calculatesNext(this);
 
     var start_ = obj.start, end = obj.end;
 
@@ -397,7 +397,7 @@ DataElement.prototype.next = function () {
 
     return this;
 };
-DataElement.previousServer = function (this_) {
+JDataPaging.previousServer = function (this_) {
     this_.onPreviusBeforeCall([this_])
 
 
@@ -405,7 +405,7 @@ DataElement.previousServer = function (this_) {
     {
         this_.clear();
         --this_.pageCurrent;
-        DataElement.sendCallServer(this_, 'previous');
+        JDataPaging.sendCallServer(this_, 'previous');
     } else
         this_.pageCurrent = 1;
 
@@ -414,7 +414,7 @@ DataElement.previousServer = function (this_) {
 
 };
 
-DataElement.calculatesPrevious = function (this_) {
+JDataPaging.calculatesPrevious = function (this_) {
     if (this_.pageCurrent < 1)
         this_.pageCurrent = 1;
     var start_ = 0;
@@ -428,11 +428,11 @@ DataElement.calculatesPrevious = function (this_) {
 };
 /* @function previous
  * @see pagina precedente
- * @returns {DataElement}
+ * @returns {JDataPaging}
  **/
-DataElement.prototype.previous = function () {
+JDataPaging.prototype.previous = function () {
     if (this.isServer)
-        return DataElement.previousServer(this);
+        return JDataPaging.previousServer(this);
 
     this.onPreviusBeforeCall([this])
 
@@ -441,7 +441,7 @@ DataElement.prototype.previous = function () {
         --this.pageCurrent;
     this.back = false;
 
-    var obj = DataElement.calculatesPrevious(this);
+    var obj = JDataPaging.calculatesPrevious(this);
 
     var start_ = obj.start, end = obj.end;
 
@@ -462,9 +462,9 @@ DataElement.prototype.previous = function () {
 /* @function restart
  * @param {Object json} data
  * @see riesegue un nuovo caricamento
- * @returns {DataElement}
+ * @returns {JDataPaging}
  **/
-DataElement.prototype.restart = function (data) {
+JDataPaging.prototype.restart = function (data) {
     var this_ = this;
     if (data)
         this_.data = data;
@@ -476,7 +476,7 @@ DataElement.prototype.restart = function (data) {
 
     } else if (this_.isServer) {
         this_.pageCurrent = 1;
-        return DataElement.sendCallServer(this_, 'restart');
+        return JDataPaging.sendCallServer(this_, 'restart');
     } else if (this_.jmsTemplate)
         return this_.creaView().init().next().writeLabels();
     else
@@ -484,7 +484,7 @@ DataElement.prototype.restart = function (data) {
 
 };
 
-DataElement.prototype.clear = function () {
+JDataPaging.prototype.clear = function () {
     var _this = this;
     if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined")
         Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
@@ -494,7 +494,7 @@ DataElement.prototype.clear = function () {
     return this;
 };
 
-DataElement.prototype.init = function () {
+JDataPaging.prototype.init = function () {
     var _this = this;
     _this.rows = [];
     _this.rowsWrap = [];
@@ -509,7 +509,7 @@ DataElement.prototype.init = function () {
 
     return this;
 };
-DataElement.prototype.initPageServer = function () {
+JDataPaging.prototype.initPageServer = function () {
     var _this = this;
     _this.rows = [];
     _this.rowsWrap = [];
@@ -522,7 +522,7 @@ DataElement.prototype.initPageServer = function () {
 
     return this;
 };
-DataElement.prototype.refreshLimit = function (n) {
+JDataPaging.prototype.refreshLimit = function (n) {
     if (n)
         this.limit = Number(n);
     this.pageCurrent = 1;
@@ -551,7 +551,7 @@ DataElement.prototype.refreshLimit = function (n) {
         });
 
     if (this.isServer) {
-        return DataElement.sendCallServer(this, 'changeCombo');
+        return JDataPaging.sendCallServer(this, 'changeCombo');
     }
 
     this.writeLabels().onChangeComboPagesCall([{limit: this.limit, rowsTotal: this.rowsTotal, pageMax: this.pageMax}, this]).onCompleteCall([arry]);
@@ -559,7 +559,7 @@ DataElement.prototype.refreshLimit = function (n) {
     return this;
 };
 
-DataElement.prototype.writeLabels = function () {
+JDataPaging.prototype.writeLabels = function () {
     var _this = this;
 
     if (typeof (this.labelPageCurrent) !== "undefined")
@@ -576,7 +576,7 @@ DataElement.prototype.writeLabels = function () {
     return this;
 };
 
-DataElement.prototype.initInputSearch = function () {
+JDataPaging.prototype.initInputSearch = function () {
     var this__ = this;
     if (this.inputSearch)
     {
@@ -593,7 +593,7 @@ DataElement.prototype.initInputSearch = function () {
     return this;
 };
 
-DataElement.prototype.initComboPages = function () {
+JDataPaging.prototype.initComboPages = function () {
     var this__ = this;
     if (this.comboPages)
     {
@@ -616,7 +616,7 @@ DataElement.prototype.initComboPages = function () {
     return this;
 };
 
-DataElement.prototype.initButtons = function () {
+JDataPaging.prototype.initButtons = function () {
     var this__ = this;
     if (this.btnNext)
     {
@@ -644,7 +644,7 @@ DataElement.prototype.initButtons = function () {
     return this;
 };
 
-DataElement.prototype.search = function (a) {
+JDataPaging.prototype.search = function (a) {
     var this_ = this;
     this_.textSearch = String(a).toLowerCase();
     if (!this_.isServer) {
@@ -660,18 +660,18 @@ DataElement.prototype.search = function (a) {
     if (this.isServer) {
         this_.pageCurrent = 1;
         this_.clear();
-        return DataElement.sendCallServer(this, 'changeCombo');
+        return JDataPaging.sendCallServer(this, 'changeCombo');
     }
 
 
 };
-DataElement.prototype.removeParameter = function (name) {
+JDataPaging.prototype.removeParameter = function (name) {
     var this_ = this;
     if (typeof this_.parameter[name] !== "undefined") {
         delete this_.parameter[name];
     }
 };
-DataElement.prototype.addParameter = function (name,value) {
+JDataPaging.prototype.addParameter = function (name,value) {
     var this_ = this;
     this_.parameter[name]=value;
  
@@ -685,7 +685,7 @@ if (!('forEach' in Array.prototype)) {
 }
 ;
 
-DataElement.paging = function (name, object) {
+JDataPaging.paging = function (name, object) {
     var n, o;
     if (typeof (arguments[0]) === "object")
         o = arguments[0];
@@ -698,7 +698,7 @@ DataElement.paging = function (name, object) {
     if (typeof (n) === "undefined")
         n = new Date().getTime();
 
-    if (typeof (DataElement.get[n]) === "undefined")
-        DataElement.get[n] = new DataElement(o);
-    return DataElement.get[n];
+    if (typeof (JDataPaging.get[n]) === "undefined")
+        JDataPaging.get[n] = new JDataPaging(o);
+    return JDataPaging.get[n];
 };

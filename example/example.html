@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Example DataElement</title>
+        <title>Example JDataPaging</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <h5>DataElement Paging</h5>      
+                    <h5>JDataPaging Paging</h5>      
                     <h2 class="display-4" style="font-size:2rem;">Data from Ajax with server processing </h2>    
                 </div>
             </div>
@@ -60,7 +60,7 @@
         </template>  
         <script>
 
-            DataElement.paging('myname', {
+            JDataPaging.paging('myname', {
                 url: './provincia.json',
                 box: 'div.list-group',
                 row: 'a.list-group-item',
@@ -78,7 +78,7 @@
                         return false;
                     return true;
                 },
-                plugin: DataElementSupport
+                plugin: JDataPagingSupport
             })
         </script>    
 

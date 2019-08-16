@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Example DataElement</title>
+        <title>Example JDataPaging</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <h5>DataElement Paging</h5>      
+                    <h5>JDataPaging Paging</h5>      
                     <h2 class="display-4" style="font-size:2rem;">Dati provenienti da Ajax con elaborazione lato client </h2>    
                 </div>
             </div>
@@ -67,7 +67,7 @@
      
         <script>
 
-            DataElement.paging('myname', {
+            JDataPaging.paging('myname', {
                 url: './cap-caserta.json',
                 param:function(p){ p.pippo='ciao';p.key='salvo2009'},
                 ajaxSetting:function(set){set.type="get",set.dataType="json"},
@@ -94,7 +94,7 @@
                     return true;
                 },
                 onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
-                plugin: DataElementSupport
+                plugin: JDataPagingSupport
             }).jmsEvent('doSomething1',function(istance,evt){
                 istance.log('doSomething1',this.innerHTML,istance,evt)
             }).jmsEvent('doSomething2',function(istance,evt){

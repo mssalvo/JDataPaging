@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Example DataElement</title>
+  <title>Example JDataPaging</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -64,7 +64,7 @@
 
     <script>
          
-        DataElement.paging('mycompany',{
+        JDataPaging.paging('mycompany',{
            url:'./generated.json',
            box:'div.box-cards',  //BOX MAIN
            row:'div.row-card',  // ROW
@@ -80,7 +80,7 @@
                     text : obj.friends[o].name 
             })); console.log(el,obj,index); if(obj=="row 5")return false;  return true;},
             onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
-            plugin:DataElementSupport
+            plugin:JDataPagingSupport
         })
     </script>    
     

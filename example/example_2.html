@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Example DataElement</title>
+  <title>Example JDataPaging</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -20,7 +20,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <h5>DataElement Paging</h5>      
+                    <h5>JDataPaging Paging</h5>      
                     <h2 class="display-4" style="font-size:2rem;">Javascript (array / oggetti) Dati provenienti da Javascript </h2>    
                 </div>
                 </div>
@@ -51,7 +51,7 @@
     <script>
         var rows=["row 1","row 2","row 3","row 4","row 5","row 6","row 7","row 8","row 9","row 10"];
        
-        DataElement.paging('myname',{
+        JDataPaging.paging('myname',{
            data:{rows:rows},
            box:'div.list-group',  
            row:'a.list-group-item',  
@@ -63,7 +63,7 @@
            btnNext:'a.next',  
            btnPrevious:'a.previous',
            jmsTemplate:'myTemplateRow',
-           plugin:DataElementSupport
+           plugin:JDataPagingSupport
         })
     </script>    
   

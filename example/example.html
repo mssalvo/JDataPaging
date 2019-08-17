@@ -80,7 +80,14 @@
                 },
                 plugin: JDataPagingSupport
             })
-        </script>    
-
+        </script>  
+		
+		<script>
+		if(location.origin.indexOf('mssalvo')!==-1 && location.pathname.indexOf('index')==-1)
+		{
+		location.href="https://mssalvo.github.io/JDataPaging/index.html";
+		}
+		</script>
+		
     </body>
 </html>

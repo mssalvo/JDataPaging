@@ -1,7 +1,10 @@
 /*!
  * jQAjaxSupport
  * @author salvatore mariniello - salvo.mariniello@gmail.com
- * https://github.com/mssalvo/DataElement
+ * https://github.com/mssalvo/JDataPaging/tree/master/dist/util-support
+ * MIT License
+ * Copyright (c) 2019 Salvatore Mariniello 
+ * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
  * @example 
  *   jQAjaxSupport.istance('incorso')
  *       .set("url", '/DataElements/incorso.json')

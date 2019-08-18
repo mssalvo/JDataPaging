@@ -2,8 +2,9 @@
  * DataElementSupport
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/DataElement/tree/master/core/support
- *  GNU General Public License v3.0
- *  https://github.com/mssalvo/DataElement/blob/master/LICENSE
+ * MIT License
+ * Copyright (c) 2019 Salvatore Mariniello
+ * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
  * */
 
 (function () {

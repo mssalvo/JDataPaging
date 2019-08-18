@@ -45,3 +45,8 @@ __Recover the instance__
  
  ```
  
+ 
+ ## License
+
+JDataPaging is available under the MIT license. See the [LICENSE](https://github.com/mssalvo/JDataPaging/blob/master/LICENSE) for more info.
+

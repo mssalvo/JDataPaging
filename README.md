@@ -8,11 +8,11 @@ The pagin that adapts to the structure of your web page, create your own custom 
 
 1. Include JDataPaging on your page before the closing </body> tag
 ```html
-<script src="/path/dist/core/1.1.0/data-element.min.js"></script>
+<script src="/path/dist/core/1.1.0/jdata-paging.min.js"></script>
 ```
 2. Include JDataPagingSupport if you are using a javascript / json data object 
 ```html
-<script src="/path/dist/support/1.1.0/data-element-support.min.js"></script>
+<script src="/path/dist/support/1.1.0/jdata-paging-support.min.js"></script>
 ```
 
 
@@ -45,3 +45,8 @@ __Recover the instance__
  
  ```
  
+ 
+ ## License
+
+JDataPaging is available under the MIT license. See the [LICENSE](https://github.com/mssalvo/JDataPaging/blob/master/LICENSE) for more info.
+

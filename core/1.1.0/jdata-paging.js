@@ -2,7 +2,8 @@
  * JDataPaging v1.1.0 ©
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/JDataPaging 
- * GNU General Public License v3.0
+ * MIT License
+ * Copyright (c) 2019 Salvatore Mariniello
  * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
  **/
 

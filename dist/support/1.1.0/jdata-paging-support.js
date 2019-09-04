@@ -13,7 +13,9 @@
     window.jQuery || console.log('JDataPagingSupport Info :: jQuery not istance! > check include jquery.js')
 })();
 
-function JDataPagingSupport() {this.count=0;}
+function JDataPagingSupport() {
+    this.count = 0;
+}
 JDataPagingSupport.prototype.home = undefined;
 JDataPagingSupport.prototype.data = {};
 JDataPagingSupport.prototype.ajax_ = {};
@@ -503,51 +505,57 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
             return n;
         if (u[1] === this_.space)
             return this_.txtSpace;
-        if (a[b][n])
-            return a[b][n][u[1]]
-        return ""
+        
+        var prop = exp[e].split('.').slice(1).join('.')
+        var propObj = a[b][n];
+        if (typeof propObj !== "undefined")
+            var val = eval('(' + 'propObj' + '.' + prop + ')');
+        if (typeof val !== "undefined")
+            return val;
+        return "";
+
     }
 };
 
 JDataPagingSupport.prototype.valueProperty = function (exps) {
     var this_ = this;
     var chars = [];
-    if(typeof exps!=="undefined" && exps!==""){
-    ++this_.count;
-    if (String(exps).indexOf(this_.divisor) !== -1) {
-        var props = exps.split(this_.divisor);
-        for (var p in props) {
-            if (props[p] === this_.current)
-                chars.push(this_.count);
-            else if (props[p] === this_.space)
-                chars.push(this_.txtSpace);
-            else if (props[p].indexOf(' ') !== -1 && props[p].length > 2)
-                chars.push(props[p]);
-            else if (props[p].split(' ').join('') !== '') {
-                try {
-                    var j= props[p].split(" ").join("");
-                    var val = eval('(' + 'this_.data' + '.' + j + ')');
-                    if (typeof val !== "undefined")
-                        chars.push(val);
-                } catch (err) {
-                 console.log(j,err)
+    if (typeof exps !== "undefined" && exps !== "") {
+        ++this_.count;
+        if (String(exps).indexOf(this_.divisor) !== -1) {
+            var props = exps.split(this_.divisor);
+            for (var p in props) {
+                if (props[p] === this_.current)
+                    chars.push(this_.count);
+                else if (props[p] === this_.space)
+                    chars.push(this_.txtSpace);
+                else if (props[p].indexOf(' ') !== -1 && props[p].length > 2)
+                    chars.push(props[p]);
+                else if (props[p].split(' ').join('') !== '') {
+                    try {
+                        var j = props[p].split(" ").join("");
+                        var val = eval('(' + 'this_.data' + '.' + j + ')');
+                        if (typeof val !== "undefined")
+                            chars.push(val);
+                    } catch (err) {
+                        console.log(j, err)
+                    }
                 }
             }
+            return chars.join('');
+        } else {
+            try {
+                exps = exps.split(" ").join("");
+                var val_ = eval('(' + 'this_.data' + '.' + exps + ')');
+                if (typeof val_ !== "undefined")
+                    return val_;
+            } catch (err) {
+                console.log(exps, err)
+            }
+            return "";
         }
-        return chars.join('');
-    } else {
-        try {
-            exps=exps.split(" ").join("");
-            var val_ = eval('(' + 'this_.data' + '.' + exps + ')');
-            if (typeof val_ !== "undefined")
-                return val_;
-        } catch (err) {
-         console.log(exps,err)
-        }
-        return "";
     }
-    }
-     return "";
+    return "";
 };
 JDataPagingSupport.prototype.updateProperty = function (elemExp) {
     var this_ = this;
@@ -585,16 +593,16 @@ JDataPagingSupport.prototype.updateProperty = function (elemExp) {
                 }
             })(elemExp, elemExp.attributes[att])
         }
-       this_.removeProperty(elemExp, new RegExp(/(jms-write|jms-write-.*)+$/));
+        this_.removeProperty(elemExp, new RegExp(/(jms-write|jms-write-.*)+$/));
     }
 };
 JDataPagingSupport.prototype.writeProperty = function (o) {
     var this_ = this;
     var forProperty = [];
-    Array.prototype.forEach.call(o.getElementsByTagName('*'), function (el, i) { 
-         if (this_.isAttributeWrite(el.attributes)) {
+    Array.prototype.forEach.call(o.getElementsByTagName('*'), function (el, i) {
+        if (this_.isAttributeWrite(el.attributes)) {
             forProperty['jms-write-' + i] = {obj: el};
-         }
+        }
     })
     var fork = forProperty;
     for (var x in fork) {

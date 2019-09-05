@@ -546,7 +546,7 @@ JDataPaging.prototype.refreshLimit = function (n) {
 
     this.pageMax = Math.ceil((this.rowsTotal / this.limit));
 
-    if (n)
+    if (n && this.comboPages)
         Array.prototype.forEach.call(this.comboPages, function (el, i) {
             el.value = n;
         });

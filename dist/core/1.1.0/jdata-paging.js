@@ -133,6 +133,16 @@ JDataPaging.prototype.dataSet = function (data) {
     if (data)
         th_.data = data;
 };
+JDataPaging.prototype.play = function () {
+  var th_ = this;
+   if (th_.isAjax)
+    {
+        this.dataSupport.ajaxCallServer('start');
+        
+    }else{
+        return this.start();  
+    }
+};
 JDataPaging.prototype.start = function (data) {
     var th_ = this;
     th_.pageCurrent = 0;
@@ -200,7 +210,6 @@ JDataPaging.prototype.jmsEvent = function (name,fn) {
     else th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
     return th_;
 };
-
 JDataPaging.prototype.onCompleteCall = function (args) {
     if (this.onComplete && typeof (this.onComplete) === "function")
         this.onComplete.apply(this, args);

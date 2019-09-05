@@ -69,7 +69,7 @@
             <label class="custom-control-label" for-property-for="companys.index" for="switch">Toggle me</label>
           </div>
             
-            <select for-property-id="companys.index" id="combo_"></select>
+            <select for-property-id="companys.index" for-property="companys.friends|fncombo" id="combo_"></select>
         </a>    
    <!--ROW -->
     </template>  
@@ -87,15 +87,25 @@
            labelPageTotal:'li.total',   
            btnNext:'a.next',  
            btnPrevious:'a.previous',
-           jmsTemplate:'myTemplateRow',
+           jmsTemplate:'myTemplateRow',/*
            onBeforeRow:function(el,obj,index){ for(o in obj.friends) $('select',el).append($('<option>', { 
                     value: obj.friends[o].id,
                     text : obj.friends[o].name 
-            })); console.log(el,obj,index); if(obj=="row 5")return false;  return true;},
+            })); console.log(el,obj,index); if(obj=="row 5")return false;  return true;},*/
             onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
             plugin:JDataPagingSupport,
-            autoStart:true
-        })
+            autoStart:false
+          }).jmsEvent('fncombo',function(val){
+            var res=[];
+            Array.prototype.forEach.call(val,function(o,i){
+              res.push("<option>"); 
+              res.push(o.name);
+              res.push("</option>");
+            })
+            return res.join('');
+         }).play();
+         
+          
     </script>  
           
 </body>

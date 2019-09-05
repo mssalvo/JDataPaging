@@ -494,7 +494,11 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
             return n;
         else if (exp[e] === this_.space)
             return this_.txtSpace;
-        else
+        else if (String(exp[e]).indexOf('|') !== -1)
+        {
+            var fn_ = exp[e].split('|')[1].split(' ').join('');
+            return  typeof this_.fn[fn_] === "function" ? this_.fn[fn_].apply(this, [a[b][n], n]) : a[b][n];
+        } else
             return a[b][n]
     } else {
 
@@ -506,12 +510,21 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
             return n;
         if (u[1] === this_.space)
             return this_.txtSpace;
-        
-        var prop = exp[e].split('.').slice(1).join('.')
+
+        var prop = exp[e].split('.').slice(1).join('.'), fnp = undefined;
+        if (String(prop).indexOf('|') !== -1)
+        {
+            fnp = prop.split('|')[1].split(' ').join('');
+            prop = prop.split('|')[0].split(' ').join('');
+        }
+
         var propObj = a[b][n];
+
         if (typeof propObj !== "undefined")
             var val = eval('(' + 'propObj' + '.' + prop + ')');
-        if (typeof val !== "undefined")
+        if (typeof val !== "undefined" && typeof fnp !== "undefined")
+            return  typeof this_.fn[fnp] === "function" ? this_.fn[fnp].apply(this, [val, n]) : val;
+        if (typeof val !== "undefined" && typeof fnp === "undefined")
             return val;
         return "";
 

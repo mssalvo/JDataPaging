@@ -192,6 +192,7 @@ JDataPaging.prototype._new = function () {
     this.back = false;
     return this;
 };
+
 JDataPaging.prototype.jmsEvent = function (name,fn) {
      var th_ = this;
     if (typeof (th_.dataSupport) !== "undefined")
@@ -199,6 +200,7 @@ JDataPaging.prototype.jmsEvent = function (name,fn) {
     else th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
     return th_;
 };
+
 JDataPaging.prototype.onCompleteCall = function (args) {
     if (this.onComplete && typeof (this.onComplete) === "function")
         this.onComplete.apply(this, args);

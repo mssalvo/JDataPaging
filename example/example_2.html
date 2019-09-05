@@ -46,7 +46,7 @@
 </div>
  
     <template jms-template="myTemplateRow">
-       <a class="list-group-item list-group-item-action" jms-foreach="rows" for-property-href="rows.name" for-property="rows.ss.bb.arr[0].name,rows.@@ ,rows.ss.bb.arr[0].name2"></a>    
+       <a class="list-group-item list-group-item-action" jms-foreach="rows" for-property-href="rows.name|mypipe" for-property="rows.ss.bb.arr[0].name,rows.@@ ,rows.ss.bb.arr[0].name2"></a>    
     </template>  
     <script>
       //  var rows=["row 1","row 2","row 3","row 4","row 5","row 6","row 7","row 8","row 9","row 10"];
@@ -105,8 +105,11 @@
            btnNext:'a.next',  
            btnPrevious:'a.previous',
            jmsTemplate:'myTemplateRow',
-           plugin:JDataPagingSupport
-        })
+           plugin:JDataPagingSupport,
+           autoStart:false
+        }).jmsEvent('mypipe',function(val){
+            return "test my pipe "+ val;
+        }).start();
     </script>    
   
 </body>

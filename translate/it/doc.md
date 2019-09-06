@@ -210,7 +210,7 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
             }
       
       //start creating paging      
-     istance.start();       
+     istance.play();       
  
 ```
 _abbiniamo la funzione appena creata all'elemento html_ 

@@ -51,7 +51,7 @@ JDataPaging.paging('myIstName', {
 
 Method | Action  
 ------- | ------- 
-**start** | esegue l'istanza del paginatore
+**play** | esegue l'istanza del paginatore
 **getCurrentPage** | restituisce il numero di pagina corrente
 **getTotalPage** | restituisce il numero totale di pagine calcolate in base al limite dei record da visualizzare 
 **page** | visualizza la pagina indicata dal numero passato come parametro al metodo `myistance.page(3)`
@@ -230,15 +230,15 @@ Note:
 se la proprietà autoStart è impostata su false  `autoStart:false`, 
 alla fine di tutte le dichiarazioni,
 è obbligatorio chiamare il metodo start 
-per inizializzare il paginatore  `istance.start()`
+per inizializzare il paginatore  `istance.play()`
 
 ```js
 var istance= JDataPaging.paging('myIstName', {autoStart:false,plugin:JDataPagingSupport, .....});
 
-istance.start();       
+istance.play();       
 
 //or
-JDataPaging.paging.myIstName.start();
+JDataPaging.paging.myIstName.play();
 ```
 
 
@@ -276,7 +276,7 @@ la sintassi è la seguente
 Note:
 se usi method.jmsEvent('..', fn) `jmsEvent`, 
 non è necessario impostare la proprietà autoStart su false, 
-e quindi non è necessario richiamare il metodo start  `start`, 
+è quindi, non è necessario richiamare il metodo play  `play`, 
 per la creazione di paginatore
 
 

@@ -137,11 +137,13 @@ JDataPaging.prototype.play = function () {
   var th_ = this;
    if (th_.isAjax)
     {
-        this.dataSupport.ajaxCallServer('start');
+        th_.dataSupport.ajaxCallServer('start');
         
     }else{
-        return this.start();  
+        return th_.start();  
     }
+    
+    return th_;
 };
 JDataPaging.prototype.start = function (data) {
     var th_ = this;

@@ -51,7 +51,7 @@ JDataPaging.paging('myIstName', {
 
 Method | Action  
 ------- | ------- 
-**start** | excecutes the paging instance 
+**play** | excecutes the paging instance 
 **getCurrentPage** | returns the current page number 
 **getTotalPage** | returns the total number of pages calculated based on the limit of records to be displayed  
 **page** | displays the page indicated by the number passed as a parameter to the method  `myistance.page(3)`
@@ -208,7 +208,7 @@ istance.dataSupport.fn.myFunctionName=function(dte,evt){
             }
       
       //start creating paging      
-     istance.start();       
+     istance.play();       
  
 ```
 _let's match the newly created function to the html element_ 
@@ -228,15 +228,15 @@ Note:
 if the property autoStart is set to false  `autoStart:false`
 at the end of all declarations
 it is mandatory to call the start method
-to start creating paging `istance.start()`
+to start creating paging `istance.play()`
 
 ```js
 var istance= JDataPaging.paging('myIstName', {autoStart:false,plugin:JDataPagingSupport, .....});
 
-istance.start();       
+istance.play();       
 
 //or
-JDataPaging.paging.myIstName.start();
+JDataPaging.paging.myIstName.play();
 ```
 
 
@@ -274,7 +274,7 @@ the syntax is the following
 Note:
 if you use the method.jmsEvent('..', fn) `jmsEvent`
 there is no need to set the autoStart property to false
-and therefore it is not necessary to recall the start method  `start`
+and therefore it is not necessary to recall the start method  `play`
 for paging creation
 
 

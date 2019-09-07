@@ -1,5 +1,6 @@
 # JDataPaging
-JDataPaging è un semplice plug-in per gestire le paginazioni  composte da elementi HTML complessi, gestisce il loro funzionamento sia lato client che server
+JDataPaging è un semplice plugin per gestire la paginazione,è adatto per qualsiasi elemento HTML (div,span,a,img,table,etc,etc), 
+gestisce il lavoro sia lato client che lato server
  
 
 * ## [Demo JDataPaging](https://mssalvo.github.io/JDataPaging/index.html)

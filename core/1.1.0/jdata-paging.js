@@ -132,6 +132,7 @@ JDataPaging.prototype.dataSet = function (data) {
     var th_ = this;
     if (data)
         th_.data = data;
+    return th_;
 };
 JDataPaging.prototype.play = function () {
   var th_ = this;

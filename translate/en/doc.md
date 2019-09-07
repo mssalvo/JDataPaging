@@ -64,6 +64,7 @@ Method | Action
 **removeParameter** | util - removes a parameter passed to a ajax call 
 **addParameter**    | util - adds a parameter to the url passed to an ajax call
 **jmsEvent**    | associate functions with html elements  
+**jmsPipe**    | associate functions with jms attributes to manipulate the value retrieved from a property json
 
 ## _to recover a previous instant, and use the methods available_
 
@@ -175,8 +176,54 @@ note the text must contain a space character `@@my text` or `@@ mytext` or `@@my
     <div for-property="rows.@@my static text free" > </div>  
 ```
 
+### Function `pipe`
+The pipe functions must be defined with the appropriate jmsPipe 
+method their purpose is to manipulate a given before showing it on the screen
 
- 
+__Example__
+```js
+    JDataPaging.paging('myIstName', 
+        {autoStart:false, .....}
+        ).jmsPipe(`'namePipe'`,function(value){
+               //manipulates value
+                    return value;
+                         })  
+```
+the plugin, by default, provides some utility pipes, in addition to those you can define for your needs. 
+
+List of pipe functions, by default:
+
+Functions Pipe | Description 
+------- | ------- 
+** trim ** | Delete the initial and final space characters, leaving the contents of a string unchanged
+** length ** | Returns the number of characters in a string
+** toLowerCase ** | Converts the characters of a string to lowercase
+** toUpperCase ** | Converts the characters of a string to uppercase
+** capitalizeAll ** | Capitalize only the first character of each word
+** capitalizeLower ** | Capitalize only the first character of a string and convert the remainder to lowercase
+** capitalize ** | Capitalize only the first character of a string and leave the remaining content unchanged
+** toBoolean ** | Converts a string to boolean
+** toFixed ** | Convert a number, without keeping the decimals
+** toFixed2D ** | Convert a number, with 2 fixed decimals
+** toFixed3D ** | Convert a number, with 3 fixed decimals
+** toFixed4D ** | Convert a number, with 4 fixed decimals
+** toFixed5D ** | Convert a number, with 5 fixed decimals
+
+***Call up a Pipe function***
+
+syntax: `propertyName | namePipe`
+
+__Example__
+The following example converts the `company` property to uppercase, the property` addres` to lowercase, and the property `total` with two fixed decimals
+
+```html
+     <div jms-foreach="rows"> 
+     <div for-property="rows.company|toUpperCase@@ @@city@@ @@addres|toLowerCase"> </div> 
+     <div for-property="rows.total|toFixed2D"> </div>  
+    </div>    
+```
+
+
 ### jms-event
  
 It defines the type of event associated with the item

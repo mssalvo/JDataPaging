@@ -35,7 +35,9 @@ JDataPaging.get = {};
 if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined')
     window.console = {log: function () {}};
 JDataPaging.prototype.log = window.console.log;
-
+JDataPaging.prototype.isArray = function (obj) {
+    return obj.constructor.toString().indexOf("Array") > -1;
+};
 JDataPaging.prototype.creaView = function () {
     var this_ = this;
     if (this_.plugin) {
@@ -97,7 +99,7 @@ JDataPaging.prototype.settyng = function (o) {
     if (o.jmsTemplate)
         this.jmsTemplate = o.jmsTemplate;
     if (o.data)
-        this.data = o.data;
+        this.data = this.isArray(o.data) ? {data: o.data} : o.data;
     if (o.plugin) {
         this.dataSupport = this.plugin.istance();
         this.dataSupport.home = this;
@@ -131,19 +133,19 @@ JDataPaging.prototype.settyng = function (o) {
 JDataPaging.prototype.dataSet = function (data) {
     var th_ = this;
     if (data)
-        th_.data = data;
-     return th_;
+        th_.data = th_.isArray(data) ? {data: data} : data;
+    return th_;
 };
 JDataPaging.prototype.play = function () {
-  var th_ = this;
-   if (th_.isAjax)
+    var th_ = this;
+    if (th_.isAjax)
     {
         th_.dataSupport.ajaxCallServer('start');
-        
-    }else{
-        return th_.start();  
+
+    } else {
+        return th_.start();
     }
-    
+
     return th_;
 };
 JDataPaging.prototype.start = function (data) {
@@ -151,7 +153,7 @@ JDataPaging.prototype.start = function (data) {
     th_.pageCurrent = 0;
     th_.log("START JDataPaging!")
     if (data)
-        th_.data = data;
+        th_.data = th_.isArray(data) ? {data: data} : data;
 
     if (th_.jmsTemplate)
         return th_.creaView().init().initComboPages().initInputSearch().initButtons().next().writeLabels();
@@ -206,20 +208,23 @@ JDataPaging.prototype._new = function () {
     return this;
 };
 
-JDataPaging.prototype.jmsEvent = function (name,fn) {
-     var th_ = this;
-    if (typeof (th_.dataSupport) !== "undefined"){
-    if (typeof name !== "undefined" && name!=='pp'){
-        th_.dataSupport.fn[name]=fn;
-    } else th_.log("INFO!! it is not possible to associate a function with the name (pp) - change function name! - the function [pp] could not be subscribed!! ");    
-    } else th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})");
+JDataPaging.prototype.jmsEvent = function (name, fn) {
+    var th_ = this;
+    if (typeof (th_.dataSupport) !== "undefined") {
+        if (typeof name !== "undefined" && name !== 'pp') {
+            th_.dataSupport.fn[name] = fn;
+        } else
+            th_.log("INFO!! it is not possible to associate a function with the name (pp) - change function name! - the function [pp] could not be subscribed!! ");
+    } else
+        th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})");
     return th_;
 };
-JDataPaging.prototype.jmsPipe = function (name,fn) {
-     var th_ = this;
+JDataPaging.prototype.jmsPipe = function (name, fn) {
+    var th_ = this;
     if (typeof (th_.dataSupport) !== "undefined")
-        th_.dataSupport.fn['pp'][name]=fn;
-    else th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
+        th_.dataSupport.fn['pp'][name] = fn;
+    else
+        th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
     return th_;
 };
 JDataPaging.prototype.onCompleteCall = function (args) {
@@ -287,7 +292,7 @@ JDataPaging.prototype.startServer = function (data, btn) {
     var this_ = this;
 
     if (data)
-        this_.data = data;
+        this_.data = this_.isArray(data) ? {data: data, totalrows: data.length} : data;
 
     if (data.totalrows)
         this_.rowsTotal = data.totalrows;
@@ -491,7 +496,7 @@ JDataPaging.prototype.previous = function () {
 JDataPaging.prototype.restart = function (data) {
     var this_ = this;
     if (data)
-        this_.data = data;
+        this_.data = this_.isArray(data) ? {data: data} : data;
     this_.pageCurrent = 0;
     this_.limit = this_.pages[0];
     if (this_.isAjax) {
@@ -695,10 +700,10 @@ JDataPaging.prototype.removeParameter = function (name) {
         delete this_.parameter[name];
     }
 };
-JDataPaging.prototype.addParameter = function (name,value) {
+JDataPaging.prototype.addParameter = function (name, value) {
     var this_ = this;
-    this_.parameter[name]=value;
- 
+    this_.parameter[name] = value;
+
 };
 if (!('forEach' in Array.prototype)) {
     Array.prototype.forEach = function (action, that) {

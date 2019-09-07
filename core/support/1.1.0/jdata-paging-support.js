@@ -24,6 +24,7 @@ JDataPagingSupport.prototype.current = 'index';
 JDataPagingSupport.prototype.space = ' ';
 JDataPagingSupport.prototype.txtSpace = ' ';
 JDataPagingSupport.prototype.divisor = '@@';
+JDataPagingSupport.prototype.pipe = '|';
 JDataPagingSupport.prototype.htmlTemplate = {};
 JDataPagingSupport.prototype._ = jQuery;
 JDataPagingSupport.expControll = new RegExp(/:\ *(\w+)\s*\@(:\1@|)/);
@@ -470,9 +471,9 @@ JDataPagingSupport.prototype.getValProp = function (exp, obj, n, isObj) {
     var props = exp.split(this_.divisor);
     for (var p in props) {
         var stringProp = props[p], fnp = undefined;
-        if (String(stringProp).indexOf('|') !== -1) {
-            stringProp = props[p].split('|')[0];
-            fnp = props[p].split('|')[1].split(' ').join('');
+        if (String(stringProp).indexOf(this_.pipe) !== -1) {
+            stringProp = props[p].split(this_.pipe)[0];
+            fnp = props[p].split(this_.pipe)[1].split(' ').join('');
         }
         if (stringProp === this_.current)
             chars.push(n);
@@ -510,9 +511,9 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
             return n;
         else if (exp[e] === this_.space)
             return this_.txtSpace;
-        else if (String(exp[e]).indexOf('|') !== -1)
+        else if (String(exp[e]).indexOf(this_.pipe) !== -1)
         {
-            var fn_ = exp[e].split('|')[1].split(' ').join('');
+            var fn_ = exp[e].split(this_.pipe)[1].split(' ').join('');
             return  typeof this_.fn[fn_] === "function" ? this_.fn[fn_].apply(this, [a[b][n], n]) : a[b][n];
         } else
             return a[b][n]
@@ -528,10 +529,10 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
             return this_.txtSpace;
 
         var prop = exp[e].split('.').slice(1).join('.'), fnp = undefined;
-        if (String(prop).indexOf('|') !== -1)
+        if (String(prop).indexOf(this_.pipe) !== -1)
         {
-            fnp = prop.split('|')[1].split(' ').join('');
-            prop = prop.split('|')[0].split(' ').join('');
+            fnp = prop.split(this_.pipe)[1].split(' ').join('');
+            prop = prop.split(this_.pipe)[0].split(' ').join('');
         }
 
         var propObj = a[b][n];
@@ -556,9 +557,9 @@ JDataPagingSupport.prototype.valueProperty = function (exps) {
             var props = exps.split(this_.divisor);
             for (var p in props) {
                 var stringProp = props[p], fnp = undefined;
-                if (String(stringProp).indexOf('|') !== -1) {
-                    stringProp = props[p].split('|')[0];
-                    fnp = props[p].split('|')[1].split(' ').join('');
+                if (String(stringProp).indexOf(this_.pipe) !== -1) {
+                    stringProp = props[p].split(this_.pipe)[0];
+                    fnp = props[p].split(this_.pipe)[1].split(' ').join('');
                 }
                 if (stringProp === this_.current)
                     chars.push(this_.count);
@@ -584,9 +585,9 @@ JDataPagingSupport.prototype.valueProperty = function (exps) {
             try {
                 exps = exps.split(" ").join("");
                 var stringProp_ = exps, fnp_ = undefined;
-                if (String(exps).indexOf('|') !== -1) {
-                    stringProp_ = exps.split('|')[0];
-                    fnp_ = exps.split('|')[1].split(' ').join('');
+                if (String(exps).indexOf(this_.pipe) !== -1) {
+                    stringProp_ = exps.split(this_.pipe)[0];
+                    fnp_ = exps.split(this_.pipe)[1].split(' ').join('');
                 }
                 var val_ = eval('(' + 'this_.data' + '.' + stringProp_ + ')');
                 if (typeof val_ !== "undefined" && typeof fnp_ !== "undefined")

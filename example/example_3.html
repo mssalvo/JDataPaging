@@ -39,11 +39,11 @@
         </div> 
         <div class="container">
                 <div class="row">
-                    <div class="col" jms-write="col.regione.titolo|tolowercase@@ @@col.frazione.titolo|tolowercase"></div>
+                    <div class="col" jms-write="col.regione.titolo|toUpperCase@@ @@col.frazione.titolo|toLowerCase"></div>
                     <div class="col" jms-write="col.provincia.titolo"></div>
-                    <div class="col" jms-write="col.comune.titolo|tolowercase"></div>
+                    <div class="col" jms-write="col.comune.titolo|toUpperCase"></div>
                     <div class="col" jms-write-html="col.frazione.titolo"></div>  
-                    <div class="col" jms-write="col.cap.titolo"></div> 
+                    <div class="col" jms-write="col.cap.titolo|toLowerCase"></div> 
                     <div class="col" jms-write-html="@@<div jms-write='col.comune.titolo'></div>" jms-write-append="@@esempio inclusione div con jms-write"></div> 
                 </div>
             <div class="list-group">
@@ -54,11 +54,11 @@
         <template jms-template="myTemplateRow">
             <a href="#" class="list-group-item list-group-item-action" jms-foreach="payload">
                 <div class="row">
-                    <div class="col" for-property="payload.regione"></div>
-                    <div class="col" for-property="payload.provincia|tolowercase"></div>
-                    <div class="col" for-property="payload.comune|tolowercase@@ @@comune_2|tolowercase"></div>
-                    <div class="col" for-property="payload.frazione|tolowercase@@ @@frazione_2|tolowercase@@dugt|tolowercase@@ @@topografico|tolowercase@@topografico_2|tolowercase@@ @@num_civico"></div>  
-                    <div class="col" for-property="payload.cap"></div>  
+                    <div class="col" for-property="payload.regione|lowercase"></div>
+                    <div class="col" for-property="payload.provincia|toLowerCase"></div>
+                    <div class="col" for-property="payload.comune|toLowerCase@@ @@comune_2|toLowerCase"></div>
+                    <div class="col" for-property="payload.frazione|capitalizeLower@@ @@frazione_2|toUpperCase@@dugt|capitalizeLower@@ @@topografico|capitalizeLower@@topografico_2|capitalizeLower@@ @@num_civico"></div>  
+                    <div class="col" for-property="payload.cap|toFixed2D"></div>  
                     <div class="col" for-property="payload.index@@ testo statico"></div> 
                 </div>
             </a>    
@@ -85,9 +85,10 @@
                 },
                 plugin: JDataPagingSupport,
                 autoStart:false
-            }).jmsEvent('tolowercase',function(v){
-                return typeof v !=="undefined" ?String(v).toLowerCase():"";
+            }).jmsPipe('lowercase',function(v){
+                return typeof v !=="undefined" ?String(v).toLowerCase()+' salvo':"";
             }).play()
+            
         </script>    
 
     </body>

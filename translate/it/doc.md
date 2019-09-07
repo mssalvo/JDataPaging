@@ -64,6 +64,8 @@ Method | Action
 **removeParameter** | util - rimuove un parametro passato a una chiamata ajax
 **addParameter**    |util - aggiunge un parametro all'URL passato a una chiamata ajax
 **jmsEvent**    | associa le funzioni agli elementi html
+**jmsPipe**    | associa le funzioni agli attributi-jms per manipolare il valore reperito da una property json
+
 
 ## _per recuperare un istanzia precedente e utilizzare i metodi disponibili_
 
@@ -176,8 +178,50 @@ nota che il testo deve contenere un carattere spazio `@@my text` o `@@ mytext` o
     <div for-property="rows.@@my static text free" > </div>  
 ```
 
+### Funzioni `pipe`
+Le funzioni pipe vanno definite con l'apposito metodo `jmsPipe`
+il loro scopo e quello di manipolare un dato prima di mostrarlo a video
 
- 
+__Esempio__
+```js
+    JDataPaging.paging('myIstName', 
+        {autoStart:false, .....}
+        ).jmsPipe(`'nomePipe'`,function(dato){
+               // manipola dato 
+                    return dato;
+                         })  
+```
+il plugin, di default, mette a disposizione alcune utility pipe, oltre a quelle che puoi definire per le tue esigenge.
+
+Lista funzioni pipe, di default:
+
+Method | Action  
+------- | ------- 
+**trim** | Elimina i caratteri di spazio iniziali e finali, lasciando invariato il contenuto di una stringa
+**length** | Restituisce il numero di caratteri di una stringa 
+**toLowerCase** | Converte i caratteri una stringa in minuscolo
+**toUpperCase** | Converte i caratteri una stringa in maiuscolo
+**capitalizeAll** | Capitaliza solo il primo carattere di ogni parola
+**capitalizeLower** | Capitaliza solo il primo carattere di una stringa e converte in minuscolo il restante
+**capitalize** | Capitaliza solo il primo carattere di una stringa lasciando invariato il contenuto restante
+**boolean** | Converte una stringa in boolean 
+**toFixed** | Converti un numero, senza mantenere i decimali
+**toFixed2D** | Converti un numero, con 2 decimali fissi
+
+***Richiamare una funzione Pipe***
+
+sintassi: `propertyName | nomePipe`
+
+__Esempio__
+Il seguente esempio converte la property `company` in maiuscolo, la property `addres` in minuscolo, e la property `total` con due decimali fissi
+
+```html
+     <div jms-foreach="rows"> 
+     <div for-property="rows.company|toUpperCase@@ @@city@@ @@addres|toLowerCase"> </div> 
+     <div for-property="rows.total|toFixed2D"> </div>  
+    </div>    
+```
+
 ### jms-event
  
 associa eventi e funzioni all'elemento html
@@ -413,6 +457,8 @@ _Esempio_
 <!--TEMPLATE ROW jms--> 
 
  ```
+
+
 
 * ecco una dichiarazione con tutte le proprietà disponibili
 

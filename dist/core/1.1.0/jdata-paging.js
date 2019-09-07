@@ -208,8 +208,17 @@ JDataPaging.prototype._new = function () {
 
 JDataPaging.prototype.jmsEvent = function (name,fn) {
      var th_ = this;
-    if (typeof (th_.dataSupport) !== "undefined")
+    if (typeof (th_.dataSupport) !== "undefined"){
+    if (typeof name !== "undefined" && name!=='pp'){
         th_.dataSupport.fn[name]=fn;
+    } else th_.log("INFO!! it is not possible to associate a function with the name (pp) - change function name! - the function [pp] could not be subscribed!! ");    
+    } else th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})");
+    return th_;
+};
+JDataPaging.prototype.jmsPipe = function (name,fn) {
+     var th_ = this;
+    if (typeof (th_.dataSupport) !== "undefined")
+        th_.dataSupport.fn['pp'][name]=fn;
     else th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
     return th_;
 };

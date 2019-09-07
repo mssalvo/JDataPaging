@@ -469,17 +469,33 @@ JDataPagingSupport.prototype.getValProp = function (exp, obj, n, isObj) {
     var this_ = this;
     var props = exp.split(this_.divisor);
     for (var p in props) {
-        if (props[p] === this_.current)
+        var stringProp = props[p], fnp = undefined;
+        if (String(stringProp).indexOf('|') !== -1) {
+            stringProp = props[p].split('|')[0];
+            fnp = props[p].split('|')[1].split(' ').join('');
+        }
+        if (stringProp === this_.current)
             chars.push(n);
-        if (props[p] === this_.space)
+        if (stringProp === this_.space)
             chars.push(this_.txtSpace);
-        if (props[p].indexOf(' ') !== -1 && props[p].length > 2)
-            chars.push(props[p].split("$").join('.'));
-        if (props[p].split(' ').join('') !== '' && isObj && typeof obj[props[p]] !== "undefined")
-            chars.push(obj[props[p]]);
-        if (!isObj && typeof obj !== "undefined")
-            chars.push(obj);
-
+        if (stringProp.indexOf(' ') !== -1 && stringProp.length > 2 && stringProp.indexOf("$") !== -1)
+            chars.push(stringProp.split("$").join('.'));
+        if (stringProp.split(' ').join('') !== '' && isObj && typeof obj[stringProp] !== "undefined")
+            try {
+                var j = stringProp.split(' ').join('');
+                var val = eval('(' + 'obj' + '.' + j + ')');
+                if (typeof val !== "undefined" && typeof fnp !== "undefined")
+                    chars.push(typeof this_.fn[fnp] === "function" ? this_.fn[fnp].apply(this, [val]) : val);
+                if (typeof val !== "undefined" && typeof fnp === "undefined")
+                    chars.push(val);
+                if (!isObj && typeof obj !== "undefined")
+                    if (typeof fnp !== "undefined")
+                        chars.push(typeof this_.fn[fnp] === "function" ? this_.fn[fnp].apply(this, [obj]) : obj);
+                if (!isObj && typeof obj !== "undefined" && typeof fnp === "undefined")
+                    chars.push(obj);
+            } catch (err) {
+                console.log(j, err)
+            }
     }
     return chars.join('');
 };
@@ -539,17 +555,24 @@ JDataPagingSupport.prototype.valueProperty = function (exps) {
         if (String(exps).indexOf(this_.divisor) !== -1) {
             var props = exps.split(this_.divisor);
             for (var p in props) {
-                if (props[p] === this_.current)
+                var stringProp = props[p], fnp = undefined;
+                if (String(stringProp).indexOf('|') !== -1) {
+                    stringProp = props[p].split('|')[0];
+                    fnp = props[p].split('|')[1].split(' ').join('');
+                }
+                if (stringProp === this_.current)
                     chars.push(this_.count);
-                else if (props[p] === this_.space)
+                else if (stringProp === this_.space)
                     chars.push(this_.txtSpace);
-                else if (props[p].indexOf(' ') !== -1 && props[p].length > 2)
-                    chars.push(props[p]);
-                else if (props[p].split(' ').join('') !== '') {
+                else if (stringProp.indexOf(' ') !== -1 && stringProp.length > 2)
+                    chars.push(stringProp);
+                else if (stringProp.split(' ').join('') !== '') {
                     try {
-                        var j = props[p].split(" ").join("");
+                        var j = stringProp.split(" ").join("");
                         var val = eval('(' + 'this_.data' + '.' + j + ')');
-                        if (typeof val !== "undefined")
+                        if (typeof val !== "undefined" && typeof fnp !== "undefined")
+                            chars.push(typeof this_.fn[fnp] === "function" ? this_.fn[fnp].apply(this, [val]) : val);
+                        if (typeof val !== "undefined" && typeof fnp === "undefined")
                             chars.push(val);
                     } catch (err) {
                         console.log(j, err)
@@ -560,7 +583,14 @@ JDataPagingSupport.prototype.valueProperty = function (exps) {
         } else {
             try {
                 exps = exps.split(" ").join("");
-                var val_ = eval('(' + 'this_.data' + '.' + exps + ')');
+                var stringProp_ = exps, fnp_ = undefined;
+                if (String(exps).indexOf('|') !== -1) {
+                    stringProp_ = exps.split('|')[0];
+                    fnp_ = exps.split('|')[1].split(' ').join('');
+                }
+                var val_ = eval('(' + 'this_.data' + '.' + stringProp_ + ')');
+                if (typeof val_ !== "undefined" && typeof fnp_ !== "undefined")
+                    return typeof this_.fn[fnp_] === "function" ? this_.fn[fnp_].apply(this, [val_]) : val_;
                 if (typeof val_ !== "undefined")
                     return val_;
             } catch (err) {

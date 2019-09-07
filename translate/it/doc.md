@@ -191,7 +191,7 @@ __Esempio__
                     return dato;
                          })  
 ```
-il plugin, di default, mette a disposizione alcune utility pipe, oltre a quelle che puoi definire per le tue esigenge.
+il plugin, di default, mette a disposizione alcune utility pipe, oltre a quelle che puoi definire per le tue esigenze.
 
 Lista funzioni pipe, di default:
 

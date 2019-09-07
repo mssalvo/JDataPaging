@@ -195,15 +195,15 @@ il plugin, di default, mette a disposizione alcune utility pipe, oltre a quelle 
 
 Lista funzioni pipe, di default:
 
-Method | Action  
+Funzioni Pipe | Descrizione  
 ------- | ------- 
 **trim** | Elimina i caratteri di spazio iniziali e finali, lasciando invariato il contenuto di una stringa
 **length** | Restituisce il numero di caratteri di una stringa 
-**toLowerCase** | Converte i caratteri una stringa in minuscolo
-**toUpperCase** | Converte i caratteri una stringa in maiuscolo
+**toLowerCase** | Converte i caratteri di una stringa in minuscolo
+**toUpperCase** | Converte i caratteri di una stringa in maiuscolo
 **capitalizeAll** | Capitaliza solo il primo carattere di ogni parola
 **capitalizeLower** | Capitaliza solo il primo carattere di una stringa e converte in minuscolo il restante
-**capitalize** | Capitaliza solo il primo carattere di una stringa lasciando invariato il contenuto restante
+**capitalize** | Capitaliza solo il primo carattere di una stringa e lascia invariato il contenuto restante
 **boolean** | Converte una stringa in boolean 
 **toFixed** | Converti un numero, senza mantenere i decimali
 **toFixed2D** | Converti un numero, con 2 decimali fissi

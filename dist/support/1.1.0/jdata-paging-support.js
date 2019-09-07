@@ -55,7 +55,7 @@ JDataPagingSupport.prototype.fn = {
     capitalize: function (v) {
         return typeof v !== "undefined" ? String(v).replace(/^\s+|\s+$/gm, '').charAt(0).toUpperCase() + String(v).replace(/^\s+|\s+$/gm, '').substr(1) : '';
     },
-    boolean: function (v) {
+    toBoolean: function (v) {
         v = typeof v !== "undefined" ? String(v).toLowerCase().split(' ').join('').split('0').join('') : '';
         return String(v) === '1' ? true : String(v) === 'true' ? true : String(v) !== '' && String(v) !== '0' && String(v) !== 'false' && String(v) !== 'off' && String(v) !== 'not' && String(v) !== 'no' ? true : false;
     },
@@ -64,6 +64,15 @@ JDataPagingSupport.prototype.fn = {
     },
     toFixed2D: function (v) {
         return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed(2) : v : '';
+    },
+    toFixed3D: function (v) {
+        return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed(3) : v : '';
+    },
+    toFixed4D: function (v) {
+        return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed(4) : v : '';
+    },
+    toFixed5D: function (v) {
+        return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed(5) : v : '';
     }
     }
 };

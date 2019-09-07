@@ -204,9 +204,12 @@ Funzioni Pipe | Descrizione
 **capitalizeAll** | Capitaliza solo il primo carattere di ogni parola
 **capitalizeLower** | Capitaliza solo il primo carattere di una stringa e converte in minuscolo il restante
 **capitalize** | Capitaliza solo il primo carattere di una stringa e lascia invariato il contenuto restante
-**boolean** | Converte una stringa in boolean 
+**toBoolean** | Converte una stringa in boolean 
 **toFixed** | Converti un numero, senza mantenere i decimali
 **toFixed2D** | Converti un numero, con 2 decimali fissi
+**toFixed3D** | Converti un numero, con 3 decimali fissi
+**toFixed4D** | Converti un numero, con 4 decimali fissi
+**toFixed5D** | Converti un numero, con 5 decimali fissi
 
 ***Richiamare una funzione Pipe***
 

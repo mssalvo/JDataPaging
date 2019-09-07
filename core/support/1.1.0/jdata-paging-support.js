@@ -30,7 +30,52 @@ JDataPagingSupport.prototype._ = jQuery;
 JDataPagingSupport.expControll = new RegExp(/:\ *(\w+)\s*\@(:\1@|)/);
 JDataPagingSupport.expEvent = new RegExp(/^([a-z \ *]|:\1:)+/);
 JDataPagingSupport.expAction = new RegExp(/@\ *(\w+)\s*\/?(@.*\1.|)/);
-JDataPagingSupport.prototype.fn = {};
+JDataPagingSupport.prototype.fn = {
+    pp:{
+    trim: function (v) {
+        return typeof v !== "undefined" ? String(v).replace(/^\s+|\s+$/gm, '') : '';
+    },
+    length: function (v) {
+        return typeof v !== "undefined" ? String(v).length : '';
+    },
+    toLowerCase: function (v) {
+        return typeof v !== "undefined" ? String(v).toLowerCase() : '';
+    },
+    toUpperCase: function (v) {
+        return typeof v !== "undefined" ? String(v).toUpperCase() : '';
+    },
+    capitalizeAll: function (v) {
+        return typeof v !== "undefined" ? String(v).toLowerCase().replace(/(?:^|\s)\S/g, function (a) {
+            return a.toUpperCase();
+        }) : '';
+    },
+    capitalizeLower: function (v) {
+        return typeof v !== "undefined" ? String(v).replace(/^\s+|\s+$/gm, '').charAt(0).toUpperCase() + String(v).replace(/^\s+|\s+$/gm, '').substr(1).toLowerCase() : '';
+    },
+    capitalize: function (v) {
+        return typeof v !== "undefined" ? String(v).replace(/^\s+|\s+$/gm, '').charAt(0).toUpperCase() + String(v).replace(/^\s+|\s+$/gm, '').substr(1) : '';
+    },
+    toBoolean: function (v) {
+        v = typeof v !== "undefined" ? String(v).toLowerCase().split(' ').join('').split('0').join('') : '';
+        return String(v) === '1' ? true : String(v) === 'true' ? true : String(v) !== '' && String(v) !== '0' && String(v) !== 'false' && String(v) !== 'off' && String(v) !== 'not' && String(v) !== 'no' ? true : false;
+    },
+    toFixed: function (v) {
+        return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed() : v : '';
+    },
+    toFixed2D: function (v) {
+        return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed(2) : v : '';
+    },
+    toFixed3D: function (v) {
+        return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed(3) : v : '';
+    },
+    toFixed4D: function (v) {
+        return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed(4) : v : '';
+    },
+    toFixed5D: function (v) {
+        return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed(5) : v : '';
+    }
+    }
+};
 JDataPagingSupport.prototype.trim = function (a) {
     return a.replace(/^\s+|\s+$/gm, '');
 };
@@ -486,12 +531,12 @@ JDataPagingSupport.prototype.getValProp = function (exp, obj, n, isObj) {
                 var j = stringProp.split(' ').join('');
                 var val = eval('(' + 'obj' + '.' + j + ')');
                 if (typeof val !== "undefined" && typeof fnp !== "undefined")
-                    chars.push(typeof this_.fn[fnp] === "function" ? this_.fn[fnp].apply(this, [val]) : val);
+                    chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val]) : val);
                 if (typeof val !== "undefined" && typeof fnp === "undefined")
                     chars.push(val);
                 if (!isObj && typeof obj !== "undefined")
                     if (typeof fnp !== "undefined")
-                        chars.push(typeof this_.fn[fnp] === "function" ? this_.fn[fnp].apply(this, [obj]) : obj);
+                        chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [obj]) : obj);
                 if (!isObj && typeof obj !== "undefined" && typeof fnp === "undefined")
                     chars.push(obj);
             } catch (err) {
@@ -514,7 +559,7 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
         else if (String(exp[e]).indexOf(this_.pipe) !== -1)
         {
             var fn_ = exp[e].split(this_.pipe)[1].split(' ').join('');
-            return  typeof this_.fn[fn_] === "function" ? this_.fn[fn_].apply(this, [a[b][n], n]) : a[b][n];
+            return  typeof this_.fn['pp'][fn_] === "function" ? this_.fn['pp'][fn_].apply(this, [a[b][n], n]) : a[b][n];
         } else
             return a[b][n]
     } else {
@@ -540,7 +585,7 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
         if (typeof propObj !== "undefined")
             var val = eval('(' + 'propObj' + '.' + prop + ')');
         if (typeof val !== "undefined" && typeof fnp !== "undefined")
-            return  typeof this_.fn[fnp] === "function" ? this_.fn[fnp].apply(this, [val, n]) : val;
+            return  typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val, n]) : val;
         if (typeof val !== "undefined" && typeof fnp === "undefined")
             return val;
         return "";
@@ -572,7 +617,7 @@ JDataPagingSupport.prototype.valueProperty = function (exps) {
                         var j = stringProp.split(" ").join("");
                         var val = eval('(' + 'this_.data' + '.' + j + ')');
                         if (typeof val !== "undefined" && typeof fnp !== "undefined")
-                            chars.push(typeof this_.fn[fnp] === "function" ? this_.fn[fnp].apply(this, [val]) : val);
+                            chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val]) : val);
                         if (typeof val !== "undefined" && typeof fnp === "undefined")
                             chars.push(val);
                     } catch (err) {
@@ -591,7 +636,7 @@ JDataPagingSupport.prototype.valueProperty = function (exps) {
                 }
                 var val_ = eval('(' + 'this_.data' + '.' + stringProp_ + ')');
                 if (typeof val_ !== "undefined" && typeof fnp_ !== "undefined")
-                    return typeof this_.fn[fnp_] === "function" ? this_.fn[fnp_].apply(this, [val_]) : val_;
+                    return typeof this_.fn['pp'][fnp_] === "function" ? this_.fn['pp'][fnp_].apply(this, [val_]) : val_;
                 if (typeof val_ !== "undefined")
                     return val_;
             } catch (err) {

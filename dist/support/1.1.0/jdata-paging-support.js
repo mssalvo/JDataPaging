@@ -5,6 +5,8 @@
  * MIT License
  * Copyright (c) 2019 Salvatore Mariniello
  * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
+ * Third-party software dependency licenses
+ * jQuery Foundation, licenza MIT https://jquery.com/
  * */
 
 (function () {

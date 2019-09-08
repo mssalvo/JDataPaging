@@ -1,5 +1,6 @@
 /*!
- * JDataPaging v1.1.0 ©
+ * JDataPaging ©
+ * @version 1.1.0
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/JDataPaging 
  * MIT License

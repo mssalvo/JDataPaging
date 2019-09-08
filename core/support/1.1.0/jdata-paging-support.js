@@ -1,11 +1,12 @@
 /*!
- * JDataPagingSupport v1.1.0 ©
+ * JDataPagingSupport ©
+ * @version 1.1.0
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/JDataPaging/tree/master/dist/support
  * MIT License
  * Copyright (c) 2019 Salvatore Mariniello
  * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
- * Third-party software dependency licenses
+ * @requires Third-party software dependency
  * jQuery Foundation, licenza MIT https://jquery.com/
  * */
 
@@ -59,7 +60,8 @@ JDataPagingSupport.prototype.fn = {
         },
         toBoolean: function (v) {
             v = typeof v !== "undefined" ? String(v).toLowerCase().split(' ').join('').split('0').join('') : '';
-            return String(v) === '1' ? true : String(v) === 'true' ? true : String(v) !== '' && String(v) !== '0' && String(v) !== 'false' && String(v) !== 'off' && String(v) !== 'not' && String(v) !== 'no' ? true : false;
+            v = isNaN(v) ? v : Math.max(Number(v), 0);
+            return String(v) === '1' ? true : String(v) === 'true' ? true : String(v) !== '' && String(v) !== '0' && String(v) !== 'false' && String(v) !== 'off' && String(v) !== 'not' && String(v) !== 'no' && String(v) !== 'f' ? true : false;
         },
         toFixed: function (v) {
             return typeof v !== "undefined" ? !isNaN(v) ? Number(v).toFixed() : v : '';

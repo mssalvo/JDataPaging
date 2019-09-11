@@ -44,14 +44,29 @@
 
   </div>
 </div>
- 
+    <div class="container" style="background:#5bc0de">
+  <div id="testSub">
+
+  </div>
+</div>
+    
+        <div class="container" style="background:#0eea00">
+  <div id="testSub22">
+
+  </div>
+</div>
+    
     <template jms-template="myTemplateRow">
        <a  class="list-group-item list-group-item-action" jms-foreach="data" jms-event="click:fn@myprova" for-property-href="data.name|mypipe@@ @@id" for-property="data.ss.bb.arr[0].name,data.@@ ,data.ss.bb.arr[0].name2"></a>    
     </template> 
     
+    <template jms-template="testSub">
+       <a  class="list-group-item list-group-item-action" jms-foreach="data" jms-event="click:fn@myprova" for-property-href="data.name|mypipe@@ @@id" for-property="data.ss.bb.arr[0].name,data.@@ ,data.ss.bb.arr[0].name2"></a>    
+    </template>
+    
     <script>
       //  var rows=["row 1","row 2","row 3","row 4","row 5","row 6","row 7","row 8","row 9","row 10"];
-       { 
+     
    var rows= [
      {
         "id": 0,
@@ -93,7 +108,7 @@
          }    
       }
    ]
-}
+ 
         JDataPaging.paging('myname',{
            data:rows,
            box:'div.list-group',  
@@ -117,6 +132,10 @@
         function prova(){
          alert(" ciao ho premuto prova!!!")  
         }
+       $("#testSub").html(JDataPagingSupport.istance().createView("testSub",rows).getHtml()) 
+       
+       
+       JDataPagingSupport.istance().setData(rows).setTemplateName("testSub").setBoxView("#testSub22").createView()
     </script>    
   
 </body>

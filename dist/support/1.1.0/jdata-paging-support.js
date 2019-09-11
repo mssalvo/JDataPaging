@@ -1,6 +1,6 @@
 /*!
  * JDataPagingSupport ©
- * @version 1.1.0
+ * @version 1.1.1
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/JDataPaging/tree/master/dist/support
  * MIT License
@@ -19,6 +19,9 @@
 
 function JDataPagingSupport() {
     this.count = 0;
+    this.getObject = undefined;
+    this.supplTemplateName = undefined;
+    this.supplBoxView = undefined;
 }
 JDataPagingSupport.prototype.home = undefined;
 JDataPagingSupport.prototype.data = {};
@@ -33,6 +36,7 @@ JDataPagingSupport.prototype._ = jQuery;
 JDataPagingSupport.expControll = new RegExp(/:\ *(\w+)\s*\@(:\1@|)/);
 JDataPagingSupport.expEvent = new RegExp(/^([a-z \ *]|:\1:)+/);
 JDataPagingSupport.expAction = new RegExp(/@\ *(\w+)\s*\/?(@.*\1.|)/);
+JDataPagingSupport.get = {};
 JDataPagingSupport.prototype.fn = {
     pp: {
         trim: function (v) {
@@ -787,7 +791,7 @@ JDataPagingSupport.prototype.isforEach = function (o) {
         } else {
             ctx_data[key] = this_.set(x, 0)
         }
-        
+
         for (var t in ctx_data[key]) {
 
             var clone = this_._(fork[x]['obj']).clone().get(0);
@@ -824,8 +828,31 @@ JDataPagingSupport.prototype.isforEach = function (o) {
 
     return this_;
 };
-
-JDataPagingSupport.prototype.createView = function (templateName, data, objView) {
+JDataPagingSupport.prototype.setData = function (data) {
+    var this__ = this;
+    if (typeof data !== "undefined")
+        this__.data = this__.isArray(data) ? {data: data} : data;
+    else
+        console.log("the setData function [data] is undefined!")
+    return this__;
+};
+JDataPagingSupport.prototype.setTemplateName = function (supplTemplateName) {
+    var this__ = this;
+    if (typeof supplTemplateName !== "undefined")
+        this__.supplTemplateName = supplTemplateName;
+    else
+        console.log("function setTemplateName [supplTemplateName] is undefined!")
+    return this__;
+};
+JDataPagingSupport.prototype.setBoxView = function (supplBoxView) {
+    var this__ = this;
+    if (typeof supplBoxView !== "undefined")
+        this__.supplBoxView = supplBoxView;
+    else
+        console.log("function setBoxView [supplBoxView] is undefined!")
+    return this__;
+};
+JDataPagingSupport.prototype.produceView = function (templateName, data, objView) {
     var this__ = this;
     this__.searchHtlmTemplate(document).data = data;
     var exl = this__._(this__.getHtmlTemplate(templateName)).get();
@@ -835,7 +862,85 @@ JDataPagingSupport.prototype.createView = function (templateName, data, objView)
     this__.initHtmlEvent(objView);
     return this;
 };
+JDataPagingSupport.prototype.isArray = function (obj) {
+    return obj.constructor.toString().indexOf("Array") > -1;
+};
+JDataPagingSupport.prototype.getHtml = function () {
+    var this__ = this;
+    if (typeof this__.getObject !== "undefined")
+        return this__.getObject.innerHTML;
+    else
+        return "";
+};
 
+JDataPagingSupport.prototype.createView = function (templateName, data, boxView) {
+    var this__ = this;
+    if (typeof templateName !== "undefined")
+    {
+        this__.setTemplateName(templateName)
+    }
+    if (typeof data !== "undefined")
+    {
+        this__.setData(data)
+    }
+    if (typeof boxView !== "undefined")
+    {
+        this__.setBoxView(boxView)
+    }
+
+    return this__.executeView();
+};
+
+JDataPagingSupport.prototype.executeView = function () {
+    var this__ = this;
+    if (typeof (this__.home) === "undefined")
+        this__.home = {onBeforeRow: function (a, b) {
+                return true;
+            }, onAfterRow: function () {}};
+    var objView = this__.supplBoxView;
+    if (typeof this__.supplBoxView === "undefined")
+        objView = this__._("<div class='jms-support-view' style='display:none'></div>").get(0);
+    if (typeof this__.supplTemplateName !== "undefined") {
+        if (typeof this__.supplBoxView === "string")
+            objView = this__._(this__.supplBoxView).get(0);
+        if (this__.data !== "undefined") {
+            this__.searchHtlmTemplate(document);
+            var exl = this__._(this__.getHtmlTemplate(this__.supplTemplateName)).get();
+            this__._(objView).html(exl);
+            this__.isforEach(objView);
+            this__.writeProperty(objView);
+            this__.initHtmlEvent(objView);
+            this__.getObject = objView;
+        }
+        if (typeof this__.data === "undefined")
+            console.log('JDataPagingSupport Info[ Method:getView] object data is undefined! > exit!!')
+    }
+    if (typeof this__.supplTemplateName === "undefined") {
+        console.log('JDataPagingSupport Info[ Method:getView] templateName is undefined! > exit!!')
+    }
+    return this__;
+};
+
+
+JDataPagingSupport.prototype.jmsEvent = function (name, fn) {
+    var th_ = this;
+
+    if (typeof name !== "undefined" && name !== 'pp') {
+        th_.fn[name] = fn;
+    } else
+        console.log("INFO!! it is not possible to associate a function with the name (pp) - change function name! - the function [pp] could not be subscribed!! ");
+
+    return th_;
+};
+
+JDataPagingSupport.prototype.jmsPipe = function (name, fn) {
+    var th_ = this;
+    if (typeof name !== "undefined")
+        th_.fn['pp'][name] = fn;
+    else
+        console.log("the jmsPipe function could not be subscribed, name is undefined!")
+    return th_;
+};
 JDataPagingSupport.prototype.initHtmlEvent = function (o) {
     var this_ = this, __proto = this_;
     var jmsEvent = JDataPagingSupport.searchHtmlEvent(o);
@@ -888,8 +993,13 @@ JDataPagingSupport.prototype.ajaxCallServer = function (btn) {
             .always(function (data_xhr, textStatus, xhr_errorThrown) {
                 console.log("[request ajax: " + this__.home.ajaxSetting.url + "] method: complete ", textStatus);
             });
-    return this;
+    return this__;
 };
-JDataPagingSupport.istance = function () {
-    return new JDataPagingSupport();
-}
+
+JDataPagingSupport.istance = function (n) {
+    if (typeof (n) === "undefined")
+        n = new Date().getTime();
+    if (typeof (JDataPagingSupport.get[n]) === "undefined")
+        JDataPagingSupport.get[n] = new JDataPagingSupport();
+    return JDataPagingSupport.get[n];
+};

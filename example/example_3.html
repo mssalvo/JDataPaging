@@ -79,7 +79,7 @@
                 jmsTemplate: 'myTemplateRow',
                 onBeforeRow: function (el, obj, index) {
                     console.log(el, obj, index);
-                    if (obj == "row 5")
+                    if (obj.cap == "84121")
                         return false;
                     return true;
                 },

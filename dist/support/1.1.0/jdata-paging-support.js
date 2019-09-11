@@ -535,12 +535,12 @@ JDataPagingSupport.prototype.getValProp = function (exp, obj, n, isObj) {
                 var j = stringProp.split(' ').join('');
                 var val = eval('(' + 'obj' + '.' + j + ')');
                 if (typeof val !== "undefined" && typeof fnp !== "undefined")
-                    chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val]) : val);
+                    chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val, obj, n]) : val);
                 if (typeof val !== "undefined" && typeof fnp === "undefined")
                     chars.push(val);
                 if (!isObj && typeof obj !== "undefined")
                     if (typeof fnp !== "undefined")
-                        chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [obj]) : obj);
+                        chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [obj, this_.data, n]) : obj);
                 if (!isObj && typeof obj !== "undefined" && typeof fnp === "undefined")
                     chars.push(obj);
             } catch (err) {
@@ -563,7 +563,7 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
         else if (String(exp[e]).indexOf(this_.pipe) !== -1)
         {
             var fn_ = exp[e].split(this_.pipe)[1].split(' ').join('');
-            return  typeof this_.fn['pp'][fn_] === "function" ? this_.fn['pp'][fn_].apply(this, [a[b][n], n]) : a[b][n];
+            return  typeof this_.fn['pp'][fn_] === "function" ? this_.fn['pp'][fn_].apply(this, [a[b][n], a[b], n]) : a[b][n];
         } else
             return a[b][n]
     } else {
@@ -589,7 +589,7 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
         if (typeof propObj !== "undefined")
             var val = eval('(' + 'propObj' + '.' + prop + ')');
         if (typeof val !== "undefined" && typeof fnp !== "undefined")
-            return  typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val, n]) : val;
+            return  typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val, propObj, n]) : val;
         if (typeof val !== "undefined" && typeof fnp === "undefined")
             return val;
         return "";
@@ -621,7 +621,7 @@ JDataPagingSupport.prototype.valueProperty = function (exps) {
                         var j = stringProp.split(" ").join("");
                         var val = eval('(' + 'this_.data' + '.' + j + ')');
                         if (typeof val !== "undefined" && typeof fnp !== "undefined")
-                            chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val]) : val);
+                            chars.push(typeof this_.fn['pp'][fnp] === "function" ? this_.fn['pp'][fnp].apply(this, [val, this_.data]) : val);
                         if (typeof val !== "undefined" && typeof fnp === "undefined")
                             chars.push(val);
                     } catch (err) {
@@ -640,7 +640,7 @@ JDataPagingSupport.prototype.valueProperty = function (exps) {
                 }
                 var val_ = eval('(' + 'this_.data' + '.' + stringProp_ + ')');
                 if (typeof val_ !== "undefined" && typeof fnp_ !== "undefined")
-                    return typeof this_.fn['pp'][fnp_] === "function" ? this_.fn['pp'][fnp_].apply(this, [val_]) : val_;
+                    return typeof this_.fn['pp'][fnp_] === "function" ? this_.fn['pp'][fnp_].apply(this, [val_, this_.data]) : val_;
                 if (typeof val_ !== "undefined")
                     return val_;
             } catch (err) {
@@ -787,7 +787,7 @@ JDataPagingSupport.prototype.isforEach = function (o) {
         } else {
             ctx_data[key] = this_.set(x, 0)
         }
-        console.log(ctx_data[key])
+        
         for (var t in ctx_data[key]) {
 
             var clone = this_._(fork[x]['obj']).clone().get(0);

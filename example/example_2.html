@@ -46,8 +46,9 @@
 </div>
  
     <template jms-template="myTemplateRow">
-       <a class="list-group-item list-group-item-action" jms-foreach="data" for-property-href="data.name|mypipe" for-property="data.ss.bb.arr[0].name,data.@@ ,data.ss.bb.arr[0].name2"></a>    
-    </template>  
+       <a  class="list-group-item list-group-item-action" jms-foreach="data" jms-event="click:fn@myprova" for-property-href="data.name|mypipe@@ @@id" for-property="data.ss.bb.arr[0].name,data.@@ ,data.ss.bb.arr[0].name2"></a>    
+    </template> 
+    
     <script>
       //  var rows=["row 1","row 2","row 3","row 4","row 5","row 6","row 7","row 8","row 9","row 10"];
        { 
@@ -107,9 +108,15 @@
            jmsTemplate:'myTemplateRow',
            plugin:JDataPagingSupport,
            autoStart:false
-        }).jmsEvent('mypipe',function(val){
+        }).jmsPipe('mypipe',function(val){
             return "test my pipe "+ val;
+        }).jmsEvent('myprova',function(val){
+           alert(" ciao ho premuto prova!!!")  
         }).start();
+        
+        function prova(){
+         alert(" ciao ho premuto prova!!!")  
+        }
     </script>    
   
 </body>

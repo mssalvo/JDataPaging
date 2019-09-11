@@ -1,6 +1,6 @@
 /*!
  * JDataPaging ©
- * @version 1.1.0
+ * @version 1.1.1
  * @author salvatore mariniello - salvo.mariniello@gmail.com 
  * https://github.com/mssalvo/JDataPaging 
  * MIT License
@@ -44,7 +44,7 @@ JDataPaging.prototype.creaView = function () {
     if (this_.plugin) {
         this_.clear();
         this_.dataSupport.home = this_;
-        this_.dataSupport.createView(this_.jmsTemplate, this_.data, this_.selectorBox);
+        this_.dataSupport.produceView(this_.jmsTemplate, this_.data, this_.selectorBox);
     } else {
         this_.log("[JDataPaging] Info error:: dataSupport not istance > check include data-support.js")
     }

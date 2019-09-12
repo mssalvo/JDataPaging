@@ -198,6 +198,7 @@ JDataPaging.prototype._new = function () {
     this.onPreviusBefore = undefined;
     this.onPreviousAfter = undefined;
     this.onChangeComboPages = undefined;
+	this.textMessageEmpty='<div class="col text-center paging-empty">No records found</div>';	
     this.onBeforeRow = function (a, b, c) {
         return true;
     };
@@ -208,7 +209,20 @@ JDataPaging.prototype._new = function () {
     this.back = false;
     return this;
 };
-
+JDataPaging.onEmptyMessage = function(th__){  
+     
+	if(typeof th__.rowsWrap==="undefined" && typeof th__.selectorBox!=="undefined")
+		th__.selectorBox.innerHTML= th__.textMessageEmpty;
+    if(typeof th__.rowsWrap!=="undefined" && th__.rowsWrap.length < 1 && typeof th__.selectorBox!=="undefined")
+	th__.selectorBox.innerHTML= th__.textMessageEmpty;
+  return th__;
+};
+JDataPaging.prototype.setMessageEmpty = function(textHtml){  
+    var th__ = this;
+	if(typeof textHtml!=="undefined")
+	th__.textMessageEmpty=textHtml;
+  return th__;
+};
 JDataPaging.prototype.jmsEvent = function (name, fn) {
     var th_ = this;
     if (typeof (th_.dataSupport) !== "undefined") {
@@ -302,7 +316,7 @@ JDataPaging.prototype.startServer = function (data, btn) {
 
     if (this_.jmsTemplate)
         this_.creaView().initPageServer();
-
+	
 
     var arry = this_.rows.slice(0, this_.limit);
 
@@ -312,7 +326,9 @@ JDataPaging.prototype.startServer = function (data, btn) {
         this_.selectorBox.appendChild(arry[i])
 
     }
-
+	
+	JDataPaging.onEmptyMessage(this_);
+	
     if (btn && btn === 'next')
         this_.writeLabels().onNextAfterCall([arry, this_]).onCompleteCall([arry]);
     else if (btn && btn === 'previous')
@@ -328,7 +344,8 @@ JDataPaging.prototype.startServer = function (data, btn) {
 };
 
 JDataPaging.nextServer = function (this_) {
-    this_.onNextBeforeCall([this_]);
+    
+	this_.onNextBeforeCall([this_]);
 
     if (this_.pageCurrent < 1 || this_.pageCurrent > 0 && this_.rowsTotal > 0 && (this_.pageCurrent * this_.limit) < this_.rowsTotal)
     {
@@ -404,7 +421,8 @@ JDataPaging.prototype.page = function (n) {
 JDataPaging.prototype.next = function () {
     if (this.isServer)
         return JDataPaging.nextServer(this);
-
+	
+	JDataPaging.onEmptyMessage(this);
     this.onNextBeforeCall([this])
     ++this.pageCurrent;
     this.back = false;

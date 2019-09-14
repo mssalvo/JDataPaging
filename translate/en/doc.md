@@ -65,6 +65,7 @@ Method | Action
 **addParameter**    | util - adds a parameter to the url passed to an ajax call
 **jmsEvent**    | associate functions with html elements  
 **jmsPipe**    | associate functions with jms attributes to manipulate the value retrieved from a property json
+**setMessageEmpty**    | set a message when there are no rows to display, default message (No records found) 
 
 ## _to recover a previous instant, and use the methods available_
 

@@ -873,19 +873,22 @@ JDataPagingSupport.prototype.getHtml = function () {
         return "";
 };
 
-JDataPagingSupport.prototype.createView = function (templateName, data, boxView) {
+JDataPagingSupport.prototype.createView = function (o) {
     var this__ = this;
-    if (typeof templateName !== "undefined")
+    
+    if (typeof o !== "undefined"){     
+    if (typeof o.jmsTemplate !== "undefined")
     {
-        this__.setTemplateName(templateName)
+        this__.setTemplateName(o.jmsTemplate)
     }
-    if (typeof data !== "undefined")
+    if (typeof o.data !== "undefined")
     {
-        this__.setData(data)
+        this__.setData(o.data)
     }
-    if (typeof boxView !== "undefined")
+    if (typeof o.box !== "undefined")
     {
-        this__.setBoxView(boxView)
+        this__.setBoxView(o.box)
+    }
     }
 
     return this__.executeView();

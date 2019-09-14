@@ -66,7 +66,7 @@ Method | Action
 **addParameter**    |util - aggiunge un parametro all'URL passato a una chiamata ajax
 **jmsEvent**    | associa le funzioni agli elementi html
 **jmsPipe**    | associa le funzioni agli attributi-jms per manipolare il valore reperito da una property json
-
+**setMessageEmpty**    | imposta un messaggio quando non ci sono rows da visualizzare, messaggio di default (No records found) 
 
 ## _per recuperare un istanzia precedente e utilizzare i metodi disponibili_
 

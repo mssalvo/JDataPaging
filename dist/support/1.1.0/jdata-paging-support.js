@@ -875,20 +875,20 @@ JDataPagingSupport.prototype.getHtml = function () {
 
 JDataPagingSupport.prototype.createView = function (o) {
     var this__ = this;
-    
-    if (typeof o !== "undefined"){     
-    if (typeof o.jmsTemplate !== "undefined")
-    {
-        this__.setTemplateName(o.jmsTemplate)
-    }
-    if (typeof o.data !== "undefined")
-    {
-        this__.setData(o.data)
-    }
-    if (typeof o.box !== "undefined")
-    {
-        this__.setBoxView(o.box)
-    }
+
+    if (typeof o !== "undefined") {
+        if (typeof o.jmsTemplate !== "undefined")
+        {
+            this__.setTemplateName(o.jmsTemplate)
+        }
+        if (typeof o.data !== "undefined")
+        {
+            this__.setData(o.data)
+        }
+        if (typeof o.box !== "undefined")
+        {
+            this__.setBoxView(o.box)
+        }
     }
 
     return this__.executeView();

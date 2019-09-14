@@ -51,9 +51,7 @@
 </div>
     
         <div class="container" style="background:#0eea00">
-  <div id="testSub22">
-
-  </div>
+  <div id="testSub22"> </div>
 </div>
     
     <template jms-template="myTemplateRow">
@@ -132,7 +130,7 @@
         function prova(){
          alert(" ciao ho premuto prova!!!")  
         }
-       $("#testSub").html(JDataPagingSupport.istance().createView("testSub",rows).getHtml()) 
+       $("#testSub").html(JDataPagingSupport.istance().createView({jmsTemplate:'testSub',box:'#testSub22',data:rows}).getHtml()) 
        
        
        JDataPagingSupport.istance().setData(rows).setTemplateName("testSub").setBoxView("#testSub22").createView()

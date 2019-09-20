@@ -22,6 +22,7 @@ function JDataPagingSupport() {
     this.getObject = undefined;
     this.supplTemplateName = undefined;
     this.supplBoxView = undefined;
+    this.templateAppName = undefined;
 }
 JDataPagingSupport.prototype.home = undefined;
 JDataPagingSupport.prototype.data = {};
@@ -32,6 +33,7 @@ JDataPagingSupport.prototype.txtSpace = ' ';
 JDataPagingSupport.prototype.divisor = '@@';
 JDataPagingSupport.prototype.pipe = '|';
 JDataPagingSupport.prototype.htmlTemplate = {};
+JDataPagingSupport.prototype.htmlAppTemplate = {};
 JDataPagingSupport.prototype._ = jQuery;
 JDataPagingSupport.expControll = new RegExp(/:\ *(\w+)\s*\@(:\1@|)/);
 JDataPagingSupport.expEvent = new RegExp(/^([a-z \ *]|:\1:)+/);
@@ -281,11 +283,24 @@ JDataPagingSupport.prototype.getHtmlTemplate = function (k) {
 JDataPagingSupport.prototype.setHtmlTemplate = function (k, v) {
     this.htmlTemplate[k] = v;
 };
+JDataPagingSupport.prototype.getAppTemplate = function (k) {
+    return this.htmlAppTemplate[k];
+};
+JDataPagingSupport.prototype.setAppTemplate = function (k, v) {
+    this.htmlAppTemplate[k] = v;
+};
 JDataPagingSupport.prototype.searchHtlmTemplate = function (o) {
     var this_ = this;
     Array.prototype.forEach.call((o || document).querySelectorAll('[jms-template]'), function (el, i) {
         this_.setHtmlTemplate(el.getAttribute('jms-template'), el.innerHTML)
         this_._(el).hide();
+    })
+    return this_;
+};
+JDataPagingSupport.prototype.searchTemplateApp = function (o) {
+    var this_ = this;
+    Array.prototype.forEach.call((o || document).querySelectorAll('[jms-app]'), function (el, i) {
+        this_.setAppTemplate(el.getAttribute('jms-app'), el)
     })
     return this_;
 };
@@ -852,6 +867,14 @@ JDataPagingSupport.prototype.setBoxView = function (supplBoxView) {
         console.log("function setBoxView [supplBoxView] is undefined!")
     return this__;
 };
+JDataPagingSupport.prototype.setAppName = function (templateAppName) {
+    var this__ = this;
+    if (typeof templateAppName !== "undefined")
+        this__.templateAppName = templateAppName;
+    else
+        console.log("function setBoxView [supplBoxView] is undefined!")
+    return this__;
+};
 JDataPagingSupport.prototype.produceView = function (templateName, data, objView) {
     var this__ = this;
     this__.searchHtlmTemplate(document).data = data;
@@ -875,23 +898,30 @@ JDataPagingSupport.prototype.getHtml = function () {
 
 JDataPagingSupport.prototype.createView = function (o) {
     var this__ = this;
-    
-    if (typeof o !== "undefined"){     
-    if (typeof o.jmsTemplate !== "undefined")
-    {
-        this__.setTemplateName(o.jmsTemplate)
-    }
-    if (typeof o.data !== "undefined")
-    {
-        this__.setData(o.data)
-    }
-    if (typeof o.box !== "undefined")
-    {
-        this__.setBoxView(o.box)
-    }
-    }
 
-    return this__.executeView();
+    if (typeof o !== "undefined") {
+        if (typeof o.jmsTemplate !== "undefined")
+        {
+            this__.setTemplateName(o.jmsTemplate)
+        }
+        if (typeof o.data !== "undefined")
+        {
+            this__.setData(o.data)
+        }
+        if (typeof o.box !== "undefined")
+        {
+            this__.setBoxView(o.box)
+        }
+         if (typeof o.appName !== "undefined")
+        {
+            this__.setAppName(o.appName)
+        }
+        
+    }
+        if(typeof this__.templateAppName!=="undefined")
+            return  this__.executeApp();
+         else
+         return this__.executeView();
 };
 
 JDataPagingSupport.prototype.executeView = function () {
@@ -923,6 +953,33 @@ JDataPagingSupport.prototype.executeView = function () {
     }
     return this__;
 };
+
+JDataPagingSupport.prototype.executeApp = function () {
+    var this__ = this;
+    if (typeof (this__.home) === "undefined")
+        this__.home = {onBeforeRow: function (a, b) {
+                return true;
+            }, onAfterRow: function () {}};
+    
+    if (typeof this__.templateAppName !== "undefined") {
+        
+        if (this__.data !== "undefined") {
+            this__.searchTemplateApp(document);
+            var exl = this__.getAppTemplate(this__.templateAppName);
+            this__.isforEach(exl);
+            this__.writeProperty(exl);
+            this__.initHtmlEvent(exl);
+            this__.getObject = exl;
+        }
+        if (typeof this__.data === "undefined")
+            console.log('JDataPagingSupport Info[ Method:getView] object data is undefined! > exit!!')
+    }
+    if (typeof this__.templateAppName === "undefined") {
+        console.log('JDataPagingSupport Info[ Method:getView] templateAppName is undefined! > exit!!')
+    }
+    return this__;
+};
+
 
 
 JDataPagingSupport.prototype.jmsEvent = function (name, fn) {

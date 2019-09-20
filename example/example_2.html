@@ -54,18 +54,73 @@
   <div id="testSub22"> </div>
 </div>
     
+    <!-- -->
+    
+        <div class="container py-30 text-uppercase" jms-app="jmsApp">
+      <div class="row flex-xs-center">
+
+        <div class="my-auto mr-10 page-footer-title d-none d-xl-block" jms-write="persona.nome"></div>
+
+
+        <div class="d-flex mx-auto ml-xs-0 py-5 align-items-center">
+          <a href="https://res.cloudinary.com/estra/raw/upload/v1488884588/documenti/Modulistica/modulo-reclami.pdf" class="btn btn-circle btn-darker text-center flex-xs-middle" jms-write="persona.cognome">
+            
+          </a>
+          <span class="lh-1 ml-5 text-7 flex-xs-middle text-truncate">
+                <a href="https://res.cloudinary.com/estra/raw/upload/v1488884588/documenti/Modulistica/modulo-reclami.pdf" jms-write="persona.nome">Modulo <br> reclami</a>
+              </span>
+        </div>
+
+
+        <div class="d-flex mx-auto ml-xs-0 py-5 align-items-center">
+          <a href="http://res.cloudinary.com/estra/raw/upload/v1489060559/documenti/Modulistica/Reclamo_fatturazione_importi_anomali.pdf" class="btn btn-circle btn-darker text-center flex-xs-middle">
+            <img height="22px" style="margin: 10px 0 0 0" src="https://res.cloudinary.com/estra/image/upload/v1491237973/icons/20_Estratto_conto.svg" alt="20 estratto conto">
+          </a>
+          <span class="lh-1 ml-5 text-7 flex-xs-middle text-truncate">
+                <a href="http://res.cloudinary.com/estra/raw/upload/v1489060559/documenti/Modulistica/Reclamo_fatturazione_importi_anomali.pdf">Modulo reclami<br> fatturazione importi anomali</a>
+              </span>
+        </div>
+
+
+        <div class="d-flex mx-auto ml-xs-0 py-5 align-items-center">
+          <a href="https://res.cloudinary.com/estra/image/upload/v1499700943/documenti/Protocollo_di_Autoregolazione_Volontaria.pdf" class="btn btn-circle btn-darker text-center flex-xs-middle">
+            <img height="22px" style="margin: 10px 0 0 0" src="https://res.cloudinary.com/estra/image/upload/v1491237973/icons/20_Estratto_conto.svg" alt="20 estratto conto">
+          </a>
+          <span class="lh-1 ml-5 text-7 flex-xs-middle text-truncate">
+                <a href="https://res.cloudinary.com/estra/image/upload/v1499700943/documenti/Protocollo_di_Autoregolazione_Volontaria.pdf">Protocollo di <br>autoregolazione volontaria</a>
+              </span>
+        </div>
+
+
+        <div class="d-flex mx-auto ml-xs-0 py-5 align-items-center">
+          <a href="https://www.estra.it/richiesta-contatto" class="btn btn-circle btn-darker text-center flex-xs-middle">
+            <img height="22px" style="margin: 10px 0 0 0" src="https://res.cloudinary.com/estra/image/upload/v1491237973/icons/20_Estratto_conto.svg" alt="20 estratto conto">
+          </a>
+          <span class="lh-1 ml-5 text-7 flex-xs-middle text-truncate">
+                <a href="https://www.estra.it/richiesta-contatto" jms-write="persona.nome">-- </a>
+              </span>
+        </div>
+
+
+      </div>
+    </div>
+    
+    <!-- -->
+    
     <template jms-template="myTemplateRow">
-       <a  class="list-group-item list-group-item-action" jms-foreach="data" jms-event="click:fn@myprova" for-property-href="data.name|mypipe@@ @@id" for-property="data.ss.bb.arr[0].name,data.@@ ,data.ss.bb.arr[0].name2"></a>    
+       <a  class="list-group-item list-group-item-action" jms-foreach="rows" jms-event="click:fn@myprova" for-property-href="rows.name|mypipe@@ @@id" for-property="rows.ss.bb.arr[0].name,rows.@@ ,rows.ss.bb.arr[0].name2"></a>    
     </template> 
     
     <template jms-template="testSub">
-       <a  class="list-group-item list-group-item-action" jms-foreach="data" jms-event="click:fn@myprova" for-property-href="data.name|mypipe@@ @@id" for-property="data.ss.bb.arr[0].name,data.@@ ,data.ss.bb.arr[0].name2"></a>    
+       <a  class="list-group-item list-group-item-action" jms-foreach="rows" jms-event="click:fn@myprova" for-property-href="rows.name|mypipe@@ @@id" for-property="rows.ss.bb.arr[0].name,rows.@@ ,rows.ss.bb.arr[0].name2"></a>    
+       
+       <h4 jms-write="persona.nome|replace" ></h4>
     </template>
     
     <script>
       //  var rows=["row 1","row 2","row 3","row 4","row 5","row 6","row 7","row 8","row 9","row 10"];
      
-   var rows= [
+   var data={persona:{nome:'francesco',cognome:'russo'}, rows:[
      {
         "id": 0,
         "name": "Charlotte Good",
@@ -105,10 +160,10 @@
          }     
          }    
       }
-   ]
+   ]}
  
         JDataPaging.paging('myname',{
-           data:rows,
+           data:data,
            box:'div.list-group',  
            row:'a.list-group-item',  
            comboPages:'select.custom-select',   
@@ -119,21 +174,23 @@
            btnNext:'a.next',  
            btnPrevious:'a.previous',
            jmsTemplate:'myTemplateRow',
+           onComplete:function (a,b) {console.log("complete",a,b)},
+           onNextBefore:function(a){console.log('onNextBefore',a)},
            plugin:JDataPagingSupport,
            autoStart:false
         }).jmsPipe('mypipe',function(val){
             return "test my pipe "+ val;
         }).jmsEvent('myprova',function(val){
            alert(" ciao ho premuto prova!!!")  
-        }).start();
+        }).play();
         
         function prova(){
          alert(" ciao ho premuto prova!!!")  
         }
-       $("#testSub").html(JDataPagingSupport.istance().createView({jmsTemplate:'testSub',box:'#testSub22',data:rows}).getHtml()) 
+       $("#testSub").html(JDataPagingSupport.istance().createView({jmsTemplate:'testSub',box:'#testSub22',data:data}).getHtml()) 
        
-       
-       JDataPagingSupport.istance().setData(rows).setTemplateName("testSub").setBoxView("#testSub22").createView()
+       JDataPagingSupport.istance('app').setData(data).setAppName("jmsApp").jmsPipe('replace',function(v){return 'Nicola!!'}).createView()
+       JDataPagingSupport.istance().setData(data).setTemplateName("testSub").setBoxView("#testSub22").jmsPipe('replace',function(v){return 'Nicola!!'}).createView()
     </script>    
   
 </body>

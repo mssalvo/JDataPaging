@@ -128,3 +128,24 @@ __Esempio__
 ```html
  <div id="testSub22"> </div>
 ```
+
+
+Use of the jms-app attribute
+
+__Example__
+
+```html
+ <div jms-app="myapp"> 
+  <div jms-write="data.name"> </div>
+  <div jms-write="data.id"> </div>
+  <div jms-foreach="data"> 
+  <a jms-event="click:fn@myprova" for-property-href="data.name|mypipe@@ @@id" for-property="data.ss.bb.id"></a>    
+  </div>  
+ </div>
+```
+ 
+JDataPagingSupport.istance().setData(data).setAppName("myapp").createView()
+
+Or
+
+JDataPagingSupport.istance().createView({jmsApp:'myapp',data:rows})

@@ -110,10 +110,10 @@ JDataPagingSupport.bindPro = function (f, o) {
         return f.apply(o, n.concat(Array.prototype.slice.call(arguments)))
     }
 };
-JDataPagingSupport.bind = function (o, e, f, a, arg) {
+JDataPagingSupport.bind = function (o, e, f, a, arg,this_) {
     var n = (new String(e)).split(" ");
     for (var r = 0; r < n.length; r++) {
-        this.event(o, n[r], this.bindPro(f, a, arg), true)
+        this.event(o, n[r], this.bindPro(f, a, arg,this_), true)
     }
     return this
 };
@@ -912,9 +912,9 @@ JDataPagingSupport.prototype.createView = function (o) {
         {
             this__.setBoxView(o.box)
         }
-         if (typeof o.appName !== "undefined")
+         if (typeof o.jmsApp !== "undefined")
         {
-            this__.setAppName(o.appName)
+            this__.setAppName(o.jmsApp)
         }
         
     }
@@ -1019,11 +1019,11 @@ JDataPagingSupport.prototype.initHtmlEvent = function (o) {
                 nEvent = evt.split(" ");
         obj.removeAttribute('jms-event')
         for (var s in nEvent) {
-            (function (t, act, arg) {
+            (function (t, act, arg,this_) {
                 JDataPagingSupport.bind(obj, nEvent[s], __proto[t][(function (a) {
                     return  a
-                })(act)], obj, arg);
-            })(types, action, this_.home)
+                })(act)], obj, arg,this_);
+            })(types, action, this_.home,this_)
         }
 
     }
@@ -1055,7 +1055,7 @@ JDataPagingSupport.prototype.ajaxCallServer = function (btn) {
             });
     return this__;
 };
-
+ 
 JDataPagingSupport.istance = function (n) {
     if (typeof (n) === "undefined")
         n = new Date().getTime();

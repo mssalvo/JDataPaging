@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Example JDataPaging</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <script src="../dist/core/1.1.0/jdata-paging.js"></script>
+        <script src="../dist/support/1.1.0/jdata-paging-support.js"></script>
+        <style>.ble{background-color: #007bff!important;color:#000!important;cursor: pointer;border-radius:5%}</style>
+    </head>
+    <body>
+        <div class="col-12 p-15 mt-10"></div> 
+        
+        
+        <div class="col-12 p-15 mt-10"></div>
+        <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Esempio 2</h4>
+        <p> Esempio con l'utilizzo di jms-foreach per ciclare e creare porzioni di html</p>
+        <p class="m-1"> In questo esempio creamo dinamicamente tag html &lt;li&gt; ed &lt;a&gt; per creare il Nav menu. </p>
+        <hr>
+        <p class="mb-0">
+            &lt;li jms-foreach="menu.links" class="nav-item active"&gt;<br>
+                        &lt;a class="nav-link" for-property-href="links.url" for-property="links.title"&gt;  &lt;/a&gt;<br>
+                    &lt;/li&gt; <br>   
+            jms-foreach="menu.links"  per ciclare e creare un tag html &lt;li&gt; per ogni elemento dell'array dedicata alla creazione del menu
+        l'utilizzo di for-property-href="links.url" per settare la property href del tag &lt;a&gt;  e for-property="links.title"  per settare l'html del tag &lt;a&gt;</p>
+        </div>  
+        <div class="col-12 p-15 mt-10">
+            Risultato:
+        </div> 
+    
+    <div class="col-12 p-15 mt-10"></div> 
+    
+     <nav class="navbar navbar-expand-lg navbar-primary  bg-lightest shadow-lg p-3 mb-5 bg-white rounded" jms-app="menuAppFor">
+            <a class="navbar-brand" href="#" jms-write="menu.title"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav2" aria-controls="navbarNav2" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav2">
+                <ul class="navbar-nav">
+                    <li jms-foreach="menu.links" class="nav-item active">
+                        <a class="nav-link" for-property-href="links.url" for-property="links.title"> </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>   
+         <hr>
+        <script>
+            var data_with_array = {
+                           "menu": {
+                           "title": "Navbar",
+                           
+                            "links":[{
+                              "title": "Home",
+                              "url": "#"
+                            },{
+                              "title": "Features",
+                              "url": "#"
+                            },{
+                              "title": "Pricing",
+                              "url": "#"
+                            },{
+                              "title": "Blog",
+                              "url": "#"
+                            }]
+                        }
+                        }
+             
+             JDataPagingSupport.istance().createView({data:data_with_array,jmsApp:'menuAppFor'}); 
+             // OR
+            //JDataPagingSupport.istance().setData(data_with_array).setAppName("menuAppFor").createView();    
+        </script>        
+ 
+       
+        
+    </body>
+</html>

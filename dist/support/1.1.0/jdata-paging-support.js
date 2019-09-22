@@ -799,10 +799,11 @@ JDataPagingSupport.prototype.isforEach = function (o) {
         var ctx_data = {}, key = x.split('.').pop();
         ctx_data[key] = [];
         if (x.split('.').length > 1) {
-            for (var s in this_.data[x.split('.').shift()]) {
+        ctx_data[key]= eval('(' + 'this_.data' + '.' + x + ')');   
+         /* for (var s in this_.data[x.split('.').shift()]) {
                 var i = this_.set(x, s);
                 ctx_data[key] = ctx_data[key].concat(i);
-            }
+            } */
         } else {
             ctx_data[key] = this_.set(x, 0)
         }

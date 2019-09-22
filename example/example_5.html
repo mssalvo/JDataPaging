@@ -49,7 +49,7 @@
 
     
     <template jms-template="myTemplateRow"> <!--TEMPLATE ROW jms--> 
-        <a href="#" class="list-group-item list-group-item-action" jms-foreach="article.batters.batter" >
+        <a href="#" class="list-group-item list-group-item-action" jms-foreach="article[0].batters.batter" >
             <div for-property="batter.id"></div>
             <div for-property="batter.type"></div>
              

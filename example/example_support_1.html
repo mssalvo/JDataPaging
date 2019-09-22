@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <title>Example JDataPaging</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+        <script src="../dist/core/1.1.0/jdata-paging.js"></script>
+        <script src="../dist/support/1.1.0/jdata-paging-support.js"></script>
+        <style>.ble{background-color: #007bff!important;color:#000!important;cursor: pointer;border-radius:5%}</style>
+    </head>
+    <body>
+        <div class="col-12 p-15 mt-10"></div> 
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Esempio 1</h4>
+        <p> Esempio con l'utilizzo di jms-write per scrivere un valore in un elemento html  </p>
+        <hr>
+        <p class="mb-0">jms-write-href="menu.home.url" per settare la property href del tag &lt;a&gt; 
+        ed jms-write="menu.home.title"  per settare l'html del tag &lt;a&gt;</p>
+        </div>
+       
+        <div class="col-12 p-15 mt-10">
+            Risultato:
+        </div> 
+        <div class="col-12 p-15 mt-10"></div> 
+        
+        <nav class="navbar navbar-expand-lg navbar-dark  bg-dark" jms-app="menuNav">
+            <a class="navbar-brand" href="#" jms-write="menu.title"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav" >
+                    <li class="nav-item active">
+                        <a class="nav-link" jms-write-href="menu.home.url" jms-write="menu.home.title"> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" jms-write-href="menu.features.url" jms-write="menu.features.title"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" jms-write-href="menu.pricing.url" jms-write="menu.pricing.title"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" jms-write-href="menu.blog.url" jms-write="menu.blog.title" tabindex="-1"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>    
+        <script>
+            var data_object = {
+                        "menu": {
+                           "title": "Navbar",
+                           "home": {
+                              "title": "Home",
+                              "url": "#"
+                           },
+                           "features": {
+                              "title": "Features",
+                              "url": "#"
+                           },
+                           "pricing": {
+                              "title": "Pricing",
+                              "url": "#"
+                           },
+                           "blog": {
+                              "title": "Blog",
+                              "url": "#"
+                           }
+                        }
+                        }
+               
+             JDataPagingSupport.istance().createView({data:data_object,jmsApp:'menuNav'}); 
+            //OR
+            //JDataPagingSupport.istance().setData(data_object).setAppName("menuNav").createView(); 
+            
+        </script>
+        
+         
+           
+         
+    </body>
+</html>

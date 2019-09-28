@@ -23,6 +23,7 @@ function JDataPagingSupport() {
     this.supplTemplateName = undefined;
     this.supplBoxView = undefined;
     this.templateAppName = undefined;
+    this.fnDone = undefined;
 }
 JDataPagingSupport.prototype.home = undefined;
 JDataPagingSupport.prototype.data = {};
@@ -99,8 +100,8 @@ JDataPagingSupport.event = function (o, e, f, b) {
     }
     return this
 };
-JDataPagingSupport.bindPro = function (f, o) {
 
+JDataPagingSupport.bindPro = function (f, o) {
     if (f.bind === Function.prototype.bind && Function.prototype.bind)
         return Function.prototype.bind.apply(f, Array.prototype.slice.call(arguments, 1));
 
@@ -110,57 +111,12 @@ JDataPagingSupport.bindPro = function (f, o) {
         return f.apply(o, n.concat(Array.prototype.slice.call(arguments)))
     }
 };
-JDataPagingSupport.bind = function (o, e, f, a, arg,this_) {
+JDataPagingSupport.bind = function (o, e, f, a, arg, this_) {
     var n = (new String(e)).split(" ");
     for (var r = 0; r < n.length; r++) {
-        this.event(o, n[r], this.bindPro(f, a, arg,this_), true)
+        this.event(o, n[r], this.bindPro(f, a, arg, this_), true)
     }
     return this
-};
-JDataPagingSupport.prototype.isforEachIn = function (o, ctx, ic) {
-    var elementsForEach_ = [], this_ = this;
-
-    Array.prototype.forEach.call(o.querySelectorAll('[for-foreach]'), function (el, i) {
-        elementsForEach_[el.getAttribute('for-foreach')] = {attr: el.getAttribute('for-foreach'), exp: [], obj: el};
-        el.removeAttribute('for-foreach');
-        this_.isforEachIn(el)
-    })
-
-    if (typeof (this_.home.onBeforeRow) === "undefined" || typeof (this_.home.onBeforeRow) !== "function")
-        this_.home.onBeforeRow = function (a, b) {
-            return true;
-        }
-
-    var fork_ = elementsForEach_;
-
-    for (var x_ in fork_) {
-        for (var t_ in ctx[ic][fork_[x_]['attr']]) {
-
-            var clone_ = this_._(fork_[x_]['obj']).clone().get(0);
-            var aryExp_ = this_.array(clone_.getElementsByTagName('*'));
-            if (this_.home.onBeforeRow(clone_, ctx[ic], ic)) {
-                if (!aryExp_.length) {
-                    fork_[x_]['exp'] = [clone_];
-                } else {
-                    fork_[x_]['exp'] = aryExp_;
-                }
-                for (var y_ in fork_[x_]['exp']) {
-                    var elemExp = fork_[x_]['exp'][y_];
-                    if (this_.isAttributeForProp(elemExp.attributes)) {
-                        (function (a, b, ct, c) {
-                            this_.updateObjectIn(a, b, ct, c);
-                        })(fork_[x_]['exp'][y_], fork_[x_]['attr'], ctx[ic], t_)
-                    }
-                }
-
-                this_._(fork_[x_]['obj']).parent().append(clone_);
-                this_.initHtmlEvent(clone_);
-            }
-        }
-        this_._(fork_[x_]['obj']).remove();
-    }
-
-    return this_;
 };
 JDataPagingSupport.prototype.removeProperty = function (ob, reg) {
     if (ob && ob.attributes) {
@@ -209,6 +165,9 @@ JDataPagingSupport.prototype.settingTag = function (m, e, o) {
         case 'text':
             this._(e).text(o)
             break;
+        case 'checked':
+            this._(e).prop(m,o)
+            break;    
         default :
             if (this._(e).attr(m))
                 this._(e).attr(m, this._(e).attr(m) + o)
@@ -230,28 +189,9 @@ JDataPagingSupport.prototype.settingTagOption = function (m, e, o) {
         case 'text':
             this._(e).text(o)
             break;
-        default :
-            if (this._(e).attr(m))
-                this._(e).attr(m, this._(e).attr(m) + o)
-            else
-                this._(e).attr(m, o)
-
-    }
-
-    return this;
-};
-JDataPagingSupport.prototype.settingTagOption = function (m, e, o) {
-
-    switch (m) {
-        case 'html':
-            this._(e).html(o)
-            break;
-        case 'append':
-            this._(e).html(o)
-            break;
-        case 'text':
-            this._(e).text(o)
-            break;
+        case 'selected':
+            this._(e).prop(m,o)
+            break;      
         default :
             if (this._(e).attr(m))
                 this._(e).attr(m, this._(e).attr(m) + o)
@@ -303,121 +243,6 @@ JDataPagingSupport.prototype.searchTemplateApp = function (o) {
         this_.setAppTemplate(el.getAttribute('jms-app'), el)
     })
     return this_;
-};
-JDataPagingSupport.prototype.updateObjectIn = function (elemExp, elementForEach, ctx, t) {
-    if (elemExp) {
-        for (var att = 0; att < elemExp.attributes.length; att++) {
-            (function (att, elemExp, t) {
-                if (elemExp.attributes[att] && /(for-property|for-property\-.*)+$/.test(elemExp.attributes[att].name)) {
-                    var matchAttr = elemExp.attributes[att].name.split('for-property-')
-                    var exps = elemExp.attributes[att].value.split(',');
-
-                    if (exps) {
-                        for (var e in exps) {
-                            if (elemExp['nodeType'] === 1) {
-                                var propert = exps[e].split('.')[0];
-
-                                switch (propert) {
-
-                                    case elementForEach:
-                                        if (elemExp['nodeName'] === 'INPUT') {
-                                            if (matchAttr[1]) {
-
-                                                this._(elemExp).attr(matchAttr[1], typeof this.getObjVal(exps, e, ctx, elementForEach, t) === "boolean" ? this.getObjVal(exps, e, ctx, elementForEach, t) : this._(elemExp).attr(matchAttr[1]) + this.getObjVal(exps, e, ctx, elementForEach, t))
-                                            } else {
-                                                elemExp['value'] = this.getObjVal(exps, e, ctx, elementForEach, t);
-                                            }
-                                        } else if (elemExp['nodeName'] === 'OPTION') {
-                                            if (matchAttr[1]) {
-                                                this.settingTagOption(matchAttr[1], elemExp, this.getObjVal(exps, e, ctx, elementForEach, t));
-
-                                            } else {
-                                                this._(elemExp).html(this.getObjVal(exps, e, ctx, elementForEach, t))
-                                            }
-                                        } else {
-                                            if (matchAttr[1]) {
-
-                                                this.settingTag(matchAttr[1], elemExp, this.getObjVal(exps, e, ctx, elementForEach, t));
-
-                                            } else {
-
-                                                this._(elemExp).append(this.getObjVal(exps, e, ctx, elementForEach, t))
-                                            }
-                                        }
-                                        break;
-
-                                    default:
-                                        if (exps[e].split('.').length < 2) {
-                                            if (elemExp['nodeName'] === 'INPUT') {
-                                                if (matchAttr[1] && matchAttr[1] === "value") {
-                                                    elemExp[matchAttr[1]] = ctx[exps[e].split('.')[0]]
-                                                } else if (matchAttr[1]) {
-                                                    this._(elemExp).attr(matchAttr[1], this._(elemExp).attr(matchAttr[1]) + ctx[exps[e].split('.')[0]]);
-
-                                                } else {
-                                                    elemExp['value'] = ctx[exps[e].split('.')[0]];
-                                                }
-                                            } else if (elemExp['nodeName'] === 'OPTION') {
-                                                if (matchAttr[1]) {
-
-                                                    this.settingTagOption(matchAttr[1], elemExp, ctx[exps[e].split('.')[0]]);
-
-                                                } else {
-                                                    this._(elemExp).html(ctx[exps[e].split('.')[0]])
-                                                }
-                                            } else {
-                                                if (matchAttr[1]) {
-
-                                                    this.settingTag(matchAttr[1], elemExp, ctx[exps[e].split('.')[0]]);
-
-                                                } else {
-                                                    this._(elemExp).append(ctx[exps[e].split('.')[0]])
-                                                }
-                                            }
-                                        } else if (exps[e].split('.').length > 1) {
-
-                                            if (elemExp['nodeName'] === 'INPUT') {
-
-                                                if (matchAttr[1]) {
-                                                    this._(elemExp).attr(matchAttr[1], this._(elemExp).attr(matchAttr[1]) + ctx[exps[e].split('.')[0]][exps[e].split('.')[1]]);
-
-                                                } else {
-                                                    elemExp['value'] = ctx[exps[e].split('.')[0]][exps[e].split('.')[1]];
-                                                }
-                                            } else if (elemExp['nodeName'] === 'OPTION') {
-                                                if (matchAttr[1]) {
-
-                                                    this.settingTagOption(matchAttr[1], elemExp, ctx[exps[e].split('.')[0]][exps[e].split('.')[1]]);
-
-
-                                                } else {
-                                                    this._(elemExp).html(ctx[exps[e].split('.')[0]][exps[e].split('.')[1]])
-                                                }
-                                            } else {
-
-                                                if (matchAttr[1]) {
-
-                                                    this.settingTag(matchAttr[1], elemExp, ctx[exps[e].split('.')[0]][exps[e].split('.')[1]]);
-
-                                                } else {
-                                                    this._(elemExp).append(ctx[exps[e].split('.')[0]][exps[e].split('.')[1]])
-                                                }
-                                            }
-
-                                        }
-
-                                }
-                            }
-                        }
-                    }
-                }
-
-            })(att, elemExp, t)
-        }
-
-        this.removeProperty(elemExp, new RegExp(/(for-property|for-property\-.*)+$/));
-    }
-    return this;
 };
 JDataPagingSupport.prototype.updateObject = function (elemExp, elementForEach, t, data) {
     var this_ = this;
@@ -618,7 +443,8 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
 
 JDataPagingSupport.prototype.valueProperty = function (exps) {
     var this_ = this;
-    var chars = [];
+    var chars = []; 
+     
     if (typeof exps !== "undefined" && exps !== "") {
         ++this_.count;
         if (String(exps).indexOf(this_.divisor) !== -1) {
@@ -799,11 +625,11 @@ JDataPagingSupport.prototype.isforEach = function (o) {
         var ctx_data = {}, key = x.split('.').pop();
         ctx_data[key] = [];
         if (x.split('.').length > 1) {
-        ctx_data[key]= eval('(' + 'this_.data' + '.' + x + ')');   
-         /* for (var s in this_.data[x.split('.').shift()]) {
-                var i = this_.set(x, s);
-                ctx_data[key] = ctx_data[key].concat(i);
-            } */
+            ctx_data[key] = eval('(' + 'this_.data' + '.' + x + ')');
+            /* for (var s in this_.data[x.split('.').shift()]) {
+             var i = this_.set(x, s);
+             ctx_data[key] = ctx_data[key].concat(i);
+             } */
         } else {
             ctx_data[key] = this_.set(x, 0)
         }
@@ -830,8 +656,7 @@ JDataPagingSupport.prototype.isforEach = function (o) {
                 this_._(fork[x]['obj']).parent().append(clone);
                 this_.writeProperty(clone);
                 this_.initHtmlEvent(clone);
-                this_.isforEachIn(clone, ctx_data[key], t)
-
+                
                 this_.removeProperty(clone, new RegExp(/(for-property|for-property\-.*)+$/));
 
                 if (typeof (this_.home.onAfterRow) !== "undefined" || typeof (this_.home.onAfterRow) === "function")
@@ -913,16 +738,16 @@ JDataPagingSupport.prototype.createView = function (o) {
         {
             this__.setBoxView(o.box)
         }
-         if (typeof o.jmsApp !== "undefined")
+        if (typeof o.jmsApp !== "undefined")
         {
             this__.setAppName(o.jmsApp)
         }
-        
+
     }
-        if(typeof this__.templateAppName!=="undefined")
-            return  this__.executeApp();
-         else
-         return this__.executeView();
+    if (typeof this__.templateAppName !== "undefined")
+        return  this__.executeApp();
+    else
+        return this__.executeView();
 };
 
 JDataPagingSupport.prototype.executeView = function () {
@@ -952,6 +777,10 @@ JDataPagingSupport.prototype.executeView = function () {
     if (typeof this__.supplTemplateName === "undefined") {
         console.log('JDataPagingSupport Info[ Method:getView] templateName is undefined! > exit!!')
     }
+    if (typeof this__.fnDone !== "undefined" && typeof this__.fnDone === "function")
+        this__.fnDone.apply(this__, [exl]);
+
+
     return this__;
 };
 
@@ -961,9 +790,9 @@ JDataPagingSupport.prototype.executeApp = function () {
         this__.home = {onBeforeRow: function (a, b) {
                 return true;
             }, onAfterRow: function () {}};
-    
+
     if (typeof this__.templateAppName !== "undefined") {
-        
+
         if (this__.data !== "undefined") {
             this__.searchTemplateApp(document);
             var exl = this__.getAppTemplate(this__.templateAppName);
@@ -978,10 +807,15 @@ JDataPagingSupport.prototype.executeApp = function () {
     if (typeof this__.templateAppName === "undefined") {
         console.log('JDataPagingSupport Info[ Method:getView] templateAppName is undefined! > exit!!')
     }
+    if (typeof this__.fnDone !== "undefined" && typeof this__.fnDone === "function")
+        this__.fnDone.apply(this__, [exl]);
+
     return this__;
 };
 
-
+JDataPagingSupport.prototype.jmsDone = function (fn) {
+    this.fnDone = fn;
+};
 
 JDataPagingSupport.prototype.jmsEvent = function (name, fn) {
     var th_ = this;
@@ -1020,11 +854,11 @@ JDataPagingSupport.prototype.initHtmlEvent = function (o) {
                 nEvent = evt.split(" ");
         obj.removeAttribute('jms-event')
         for (var s in nEvent) {
-            (function (t, act, arg,this_) {
+            (function (t, act, arg, this_) {
                 JDataPagingSupport.bind(obj, nEvent[s], __proto[t][(function (a) {
                     return  a
-                })(act)], obj, arg,this_);
-            })(types, action, this_.home,this_)
+                })(act)], obj, arg, this_);
+            })(types, action, this_.home, this_)
         }
 
     }
@@ -1056,7 +890,7 @@ JDataPagingSupport.prototype.ajaxCallServer = function (btn) {
             });
     return this__;
 };
- 
+
 JDataPagingSupport.istance = function (n) {
     if (typeof (n) === "undefined")
         n = new Date().getTime();

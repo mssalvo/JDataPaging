@@ -95,7 +95,7 @@
             onAfterRow:function(el,obj,index){console.log("onAfterRow ",el,obj,index);},
             plugin:JDataPagingSupport,
             autoStart:false
-          }).jmsEvent('fncombo',function(val){
+          }).jmsPipe('fncombo',function(val){
             var res=[];
             Array.prototype.forEach.call(val,function(o,i){
               res.push("<option>"); 

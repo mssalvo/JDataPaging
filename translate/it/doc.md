@@ -67,6 +67,7 @@ Method | Action
 **jmsEvent**    | associa le funzioni agli elementi html
 **jmsPipe**    | associa le funzioni agli attributi-jms per manipolare il valore reperito da una property json
 **setMessageEmpty**    | imposta un messaggio quando non ci sono rows da visualizzare, messaggio di default (No records found) 
+**jmsDone**  | esegue la funzione alla fine della creazione html, utile se è necessario abbinare nuovi eventi a oggetti html appena creati
 
 ## _per recuperare un istanzia precedente e utilizzare i metodi disponibili_
 

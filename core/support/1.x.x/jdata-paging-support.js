@@ -148,6 +148,26 @@ JDataPagingSupport.prototype.propert = function (prop) {
         return {key: p[0], val: p[0]}
     }
 };
+JDataPagingSupport.prototype.settingTagInput = function (m, e, o) {
+    switch (m) {
+        case 'value':
+            this._(e).val(o)
+            break;
+        case 'checked':
+            this._(e).prop(m, o)
+            break;
+        case 'disabled':
+            this._(e).prop(m, o)
+            break;
+        default :
+            if (this._(e).attr(m))
+                this._(e).attr(m, this._(e).attr(m) + o)
+            else
+                this._(e).attr(m, o)
+
+    }
+    return this;
+};
 JDataPagingSupport.prototype.settingTag = function (m, e, o) {
     switch (m) {
         case 'html':
@@ -166,8 +186,8 @@ JDataPagingSupport.prototype.settingTag = function (m, e, o) {
             this._(e).text(o)
             break;
         case 'checked':
-            this._(e).prop(m,o)
-            break;    
+            this._(e).prop(m, o)
+            break;
         default :
             if (this._(e).attr(m))
                 this._(e).attr(m, this._(e).attr(m) + o)
@@ -190,8 +210,8 @@ JDataPagingSupport.prototype.settingTagOption = function (m, e, o) {
             this._(e).text(o)
             break;
         case 'selected':
-            this._(e).prop(m,o)
-            break;      
+            this._(e).prop(m, o)
+            break;
         default :
             if (this._(e).attr(m))
                 this._(e).attr(m, this._(e).attr(m) + o)
@@ -263,7 +283,8 @@ JDataPagingSupport.prototype.updateObject = function (elemExp, elementForEach, t
                                     case elementForEach:
                                         if (elemExp['nodeName'] === 'INPUT') {
                                             if (matchAttr[1]) {
-                                                this_._(elemExp).attr(matchAttr[1], typeof this_.getObjVal(exps, e, data, elementForEach, t) === "boolean" ? this_.getObjVal(exps, e, data, elementForEach, t) : this_._(elemExp).attr(matchAttr[1]) + this_.getObjVal(exps, e, data, elementForEach, t))
+                                               // this_._(elemExp).attr(matchAttr[1], typeof this_.getObjVal(exps, e, data, elementForEach, t) === "boolean" ? this_.getObjVal(exps, e, data, elementForEach, t) : this_._(elemExp).attr(matchAttr[1]) + this_.getObjVal(exps, e, data, elementForEach, t))
+                                                this_.settingTagInput(matchAttr[1], elemExp, this_.getObjVal(exps, e, data, elementForEach, t));
                                             } else {
                                                 elemExp['value'] = this_.getObjVal(exps, e, data, elementForEach, t);
                                             }
@@ -292,7 +313,8 @@ JDataPagingSupport.prototype.updateObject = function (elemExp, elementForEach, t
                                                 if (matchAttr[1] && matchAttr[1] === "value") {
                                                     elemExp[matchAttr[1]] = this_.data[exps[e].split('.')[0]]
                                                 } else if (matchAttr[1]) {
-                                                    this_._(elemExp).attr(matchAttr[1], this_._(elemExp).attr(matchAttr[1]) + data[exps[e].split('.')[0]]);
+                                                   // this_._(elemExp).attr(matchAttr[1], this_._(elemExp).attr(matchAttr[1]) + data[exps[e].split('.')[0]]);
+                                                    this_.settingTagInput(matchAttr[1], elemExp, data[exps[e].split('.')[0]]);
                                                 } else {
                                                     elemExp['value'] = data[exps[e].split('.')[0]];
                                                 }
@@ -318,8 +340,8 @@ JDataPagingSupport.prototype.updateObject = function (elemExp, elementForEach, t
                                             if (elemExp['nodeName'] === 'INPUT') {
 
                                                 if (matchAttr[1]) {
-                                                    this_._(elemExp).attr(matchAttr[1], this_._(elemExp).attr(matchAttr[1]) + data[exps[e].split('.')[0]][exps[e].split('.')[1]]);
-
+                                                    //this_._(elemExp).attr(matchAttr[1], this_._(elemExp).attr(matchAttr[1]) + data[exps[e].split('.')[0]][exps[e].split('.')[1]]);
+                                                    this_.settingTagInput(matchAttr[1], elemExp, data[exps[e].split('.')[0]][exps[e].split('.')[1]]);
                                                 } else {
                                                     elemExp['value'] = data[exps[e].split('.')[0]][exps[e].split('.')[1]];
                                                 }
@@ -443,8 +465,8 @@ JDataPagingSupport.prototype.getObjVal = function (exp, e, a, b, n) {
 
 JDataPagingSupport.prototype.valueProperty = function (exps) {
     var this_ = this;
-    var chars = []; 
-     
+    var chars = [];
+
     if (typeof exps !== "undefined" && exps !== "") {
         ++this_.count;
         if (String(exps).indexOf(this_.divisor) !== -1) {
@@ -508,8 +530,9 @@ JDataPagingSupport.prototype.updateProperty = function (elemExp) {
                         for (var e in exps) {
                             if (elemExp['nodeType'] === 1) {
                                 if (elemExp['nodeName'] === 'INPUT') {
-                                    if (matchAttr[1]) {
-                                        this_._(elemExp).attr(matchAttr[1], this_.valueProperty(exps[e]));
+                                    if (matchAttr[1]) { 
+                                        this_.settingTagInput(matchAttr[1], elemExp, this_.valueProperty(exps[e]));
+                                        //this_._(elemExp).attr(matchAttr[1], this_.valueProperty(exps[e]));
                                     } else {
                                         elemExp['value'] = this_.valueProperty(exps[e]);
                                     }
@@ -656,7 +679,7 @@ JDataPagingSupport.prototype.isforEach = function (o) {
                 this_._(fork[x]['obj']).parent().append(clone);
                 this_.writeProperty(clone);
                 this_.initHtmlEvent(clone);
-                
+
                 this_.removeProperty(clone, new RegExp(/(for-property|for-property\-.*)+$/));
 
                 if (typeof (this_.home.onAfterRow) !== "undefined" || typeof (this_.home.onAfterRow) === "function")
@@ -814,7 +837,9 @@ JDataPagingSupport.prototype.executeApp = function () {
 };
 
 JDataPagingSupport.prototype.jmsDone = function (fn) {
+    var this__ = this;
     this.fnDone = fn;
+    return this__;
 };
 
 JDataPagingSupport.prototype.jmsEvent = function (name, fn) {

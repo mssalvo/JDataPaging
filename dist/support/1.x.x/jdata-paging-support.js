@@ -283,7 +283,6 @@ JDataPagingSupport.prototype.updateObject = function (elemExp, elementForEach, t
                                     case elementForEach:
                                         if (elemExp['nodeName'] === 'INPUT') {
                                             if (matchAttr[1]) {
-                                               // this_._(elemExp).attr(matchAttr[1], typeof this_.getObjVal(exps, e, data, elementForEach, t) === "boolean" ? this_.getObjVal(exps, e, data, elementForEach, t) : this_._(elemExp).attr(matchAttr[1]) + this_.getObjVal(exps, e, data, elementForEach, t))
                                                 this_.settingTagInput(matchAttr[1], elemExp, this_.getObjVal(exps, e, data, elementForEach, t));
                                             } else {
                                                 elemExp['value'] = this_.getObjVal(exps, e, data, elementForEach, t);
@@ -313,7 +312,7 @@ JDataPagingSupport.prototype.updateObject = function (elemExp, elementForEach, t
                                                 if (matchAttr[1] && matchAttr[1] === "value") {
                                                     elemExp[matchAttr[1]] = this_.data[exps[e].split('.')[0]]
                                                 } else if (matchAttr[1]) {
-                                                   // this_._(elemExp).attr(matchAttr[1], this_._(elemExp).attr(matchAttr[1]) + data[exps[e].split('.')[0]]);
+
                                                     this_.settingTagInput(matchAttr[1], elemExp, data[exps[e].split('.')[0]]);
                                                 } else {
                                                     elemExp['value'] = data[exps[e].split('.')[0]];
@@ -339,8 +338,7 @@ JDataPagingSupport.prototype.updateObject = function (elemExp, elementForEach, t
 
                                             if (elemExp['nodeName'] === 'INPUT') {
 
-                                                if (matchAttr[1]) {
-                                                    //this_._(elemExp).attr(matchAttr[1], this_._(elemExp).attr(matchAttr[1]) + data[exps[e].split('.')[0]][exps[e].split('.')[1]]);
+                                                if (matchAttr[1]) {                                                    
                                                     this_.settingTagInput(matchAttr[1], elemExp, data[exps[e].split('.')[0]][exps[e].split('.')[1]]);
                                                 } else {
                                                     elemExp['value'] = data[exps[e].split('.')[0]][exps[e].split('.')[1]];
@@ -532,7 +530,7 @@ JDataPagingSupport.prototype.updateProperty = function (elemExp) {
                                 if (elemExp['nodeName'] === 'INPUT') {
                                     if (matchAttr[1]) { 
                                         this_.settingTagInput(matchAttr[1], elemExp, this_.valueProperty(exps[e]));
-                                        //this_._(elemExp).attr(matchAttr[1], this_.valueProperty(exps[e]));
+                                     
                                     } else {
                                         elemExp['value'] = this_.valueProperty(exps[e]);
                                     }
@@ -649,10 +647,7 @@ JDataPagingSupport.prototype.isforEach = function (o) {
         ctx_data[key] = [];
         if (x.split('.').length > 1) {
             ctx_data[key] = eval('(' + 'this_.data' + '.' + x + ')');
-            /* for (var s in this_.data[x.split('.').shift()]) {
-             var i = this_.set(x, s);
-             ctx_data[key] = ctx_data[key].concat(i);
-             } */
+
         } else {
             ctx_data[key] = this_.set(x, 0)
         }
@@ -873,7 +868,7 @@ JDataPagingSupport.prototype.initHtmlEvent = function (o) {
                 evt = this_.trim(JDataPagingSupport.expEvent.exec(par)[0]),
                 ctr = JDataPagingSupport.expControll.exec(par)[1],
                 action = JDataPagingSupport.expAction.exec(par)[1],
-                types = ctr.split(" ").join("")/*.toLowerCase()*/,
+                types = ctr.split(" ").join(""),
                 action = action.split(" ").join(""),
                 obj = jmsEvent[k],
                 nEvent = evt.split(" ");

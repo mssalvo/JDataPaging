@@ -410,7 +410,7 @@ __Recover the instance__
  
  ```
 
-### Dati da Ajax elaborazione dinanica lato client
+### Dati da Ajax elaborazione dinamica lato client
 _Esempio_
 
  ```html
@@ -505,7 +505,7 @@ _Esempio_
             })
  ``` 
 
-### Gestire la paginazione dinanica lato server
+### Gestire la paginazione dinamica lato server
 per gestire la paginazione lato server, 
 saranno passati sempre al server i suddetti parametri: `start`  `end`  `limit`  `page`  `totalrows`
 

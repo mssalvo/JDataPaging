@@ -10,11 +10,11 @@
 
 function JDataPaging(o) {
     var t_ = this;
-    t_.log("INIT JDataPaging!")
+    window.console.log("INIT JDataPaging!")
     if (o)
         t_._new().settyng(o)
     else
-        t_.log("JDataPaging Info: >> No object declared : Example [ JDataPaging.paging('myname',{data:object,box:' '}) ] info: https://github.com/mssalvo/JDataPaging")
+       window.console.log("JDataPaging Info: >> No object declared : Example [ JDataPaging.paging('myname',{data:object,box:' '}) ] info: https://github.com/mssalvo/JDataPaging")
 
 }
 ;
@@ -35,7 +35,7 @@ JDataPaging.prototype.dataSupport = undefined;
 JDataPaging.get = {};
 if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined')
     window.console = {log: function () {}};
-JDataPaging.prototype.log = window.console.log;
+JDataPaging.prototype.log = function (obj){};
 JDataPaging.prototype.isArray = function (obj) {
     return obj.constructor.toString().indexOf("Array") > -1;
 };
@@ -46,7 +46,7 @@ JDataPaging.prototype.creaView = function () {
         this_.dataSupport.home = this_;
         this_.dataSupport.produceView(this_.jmsTemplate, this_.data, this_.selectorBox);
     } else {
-        this_.log("[JDataPaging] Info error:: dataSupport not istance > check include data-support.js")
+        window.console.log("[JDataPaging] Info error:: dataSupport not istance > check include data-support.js")
     }
     return this_;
 };
@@ -154,7 +154,7 @@ JDataPaging.prototype.play = function () {
 JDataPaging.prototype.start = function (data) {
     var th_ = this;
     th_.pageCurrent = 0;
-    th_.log("START JDataPaging!")
+    window.console.log("START JDataPaging!")
     if (data)
         th_.data = th_.isArray(data) ? {data: data} : data;
 
@@ -231,9 +231,9 @@ JDataPaging.prototype.jmsEvent = function (name, fn) {
         if (typeof name !== "undefined" && name !== 'pp') {
             th_.dataSupport.fn[name] = fn;
         } else
-            th_.log("INFO!! it is not possible to associate a function with the name (pp) - change function name! - the function [pp] could not be subscribed!! ");
+            window.console.log("INFO!! it is not possible to associate a function with the name (pp) - change function name! - the function [pp] could not be subscribed!! ");
     } else
-        th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})");
+        window.console.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})");
     return th_;
 };
 JDataPaging.prototype.jmsPipe = function (name, fn) {
@@ -241,7 +241,7 @@ JDataPaging.prototype.jmsPipe = function (name, fn) {
     if (typeof (th_.dataSupport) !== "undefined")
         th_.dataSupport.fn['pp'][name] = fn;
     else
-        th_.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
+        window.console.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
     return th_;
 };
 JDataPaging.prototype.onCompleteCall = function (args) {

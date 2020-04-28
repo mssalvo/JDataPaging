@@ -6,7 +6,7 @@
  * Copyright (c) 2019 Salvatore Mariniello
  * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
  * @example istance 
- * AioRequest.istance('incorso')
+ * AioRequest.get('incorso')
  *       .set("url", '/DataElements/incorso.json')
  *       .set("type", 'get')
  *       .set("data", {limit: "10", page: "1", totalrows: "18"})
@@ -63,7 +63,7 @@ AioRequest.prototype = {
     /*
      * @example 
      * 
-     * AioRequest.istance('myName').set('url', 'some url')
+     * AioRequest.get('myName').set('url', 'some url')
      * .set('dataType', 'xml')
      * .set('method', 'GET')
      * .set('cache', false)
@@ -172,7 +172,7 @@ AioRequest.prototype = {
     }
 
 }
-AioRequest.istance = function (a) {
+AioRequest.get = function (a) {
     if (typeof (AioRequest.istances[a]) === "undefined")
         AioRequest.istances[a] = new AioRequest();
     return AioRequest.istances[a];

@@ -6,7 +6,7 @@
  * Copyright (c) 2019 Salvatore Mariniello 
  * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
  * @example 
- *   jQAjaxSupport.istance('incorso')
+ *   jQAjaxSupport.get('incorso')
  *       .set("url", '/DataElements/incorso.json')
  *       .set("type", 'get')
  *       .set("data", {limit: "10", page: "1", totalrows: "18"})
@@ -60,7 +60,7 @@ jQAjaxSupport.prototype = {
     /*
      * @example 
      * 
-     * AioRequest.istance('myName').set('uri', 'some url')
+     * jQAjaxSupport.get('myName').set('uri', 'some url')
      * .set('dataType', 'xml')
      * .set('method', 'GET')
      * .set('cache', false)
@@ -282,7 +282,7 @@ jQAjaxSupport.prototype = {
     }
 
 }
-jQAjaxSupport.istance = function (a) {
+jQAjaxSupport.get = function (a) {
     if (typeof (jQAjaxSupport.istances[a]) === "undefined")
         jQAjaxSupport.istances[a] = new jQAjaxSupport();
     return jQAjaxSupport.istances[a];

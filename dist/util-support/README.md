@@ -3,7 +3,7 @@
  
  *example istance*
  ```js
- AioRequest.istance('incorso')
+ AioRequest.get('incorso')
          .set("url", '/DataElements/incorso.json')
          .set("type", 'get')
         .set("data", {limit: "10", page: "1", totalrows: "18"})
@@ -15,7 +15,7 @@
   ```
   
 ```js
-  AioRequest.istance('incorso').start()
+  AioRequest.get('incorso').start()
 ```
 
 
@@ -24,7 +24,7 @@
 
 *example istance*
  ```js
- jQAjaxSupport.istance('incorso')
+ jQAjaxSupport.get('incorso')
          .set("url", '/DataElements/incorso.json')
          .set("type", 'get')
         .set("data", {limit: "10", page: "1", totalrows: "18"})
@@ -36,5 +36,5 @@
   ```
   
 ```js
-  jQAjaxSupport.istance('incorso').start()
+  jQAjaxSupport.get('incorso').start()
 ```

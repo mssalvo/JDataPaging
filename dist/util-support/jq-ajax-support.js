@@ -6,7 +6,7 @@
  * Copyright (c) 2019 Salvatore Mariniello 
  * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
  * @example 
- *   jQAjaxSupport.istance('incorso')
+ *   jQAjaxSupport.get('incorso')
  *       .set("url", '/DataElements/incorso.json')
  *       .set("type", 'get')
  *       .set("data", {limit: "10", page: "1", totalrows: "18"})
@@ -49,6 +49,10 @@ jQAjaxSupport.prototype = {
         this.success = undefined;
         this.error = undefined;
         this.complete = undefined;
+        this.urlController = undefined;
+        this.action = undefined;
+        this.successlts=[];
+        this.messages = {success:"Operation performed successfully",error:"Failed operation"};
         return this;
     },
     init: function () {
@@ -60,7 +64,7 @@ jQAjaxSupport.prototype = {
     /*
      * @example 
      * 
-     * AioRequest.istance('myName').set('uri', 'some url')
+     * jQAjaxSupport.get('myName').set('uri', 'some url')
      * .set('dataType', 'xml')
      * .set('method', 'GET')
      * .set('cache', false)
@@ -68,7 +72,7 @@ jQAjaxSupport.prototype = {
      * 
      * @param {string} key
      * @param {string} value
-     * @returns {AioRequest}
+     * @returns {jQAjaxSupport}
      */
     set: function (key, value) {
         this.opt[key] = value;
@@ -83,30 +87,47 @@ jQAjaxSupport.prototype = {
         return this;
     },
     onSuccess: function (fn) {
-        var t_ = this;
-        t_.success = fn;
-        return t_;
+        this.success = fn;
+        return this;
     },
     onComplete: function (fn) {
-        var t_ = this;
-        t_.complete = fn;
-        return t_;
+        this.complete = fn;
+        return this;
     },
     onError: function (fn) {
-        var t_ = this;
-        t_.error = fn;
-        return t_;
+        this.error = fn;
+        return this;
     },
-    onEnd: function (fn) {
-        var t_ = this;
-        t_.complete = fn;
-        return t_;
+    onEnd: function (fn) { 
+        this.complete = fn;
+        return this;
     },
     onAfterStart: function (fn) {
-        var t_ = this;
+        
         this.setBeforeSend(fn);
-        return t_;
+        return this;
     },
+    clearSucc: function (fn) {
+        this.successlts=[];
+         return this;
+     },
+     addSuccess: function (fn) {
+         var t_ = this;
+         t_.successlts.push(fn);
+         return t_;
+     }, 
+     setMessage: function (key, value) {
+         this.messages[key] = value;
+         return this;
+     },
+    setUrlController: function (value) {
+         this.urlController= value;
+         return this;
+     },
+    setAction: function (value) {
+         this.action= value;
+         return this;
+     },  
     /*
      * Type: String
      * @returns {httpRequest}
@@ -253,12 +274,23 @@ jQAjaxSupport.prototype = {
         this.opt.scriptCharset = a;
         return this;
     },
+    initSuccess:function(data){
+        var ts__=this;
+        for(var i in ts__.successlts)
+        if(typeof ts__.successlts[i]==="function")
+          ts__.successlts[i].apply(ts__,[data]);  
+        return this;  
+        },
     setting: function () {
         var this__ = this;
         var options = {};
         this.flush = false;
         if (typeof (this.opt.url) !== "undefined")
             this.opt.url = [this.opt.url, (this.opt.dataType === "jsonp") ? this.opt.url.indexOf("callback=") ? "" : this.opt.url.indexOf("?") ? "&callback=?" : "?callback=?" : ""].join("");
+        if (typeof (this__.urlController) !== "undefined" && typeof (this__.urlController) !== "object")
+             this.opt.url=this__.urlController;
+        if (typeof (this__.action) !== "undefined" && typeof (this__.action) !== "object")
+        this.opt.url+=this__.action;
         for (var i in this.opt) {
             if (typeof (this.opt[i]) !== "undefined") {
                 options[i] = this.opt[i];
@@ -267,7 +299,7 @@ jQAjaxSupport.prototype = {
         this.requestXHR = this.request(options);
         this.requestXHR.done(function (data) {
             if (typeof (this__.success) === "function")
-                this__.success(data)
+                this__.success.apply(this__,[data])
         })
         this.requestXHR.fail(function (jqXHR, textStatus, errorThrown) {
             if (typeof (this__.error) === "function")
@@ -276,15 +308,14 @@ jQAjaxSupport.prototype = {
         this.requestXHR.always(function (jqXHR, textStatus, errorThrown) {
             if (typeof (this__.complete) === "function")
                 this__.complete(jqXHR, textStatus, errorThrown)
-            console.log("terminated request ajax state: complete", textStatus);
         });
         return this;
     }
 
 }
-jQAjaxSupport.istance = function (a) {
+jQAjaxSupport.get = function (a) {
     if (typeof (jQAjaxSupport.istances[a]) === "undefined")
         jQAjaxSupport.istances[a] = new jQAjaxSupport();
-    return jQAjaxSupport.istances[a];
+    return jQAjaxSupport.istances[a].clearSucc();
 }
 };

@@ -54,7 +54,8 @@ jQAjaxSupport.prototype = {
         this.urlController = undefined;
         this.action = undefined;
         this.successlts=[];
-        this.messages = {success:"Operation performed successfully",error:"Failed operation"};
+        this.message = {success:"Operation performed successfully",error:"Failed operation"};
+        this.show = {success:true,error:true};
         return this;
     },
     init: function () {
@@ -113,15 +114,20 @@ jQAjaxSupport.prototype = {
         this.successlts=[];
          return this;
      },
-     addSuccess: function (fn) {
+    addSuccess: function (fn) {
          var t_ = this;
          t_.successlts.push(fn);
          return t_;
      }, 
-     setMessage: function (key, value) {
-         this.messages[key] = value;
+    setMessage: function (key, value, show_) {
+        this.message[key] = value;
+        this.show[key] = typeof show_ === "boolean" ? show_ : true;
+        return this;
+    },
+    showMsg: function (key, bool) {
+         this.show[key] = bool;
          return this;
-     },
+     }, 
     setUrlController: function (value) {
          this.urlController= value;
          return this;

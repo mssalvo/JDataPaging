@@ -283,6 +283,11 @@ jQAjaxSupport.prototype = {
           ts__.successlts[i].apply(ts__,[data]);  
         return this;  
         },
+    resolveUrl:function(url,act){
+    var urlResolve=url+"/"+act;
+    urlResolve=urlResolve.replace(/[(\/\/)]+[(\/)]/g, '/').replace(":/","://");
+    return urlResolve;
+    },    
     setting: function () {
         var this__ = this;
         var options = {};
@@ -292,7 +297,7 @@ jQAjaxSupport.prototype = {
         if (typeof (this__.urlController) !== "undefined" && typeof (this__.urlController) !== "object")
              this.opt.url=this__.urlController;
         if (typeof (this__.action) !== "undefined" && typeof (this__.action) !== "object")
-        this.opt.url+=this__.action;
+        this.opt.url+=this__.resolveUrl(this.opt.url,this__.action);
         for (var i in this.opt) {
             if (typeof (this.opt[i]) !== "undefined") {
                 options[i] = this.opt[i];

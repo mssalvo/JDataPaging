@@ -104,9 +104,9 @@ var data_application = {
 }
 
     JDataPagingSupport.istance("a")
-           .setTemplateName("city").setData({city:{name:'Napoli'}})
+           .setTemplateName("city").setBoxView("#cityId").setData({city:{name:'Napoli'}})
              .jmsEvent('testfunc',function(ctx,e){
-            alert('hello');      
+            alert(this.innerHTML+' hello');      
             console.log(ctx,e) 
          }).jmsPipe('upper',function(val){
             return val.toUpperCase();
@@ -116,11 +116,11 @@ var data_application = {
       var strings=[];
       
       for(i=0;i<150;i++){
-          
-        strings.push(JDataPagingSupport.get.a.setData({city:{name:'Napoli'+i}}).createView().getHtml());  
+     JDataPagingSupport.get.a.setData({city:{name:'Napoli'+i}}).createView()     
+     //   strings.push(JDataPagingSupport.get.a.setData({city:{name:'Napoli'+i}}).createView().getHtml());  
       }
       
-      $("#cityId").html(strings.join(" "));
+     // $("#cityId").html(strings.join(" "));
 
            var boxMainHtml=JDataPagingSupport.istance("b").createView({jmsTemplate:'testSub',data:data_application.data}).getHtml();
             $("#testTempl").html(boxMainHtml)  

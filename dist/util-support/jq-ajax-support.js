@@ -5,6 +5,8 @@
  * MIT License
  * Copyright (c) 2019 Salvatore Mariniello 
  * https://github.com/mssalvo/JDataPaging/blob/master/LICENSE
+ * @requires Third-party software dependency
+ * jQuery Foundation, licenza MIT https://jquery.com/
  * @example 
  *   jQAjaxSupport.get('incorso')
  *       .set("url", '/DataElements/incorso.json')

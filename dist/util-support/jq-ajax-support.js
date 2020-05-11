@@ -125,8 +125,21 @@ jQAjaxSupport.prototype = {
         return this;
     },
     showMsg: function (key, bool) {
-         this.show[key] = bool;
-         return this;
+       if (typeof (key) === "undefined")    
+        for (var i in this.show) {
+            if (typeof (this.show[i]) !== "undefined") {
+               this.show[i] = true;
+            }
+        } 
+       else if (typeof (key) === "boolean") 
+         for (var i in this.show) {
+            if (typeof (this.show[i]) !== "undefined") {
+               this.show[i] = key;
+            }
+        }
+        else if (typeof (key) === "string") 
+            this.show[key] = typeof (bool) === "boolean" ? bool : true;
+          return this;
      }, 
     setUrlController: function (value) {
          this.urlController= value;
@@ -303,7 +316,7 @@ jQAjaxSupport.prototype = {
         if (typeof (this__.urlController) !== "undefined" && typeof (this__.urlController) !== "object")
              this.opt.url=this__.urlController;
         if (typeof (this__.action) !== "undefined" && typeof (this__.action) !== "object")
-        this.opt.url+=this__.resolveUrl(this.opt.url,this__.action);
+        this.opt.url=this__.resolveUrl(this.opt.url,this__.action);
         for (var i in this.opt) {
             if (typeof (this.opt[i]) !== "undefined") {
                 options[i] = this.opt[i];

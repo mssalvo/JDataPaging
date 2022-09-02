@@ -10,11 +10,11 @@
 
 function JDataPaging(o) {
     var t_ = this;
-    window.console.log("INIT JDataPaging!")
+    window.console.log("INIT JDataPaging!");
     if (o)
-        t_._new().settyng(o)
+        t_._new().settyng(o);
     else
-       window.console.log("JDataPaging Info: >> No object declared : Example [ JDataPaging.paging('myname',{data:object,box:' '}) ] info: https://github.com/mssalvo/JDataPaging")
+        window.console.log("JDataPaging Info: >> No object declared : Example [ JDataPaging.paging('myname',{data:object,box:' '}) ] info: https://github.com/mssalvo/JDataPaging");
 
 }
 ;
@@ -35,7 +35,7 @@ JDataPaging.prototype.dataSupport = undefined;
 JDataPaging.get = {};
 if (typeof window.console === 'undefined' || typeof window.console.log === 'undefined')
     window.console = {log: function () {}};
-JDataPaging.prototype.log = function (obj){};
+JDataPaging.prototype.log = function (obj) {};
 JDataPaging.prototype.isArray = function (obj) {
     return obj.constructor.toString().indexOf("Array") > -1;
 };
@@ -46,7 +46,7 @@ JDataPaging.prototype.creaView = function () {
         this_.dataSupport.home = this_;
         this_.dataSupport.produceView(this_.jmsTemplate, this_.data, this_.selectorBox);
     } else {
-        window.console.log("[JDataPaging] Info error:: dataSupport not istance > check include data-support.js")
+        window.console.log("[JDataPaging] Info error:: dataSupport not istance > check include data-support.js");
     }
     return this_;
 };
@@ -154,7 +154,7 @@ JDataPaging.prototype.play = function () {
 JDataPaging.prototype.start = function (data) {
     var th_ = this;
     th_.pageCurrent = 0;
-    window.console.log("START JDataPaging!")
+    window.console.log("START JDataPaging!");
     if (data)
         th_.data = th_.isArray(data) ? {data: data} : data;
 
@@ -200,7 +200,7 @@ JDataPaging.prototype._new = function () {
     this.onPreviusBefore = undefined;
     this.onPreviousAfter = undefined;
     this.onChangeComboPages = undefined;
-	this.textMessageEmpty='<div class="col text-center paging-empty">No records found</div>';	
+    this.textMessageEmpty = '<div class="col text-center paging-empty">No records found</div>';
     this.onBeforeRow = function (a, b, c) {
         return true;
     };
@@ -211,19 +211,26 @@ JDataPaging.prototype._new = function () {
     this.back = false;
     return this;
 };
-JDataPaging.onEmptyMessage = function(th__){  
-     
-	if(typeof th__.rowsWrap==="undefined" && typeof th__.selectorBox!=="undefined")
-		th__.selectorBox.innerHTML= th__.textMessageEmpty;
-    if(typeof th__.rowsWrap!=="undefined" && th__.rowsWrap.length < 1 && typeof th__.selectorBox!=="undefined")
-	th__.selectorBox.innerHTML= th__.textMessageEmpty;
-  return th__;
-};
-JDataPaging.prototype.setMessageEmpty = function(textHtml){  
+JDataPaging.prototype.onEmptyMessage = function () {
     var th__ = this;
-	if(typeof textHtml!=="undefined")
-	th__.textMessageEmpty=textHtml;
-  return th__;
+    if (typeof th__.rowsWrap === "undefined" && typeof th__.selectorBox !== "undefined")
+    {
+        th__.selectorBox.innerHTML = th__.textMessageEmpty;
+        th__.disableButtons();
+    } else if (typeof th__.rowsTotal !== "undefined" && th__.rowsTotal < 1 && typeof th__.selectorBox !== "undefined")
+    {
+        th__.selectorBox.innerHTML = th__.textMessageEmpty;
+        th__.disableButtons();
+    } else {
+        th__.enableButtons();
+    }
+    return th__;
+};
+JDataPaging.prototype.setMessageEmpty = function (textHtml) {
+    var th__ = this;
+    if (typeof textHtml !== "undefined")
+        th__.textMessageEmpty = textHtml;
+    return th__;
 };
 JDataPaging.prototype.jmsEvent = function (name, fn) {
     var th_ = this;
@@ -241,7 +248,7 @@ JDataPaging.prototype.jmsPipe = function (name, fn) {
     if (typeof (th_.dataSupport) !== "undefined")
         th_.dataSupport.fn['pp'][name] = fn;
     else
-        window.console.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})")
+        window.console.log("the function could not be subscribed, dataSupport and undefined! Add the JDataPagingSupport plugin. Example: JDataPaging.paging('myIstName', {plugin:JDataPagingSupport, .....})");
     return th_;
 };
 JDataPaging.prototype.onCompleteCall = function (args) {
@@ -318,19 +325,19 @@ JDataPaging.prototype.startServer = function (data, btn) {
 
     if (this_.jmsTemplate)
         this_.creaView().initPageServer();
-	
+
 
     var arry = this_.rows.slice(0, this_.limit);
 
     for (var i in arry)
     {
 
-        this_.selectorBox.appendChild(arry[i])
+        this_.selectorBox.appendChild(arry[i]);
 
     }
-	
-	JDataPaging.onEmptyMessage(this_);
-	
+
+    this_.onEmptyMessage();
+
     if (btn && btn === 'next')
         this_.writeLabels().onNextAfterCall([arry, this_]).onCompleteCall([arry]);
     else if (btn && btn === 'previous')
@@ -338,7 +345,7 @@ JDataPaging.prototype.startServer = function (data, btn) {
     else if (btn && btn === 'changeCombo')
         this_.writeLabels().onChangeComboPagesCall([{limit: this_.limit, rowsTotal: this_.rowsTotal, pageMax: this_.pageMax}, this_]).onCompleteCall([arry]);
     else
-        this_.writeLabels().onCompleteCall([arry])
+        this_.writeLabels().onCompleteCall([arry]);
 
     return this_;
 
@@ -346,8 +353,8 @@ JDataPaging.prototype.startServer = function (data, btn) {
 };
 
 JDataPaging.nextServer = function (this_) {
-    
-	this_.onNextBeforeCall([this_]);
+
+    this_.onNextBeforeCall([this_]);
 
     if (this_.pageCurrent < 1 || this_.pageCurrent > 0 && this_.rowsTotal > 0 && (this_.pageCurrent * this_.limit) < this_.rowsTotal)
     {
@@ -422,12 +429,12 @@ JDataPaging.prototype.page = function (n) {
  * @returns {JDataPaging}
  **/
 JDataPaging.prototype.next = function () {
-     var this_ = this;
+    var this_ = this;
     if (this_.isServer)
         return JDataPaging.nextServer(this_);
-	
-	JDataPaging.onEmptyMessage(this_);
-    this_.onNextBeforeCall([this_])
+
+    this_.onEmptyMessage();
+    this_.onNextBeforeCall([this_]);
     ++this_.pageCurrent;
     this_.back = false;
 
@@ -442,7 +449,7 @@ JDataPaging.prototype.next = function () {
     for (var i in arry)
     {
 
-        this_.selectorBox.appendChild(arry[i])
+        this_.selectorBox.appendChild(arry[i]);
 
     }
     this_.writeLabels().onNextAfterCall([arry, this_]).onCompleteCall([arry]);
@@ -450,7 +457,7 @@ JDataPaging.prototype.next = function () {
     return this_;
 };
 JDataPaging.previousServer = function (this_) {
-    this_.onPreviusBeforeCall([this_])
+    this_.onPreviusBeforeCall([this_]);
 
 
     if (this_.pageCurrent > 1)
@@ -483,11 +490,11 @@ JDataPaging.calculatesPrevious = function (this_) {
  * @returns {JDataPaging}
  **/
 JDataPaging.prototype.previous = function () {
-     var this_ = this;
+    var this_ = this;
     if (this_.isServer)
         return JDataPaging.previousServer(this_);
 
-    this.onPreviusBeforeCall([this_])
+    this.onPreviusBeforeCall([this_]);
 
     this.clear();
     if (!this_.back)
@@ -503,7 +510,7 @@ JDataPaging.prototype.previous = function () {
     for (var i in arry)
     {
 
-        this_.selectorBox.appendChild(arry[i])
+        this_.selectorBox.appendChild(arry[i]);
 
     }
     this_.writeLabels().onPreviousAfterCall([arry, this_]).onCompleteCall([arry]);
@@ -534,12 +541,12 @@ JDataPaging.prototype.restart = function (data) {
         return this_.creaView().init().next().writeLabels();
     else
         return this_.init().next().writeLabels();
- 
+
 };
 
 JDataPaging.prototype.clear = function () {
     var _this = this;
-    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined" && typeof _this.selectorBox.querySelectorAll==="function")
+    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined" && typeof _this.selectorBox.querySelectorAll === "function")
         Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
             el.parentNode.removeChild(el);
         });
@@ -551,9 +558,9 @@ JDataPaging.prototype.init = function () {
     var _this = this;
     _this.rows = [];
     _this.rowsWrap = [];
-    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined" && typeof _this.selectorBox.querySelectorAll==="function")
+    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined" && typeof _this.selectorBox.querySelectorAll === "function")
         Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
-            _this.rows.push(el)
+            _this.rows.push(el);
             _this.rowsWrap.push(el);
             el.parentNode.removeChild(el);
         });
@@ -566,7 +573,7 @@ JDataPaging.prototype.initPageServer = function () {
     var _this = this;
     _this.rows = [];
     _this.rowsWrap = [];
-    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined" && typeof _this.selectorBox.querySelectorAll==="function")
+    if (typeof (_this.selectorBox) !== "undefined" && typeof (_this.selectorRowName) !== "undefined" && typeof _this.selectorBox.querySelectorAll === "function")
         Array.prototype.forEach.call(_this.selectorBox.querySelectorAll(_this.selectorRowName), function (el, i) {
             _this.rows.push(el);
             _this.rowsWrap.push(el);
@@ -576,7 +583,7 @@ JDataPaging.prototype.initPageServer = function () {
     return _this;
 };
 JDataPaging.prototype.refreshLimit = function (n) {
-     var _this = this;
+    var _this = this;
     if (n)
         _this.limit = Number(n);
     _this.pageCurrent = 1;
@@ -590,7 +597,7 @@ JDataPaging.prototype.refreshLimit = function (n) {
     for (var i in arry)
     {
 
-        _this.selectorBox.appendChild(arry[i])
+        _this.selectorBox.appendChild(arry[i]);
 
     }
 
@@ -638,7 +645,7 @@ JDataPaging.prototype.initInputSearch = function () {
         Array.prototype.forEach.call(this__.inputSearch, function (el, i) {
             el.addEventListener('keyup', function () {
                 this__.search(el.value);
-            }, false)
+            }, false);
         });
 
 
@@ -656,12 +663,12 @@ JDataPaging.prototype.initComboPages = function () {
             el.innerHTML = "";
             for (var i in this__.pages) {
                 var opt = document.createElement("option");
-                opt.text = this__.pages[i]
+                opt.text = this__.pages[i];
                 el.add(opt);
             }
             el.addEventListener('change', function () {
                 this__.refreshLimit(el.value);
-            }, false)
+            }, false);
         });
 
 
@@ -669,16 +676,38 @@ JDataPaging.prototype.initComboPages = function () {
 
     return this__;
 };
+JDataPaging.eventHandlers = {};
 
+JDataPaging.addListener = function (node, event, handler, capture = false) {
+    if (!(event in JDataPaging.eventHandlers)) {
+        JDataPaging.eventHandlers[event] = [];
+    }
+    JDataPaging.eventHandlers[event].push({node: node, handler: handler, capture: capture});
+    node.addEventListener(event, handler, capture);
+};
+JDataPaging.removeAllListeners = function (targetNode, event) {
+    if (typeof JDataPaging.eventHandlers[event] !== "undefined") {
+        JDataPaging.eventHandlers[event]
+                .filter(({ node }) => node === targetNode)
+                .forEach(({ node, handler, capture }) => node.removeEventListener(event, handler, capture));
+
+        JDataPaging.eventHandlers[event] = JDataPaging.eventHandlers[event].filter(
+                ({ node }) => node !== targetNode,
+                );
+    }
+};
 JDataPaging.prototype.initButtons = function () {
     var this__ = this;
     if (this__.btnNext)
     {
 
         Array.prototype.forEach.call(this__.btnNext, function (el, i) {
-            el.addEventListener('click', function () {
+
+            JDataPaging.removeAllListeners(el, 'click');
+            JDataPaging.addListener(el, 'click', function () {
                 this__.next();
-            }, false)
+            }, false);
+            //el.addEventListener('click', funNext, false);
         });
 
 
@@ -687,9 +716,12 @@ JDataPaging.prototype.initButtons = function () {
     {
 
         Array.prototype.forEach.call(this__.btnPrevious, function (el, i) {
-            el.addEventListener('click', function () {
+            JDataPaging.removeAllListeners(el, 'click');
+            JDataPaging.addListener(el, 'click', function () {
                 this__.previous();
-            }, false)
+            }, false);
+
+            //el.addEventListener('click', funPrevious, false);
         });
 
 
@@ -698,6 +730,83 @@ JDataPaging.prototype.initButtons = function () {
     return this__;
 };
 
+JDataPaging.prototype.disableButtons = function () {
+    var this__ = this;
+    if (this__.btnNext)
+    {
+
+        Array.prototype.forEach.call(this__.btnNext, function (el, i) {
+            if (el.style)
+                el.style.display = 'none';
+        });
+
+
+    }
+    if (this__.btnPrevious)
+    {
+
+        Array.prototype.forEach.call(this__.btnPrevious, function (el, i) {
+            if (el.style)
+                el.style.display = 'none';
+        });
+
+
+    }
+
+    if (typeof (this__.labelPageCurrent) !== "undefined")
+        Array.prototype.forEach.call(this__.labelPageCurrent, function (el, i) {
+            if (el.style)
+                el.style.display = 'none';
+        });
+
+    if (typeof (this__.labelPageTotal) !== "undefined")
+        Array.prototype.forEach.call(this__.labelPageTotal, function (el, i) {
+            if (el.style)
+                el.style.display = 'none';
+        });
+
+    return this__;
+};
+
+JDataPaging.prototype.enableButtons = function () {
+    var this__ = this;
+    if (this__.btnNext)
+    {
+
+        Array.prototype.forEach.call(this__.btnNext, function (el, i) {
+            if (el.style)
+                el.style.display = 'block';
+        });
+
+
+    }
+    if (this__.btnPrevious)
+    {
+
+        Array.prototype.forEach.call(this__.btnPrevious, function (el, i) {
+            if (el.style)
+                el.style.display = 'block';
+        });
+
+
+    }
+
+    if (typeof (this__.labelPageCurrent) !== "undefined")
+        Array.prototype.forEach.call(this__.labelPageCurrent, function (el, i) {
+            if (el.style)
+                el.style.display = 'block';
+        });
+
+    if (typeof (this__.labelPageTotal) !== "undefined")
+        Array.prototype.forEach.call(this__.labelPageTotal, function (el, i) {
+            if (el.style)
+                el.style.display = 'block';
+        });
+
+    return this__;
+};
+
+
 JDataPaging.prototype.search = function (a) {
     var this_ = this;
     this_.textSearch = String(a).toLowerCase();
@@ -705,7 +814,7 @@ JDataPaging.prototype.search = function (a) {
         this_.rows = [];
         for (var i in this_.rowsWrap)
             if (String(this_.rowsWrap[i].innerText).toLowerCase().indexOf(this_.textSearch) !== -1)
-                this_.rows.push(this_.rowsWrap[i])
+                this_.rows.push(this_.rowsWrap[i]);
 
         this_.clear();
 
@@ -717,7 +826,7 @@ JDataPaging.prototype.search = function (a) {
         return JDataPaging.sendCallServer(this_, 'changeCombo');
     }
 
-    return this_; 
+    return this_;
 };
 JDataPaging.prototype.removeParameter = function (name) {
     var this_ = this;
@@ -736,9 +845,8 @@ if (!('forEach' in Array.prototype)) {
         for (var i = 0, n = this.length; i < n; i++)
             if (i in this)
                 action.call(that, this[i], i, this);
-    }
-}
-;
+    };
+};
 
 JDataPaging.paging = function (name, object) {
     var n, o;
@@ -754,6 +862,6 @@ JDataPaging.paging = function (name, object) {
         n = new Date().getTime();
 
     if (typeof (JDataPaging.get[n]) === "undefined")
-        JDataPaging.get[n] = new JDataPaging(o);
+    JDataPaging.get[n] = new JDataPaging(o);
     return JDataPaging.get[n];
 };

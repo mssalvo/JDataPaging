@@ -54,6 +54,7 @@ JDataPaging.prototype.settyng = function (o) {
     this.pages = ['10', '20', '30', '50'];
     this.btnNext = undefined;
     this.btnPrevious = undefined;
+    this.disableButton = undefined;
     this.ajaxSetting = {url: '', type: 'get', dataType: 'json'};
     if (o.box)
         this.selectorBox = document.querySelector(o.box) || undefined;
@@ -95,6 +96,14 @@ JDataPaging.prototype.settyng = function (o) {
         this.onBeforeRow = o.onBeforeRow;
     if (o.onAfterRow)
         this.onAfterRow = o.onAfterRow;
+    if (typeof (o.disableButton) !== "undefined")
+        this.disableButton = o.disableButton;
+    if (o.backgroundDisable)
+        this.backgroundDisable = o.backgroundDisable;
+    if (o.backgroundEnabled)
+        this.backgroundEnabled = o.backgroundEnabled;
+    if (o.jmsTemplate)
+        this.jmsTemplate = o.jmsTemplate;
     if (o.plugin)
         this.plugin = o.plugin;
     if (typeof (o.autoStart) !== "undefined")
@@ -191,6 +200,9 @@ JDataPaging.prototype._new = function () {
     this.textSearch = undefined;
     this.labelPageCurrent = undefined;
     this.labelPageTotal = undefined;
+    this.disableButton = undefined;
+    this.backgroundDisable = '#dddddd';
+    this.backgroundEnabled = '#ffb600';
     this.btnNext = undefined;
     this.btnPrevious = undefined;
     this.comboPages = undefined;
@@ -438,6 +450,8 @@ JDataPaging.prototype.next = function () {
     ++this_.pageCurrent;
     this_.back = false;
 
+    this_.disableButtonNext();
+
     this_.clear();
 
     var obj = JDataPaging.calculatesNext(this_);
@@ -500,7 +514,7 @@ JDataPaging.prototype.previous = function () {
     if (!this_.back)
         --this_.pageCurrent;
     this_.back = false;
-
+    this_.disableButtonNext();
     var obj = JDataPaging.calculatesPrevious(this_);
 
     var start_ = obj.start, end = obj.end;
@@ -634,6 +648,9 @@ JDataPaging.prototype.writeLabels = function () {
         });
 
 
+
+    _this.disableButtonPrevious();
+
     return _this;
 };
 
@@ -730,41 +747,93 @@ JDataPaging.prototype.initButtons = function () {
     return this__;
 };
 
+JDataPaging.prototype.disableButtonNext = function () {
+    var this__ = this;
+
+    if (this__.disableButton && this__.disableButton === true) {
+
+        if (this__.btnNext)
+        {
+            if (this__.pageCurrent === this__.pageMax) {
+                Array.prototype.forEach.call(this__.btnNext, function (el, i) {
+                    if (el.style)
+                        el.style.pointerEvents = 'none';
+                        el.style.backgroundColor='#ddd';
+                });
+
+            } else {
+                Array.prototype.forEach.call(this__.btnNext, function (el, i) {
+                    if (el.style)
+                        el.style.pointerEvents = 'all';
+                        el.style.backgroundColor='#ffb600';
+                });
+            }
+        }
+    }
+    return this__;
+};
+
+JDataPaging.prototype.disableButtonPrevious = function () {
+    var this__ = this;
+    if (this__.disableButton && this__.disableButton === true) {
+        if (this__.btnPrevious)
+        {
+            if (this__.pageCurrent <= 1) {
+                Array.prototype.forEach.call(this__.btnPrevious, function (el, i) {
+                    if (el.style)
+                        el.style.pointerEvents = 'none';
+                        el.style.backgroundColor=this__.backgroundDisable;
+                });
+
+            } else {
+                Array.prototype.forEach.call(this__.btnPrevious, function (el, i) {
+                    if (el.style)
+                        el.style.pointerEvents = 'all';
+                        el.style.backgroundColor=this__.backgroundEnabled;
+                });
+            }
+        }
+    }
+    return this__;
+};
+
+
 JDataPaging.prototype.disableButtons = function () {
     var this__ = this;
-    if (this__.btnNext)
-    {
+    if (this__.disableButton && this__.disableButton === true) {
+        if (this__.btnNext)
+        {
 
-        Array.prototype.forEach.call(this__.btnNext, function (el, i) {
-            if (el.style)
-                el.style.display = 'none';
-        });
+            Array.prototype.forEach.call(this__.btnNext, function (el, i) {
+                if (el.style)
+                    el.style.display = 'none';
+            });
 
 
+        }
+        if (this__.btnPrevious)
+        {
+
+            Array.prototype.forEach.call(this__.btnPrevious, function (el, i) {
+                if (el.style)
+                    el.style.display = 'none';
+            });
+
+
+        }
+
+        if (typeof (this__.labelPageCurrent) !== "undefined")
+            Array.prototype.forEach.call(this__.labelPageCurrent, function (el, i) {
+                if (el.style)
+                    el.style.display = 'none';
+            });
+
+        if (typeof (this__.labelPageTotal) !== "undefined")
+            Array.prototype.forEach.call(this__.labelPageTotal, function (el, i) {
+                if (el.style)
+                    el.style.display = 'none';
+            });
     }
-    if (this__.btnPrevious)
-    {
-
-        Array.prototype.forEach.call(this__.btnPrevious, function (el, i) {
-            if (el.style)
-                el.style.display = 'none';
-        });
-
-
-    }
-
-    if (typeof (this__.labelPageCurrent) !== "undefined")
-        Array.prototype.forEach.call(this__.labelPageCurrent, function (el, i) {
-            if (el.style)
-                el.style.display = 'none';
-        });
-
-    if (typeof (this__.labelPageTotal) !== "undefined")
-        Array.prototype.forEach.call(this__.labelPageTotal, function (el, i) {
-            if (el.style)
-                el.style.display = 'none';
-        });
-
     return this__;
 };
 
@@ -846,7 +915,8 @@ if (!('forEach' in Array.prototype)) {
             if (i in this)
                 action.call(that, this[i], i, this);
     };
-};
+}
+;
 
 JDataPaging.paging = function (name, object) {
     var n, o;

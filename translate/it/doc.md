@@ -69,15 +69,15 @@ Method | Action
 **setMessageEmpty**    | imposta un messaggio quando non ci sono rows da visualizzare, messaggio di default (No records found) 
 **jmsDone**  | esegue la funzione alla fine della creazione html, utile se è necessario abbinare nuovi eventi a oggetti html appena creati
 
-## _per recuperare un istanzia precedente e utilizzare i metodi disponibili_
+## _per recuperare un istanza precedente e utilizzare i metodi disponibili_
 
-esempio nuova istanzia
+esempio nuova istanza
 
 ```js
 JDataPaging.paging('myIstName', {box:'' .....});
 ```
 
-esempio recupero istanzia
+esempio recupero istanza
 
 ```js
 JDataPaging.get.myIstName.next()
@@ -386,7 +386,7 @@ __Example__
 ```
  
  
- 3 . Istanzia un oggetto JDataPaging, impostando i vari attributi che mappano l'html
+ 3 . Istanza un oggetto JDataPaging, impostando i vari attributi che mappano l'html
  `box` `row` `comboPages` `pages` `labelPageCurrent` `labelPageTotal` `btnNext` `btnPrevious`
  
  __Example Istance JDataPaging v.1.1.0__
